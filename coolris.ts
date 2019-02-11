@@ -1,3 +1,13 @@
+/*!
+ * coolschool relationship service, coolris-service v1.0.0
+ * https://github.com/jirancomms/coolris
+ *
+ * Copyright Jirancomms
+ * http://jirancomms.com/
+ *
+ * Date: 2019-02-11
+ */
+
 declare var $: any;
 declare var ga: any;
 
