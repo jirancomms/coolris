@@ -15,8 +15,8 @@ class Coolris {
     constructor() {
     }
 
-    start(template) {
-        $('#coolris').html(template);
+    start() {
+        $('#coolris').html(this.template());
     }
 
     template() {
@@ -145,7 +145,7 @@ class Coolris {
 }
 
 $(() => {
-    var coolris = new Coolris();
-    var template = coolris.template();
-    coolris.start(template);
+    // var coolris = new Coolris();
+    // var template = coolris.template();
+    // coolris.start(template);
 });
