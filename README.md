@@ -35,8 +35,11 @@
 ```
 - coolris 함수를 실행시켜준다.
 ```html
-var coolris = new Coolris();
+// ready가 되면
+$(() => {
+    var coolris = new Coolris();
     coolris.start();
+});
 ```
 ## 예제
 - index.html 참고
