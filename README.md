@@ -6,7 +6,7 @@
 - firefox
 
 ## 필요한 프레임워크
-- 구글 폰트(나눔고딕)
+- 구글 폰트(NotoSansRegular)
 - jquery 최소 v1.12.4
 - popper v1.14.6
 - bootstrap v4.2.1
@@ -22,7 +22,7 @@
 ## 사용방법
 - css, js파일을 포함시킨다. (jquery, popper, bootstrap, coolris)
 ```html
-<link href="//fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="//update.coolmessenger.com/_ImageServer/coolschool/commonTop/bootstrap.min.css" /><!-- 4.1.1-->
 <script type="text/javascript" src="//update.coolmessenger.com/_ImageServer/coolschool/commonTop/jquery.min.js"></script><!-- 1.12.4 -->
 <script type="text/javascript" src="//update.coolmessenger.com/_ImageServer/coolschool/commonTop/popper.min.js"></script>
