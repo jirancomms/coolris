@@ -128,6 +128,12 @@ class Coolris {
                         </span>
                         <span class="align-middle">쿨메신저</span>
                     </a>
+                    <a onclick="ga('send','event','link','click', 'coolris-cooledu')" class="col-6 float-left p-0" href="http://cooledu.coolschool.co.kr">
+                        <span class="img">
+                            <img src="http://update.coolmessenger.com/_ImageServer/coolschool/commonTop/cooledu.png" alt="쿨에듀" />
+                        </span>
+                        <span class="align-middle">쿨에듀</span>
+                    </a>
                 </div>
                 <div class="dropdown-divider mb-0"></div>
                 <div class="bottom pb-3 pt-2">
@@ -158,15 +164,7 @@ class Coolris {
                             </span>
                             <span class="align-middle">쿨SMS</span>
                         </a>
-                    </div>
-                    <div class="pl-4 pr-4 clearfix">
-                        <a onclick="ga('send','event','link','click', 'coolris-timplus')" class="col-6 float-left p-0" href="http://timplus.coolschool.co.kr/">
-                            <span class="img">
-                                <img src="http://update.coolmessenger.com/_ImageServer/coolschool/commonTop/teamplus.png" alt="팀플러스" />
-                            </span>
-                            <span class="align-middle">팀플러스</span>
-                        </a>
-                    </div>
+                    </div>                    
                 </div>
             </div>
         </div>
