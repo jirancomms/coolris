@@ -130,9 +130,9 @@ class Coolris {
                     </a>
                     <a onclick="ga('send','event','link','click', 'coolris-cooledu')" class="col-6 float-left p-0" href="http://cooledu.coolschool.co.kr">
                         <span class="img">
-                            <img src="http://update.coolmessenger.com/_ImageServer/coolschool/commonTop/cooledu.png" alt="쿨에듀" />
+                            <img src="http://update.coolmessenger.com/_ImageServer/coolschool/commonTop/cooledu.png" alt="통합연수" />
                         </span>
-                        <span class="align-middle">쿨에듀</span>
+                        <span class="align-middle">통합연수</span>
                     </a>
                 </div>
                 <div class="dropdown-divider mb-0"></div>
