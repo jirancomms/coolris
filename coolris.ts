@@ -110,9 +110,9 @@ class Coolris {
                 <div class="pl-4 pr-4 clearfix">
                     <a onclick="ga('send','event','link','click', 'coolris-weteacher')" class="col-6 float-left p-0" href="http://weteacher.coolschool.co.kr/">
                         <span class="img">
-                            <img src="http://update.coolmessenger.com/_ImageServer/coolschool/commonTop/weteacher.png" alt="위티쳐몰" />
+                            <img src="http://update.coolmessenger.com/_ImageServer/coolschool/commonTop/weteacher.png" alt="WeTeacher" />
                         </span>
-                        <span class="align-middle">위티쳐몰</span>
+                        <span class="align-middle">WeTeacher</span>
                     </a>
                     <a onclick="ga('send','event','link','click', 'coolris-coolissue')" class="col-6 float-left p-0" href="http://issue.coolschool.co.kr">
                         <span class="img">
