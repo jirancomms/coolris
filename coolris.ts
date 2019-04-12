@@ -16,7 +16,7 @@ class Coolris {
     }
 
     start() {
-        $('#coolris').html(this.template());
+        $('#coolris').html(this.template()); 
     }
 
     template() {
