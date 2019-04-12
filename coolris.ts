@@ -58,8 +58,9 @@ class Coolris {
                 line-height: 28px !important;
             } 
             .dropdown[coolris] .dropdown-menu .img {
-                width: 22px; !important;
+                width: 26px; !important;
                 display: inline-block;
+                margin-right: 1px;
             }   
         </style>
         <script>
