@@ -1,5 +1,5 @@
 /*!
- * coolschool relationship service, coolris-service v1.0.0
+ * coolschool relationship service, coolris-service v1.1.0
  * https://github.com/jirancomms/coolris
  *
  * Copyright Jirancomms
