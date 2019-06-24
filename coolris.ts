@@ -156,26 +156,26 @@ class Coolris {
                     </a>
                 </div>
                 <div class="pl-4 pr-4 clearfix">
-                    <a onclick="ga('send','event','link','click', 'coolris-weteacher')" class="col-6 float-left p-0" href="http://weteacher.coolschool.co.kr/">
+                    <!--<a onclick="ga('send','event','link','click', 'coolris-weteacher')" class="col-6 float-left p-0" href="http://weteacher.coolschool.co.kr/">
                         <span class="img">
                             <img src="http://update.coolmessenger.com/_ImageServer/coolschool/commonTop/weteacher.png" alt="WeTeacher" />
                         </span>
                         <span class="align-middle">WeTeacher</span>
-                    </a>
+                    </a>-->
                     <a onclick="ga('send','event','link','click', 'coolris-coolissue')" class="col-6 float-left p-0" href="http://issue.coolschool.co.kr">
                         <span class="img">
                             <img src="http://update.coolmessenger.com/_ImageServer/coolschool/commonTop/coolissue.png" alt="쿨이슈" />
                         </span>
                         <span class="align-middle">쿨이슈</span>
                     </a>
-                </div>
-                <div class="pl-4 pr-4 clearfix">                    
                     <a onclick="ga('send','event','link','click', 'coolris-coolmessenger')" class="col-6 float-left p-0" href="http://school.coolmessenger.com/">
                         <span class="img">
                             <img src="http://update.coolmessenger.com/_ImageServer/coolschool/commonTop/coolmessenger.png" alt="쿨메신저" />
                         </span>
                         <span class="align-middle">쿨메신저</span>
                     </a>
+                </div>
+                <div class="pl-4 pr-4 clearfix">                    
                     <a onclick="ga('send','event','link','click', 'coolris-cooledu')" class="col-6 float-left p-0" href="http://cooledu.coolschool.co.kr">
                         <span class="img">
                             <img src="http://update.coolmessenger.com/_ImageServer/coolschool/commonTop/cooledu.png" alt="통합연수" />
