@@ -185,7 +185,7 @@ class Coolris {
                 </div>
                 <div class="dropdown-divider mb-0"></div>
                 <div class="bottom pb-3 pt-2">
-                    <div class="pl-4 pr-4 clearfix">
+                    <!--<div class="pl-4 pr-4 clearfix">
                         <a onclick="ga('send','event','link','click', 'coolris-coolview')" class="col-6 float-left p-0" href="https://coolview.coolschool.co.kr">
                             <span class="img">
                                 <img src="http://update.coolmessenger.com/_ImageServer/coolschool/commonTop/coolview.png" alt="쿨뷰" />
@@ -198,7 +198,7 @@ class Coolris {
                             </span>
                             <span class="align-middle">쿨노트</span>
                         </a>
-                    </div>
+                    </div>-->
                     <div class="pl-4 pr-4 clearfix">
                         <a onclick="ga('send','event','link','click', 'coolris-coolmova')" class="col-6 float-left p-0" href="http://coolmova.coolschool.co.kr/">
                             <span class="img">
