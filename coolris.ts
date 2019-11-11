@@ -182,6 +182,12 @@ class Coolris {
                         </span>
                         <span class="align-middle">통합연수</span>
                     </a>
+                    <a onclick="ga('send','event','link','click', 'coolris-tmall')" class="col-6 float-left p-0" href="http://t-mall.coolschool.co.kr/">
+                        <span class="img">
+                            <img src="http://update.coolmessenger.com/_ImageServer/coolschool/commonTop/coolschool.png" alt="쿨스쿨" />
+                        </span>
+                        <span class="align-middle">복지몰</span>
+                    </a>
                 </div>
                 <div class="dropdown-divider mb-0"></div>
                 <div class="bottom pb-3 pt-2">
