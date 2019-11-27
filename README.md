@@ -41,7 +41,6 @@
 - 쿨서비스 팝업이 들어갈 div를 **id를 coolris**로 만들어준다.
 ```html
 <div id="coolris"></div>     - 패밀리 드롭다운이 들어갈 id지정
-<div id="coolProfile"></div> - 프로필 드롭다운이 들어갈 id지정
 ```
 - coolris 함수를 실행시켜준다.
 ```html
