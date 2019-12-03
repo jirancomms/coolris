@@ -45,7 +45,7 @@
 - coolris 함수를 실행시켜준다.
 ```html
 // ready가 되면
-$(() => {
+$(function() {
     var coolris = new Coolris();
     coolris.start();
 });
