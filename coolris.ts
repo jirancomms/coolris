@@ -203,6 +203,20 @@ class Coolris {
                         <span class="align-middle">티펀</span>
                     </a>
                 </div>
+                <div class="pl-4 pr-4 clearfix">                    
+                    <a onclick="ga('send','event','link','click', 'coolris-tmall')" class="col-6 float-left p-0" href="http://coolpama.coolschool.co.kr/">
+                        <span class="img">
+                            <img src="http://update.coolmessenger.com/_ImageServer/coolschool/commonTop/coolschool.png" alt="쿨스쿨" />
+                        </span>
+                        <span class="align-middle">쿨파마</span>
+                    </a>                    
+                    <!--<a onclick="ga('send','event','link','click', 'coolris-tfun')" class="col-6 float-left p-0" href="http://t-fun.coolschool.co.kr/">
+                        <span class="img">
+                            <img src="http://update.coolmessenger.com/_ImageServer/coolschool/commonTop/coolschool.png" alt="쿨스쿨" />
+                        </span>
+                        <span class="align-middle">티펀</span>
+                    </a>-->
+                </div>
                 <div class="dropdown-divider mb-0"></div>
                 <div class="bottom pb-3 pt-2">
                     <!--<div class="pl-4 pr-4 clearfix">
