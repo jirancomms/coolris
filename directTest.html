@@ -20,13 +20,15 @@
     <script src="coolris.js"></script>
     <script type="text/javascript">
         $(() => {
-            var coolris = new Coolris();
-            coolris.start();
+            var coolris = new Coolris({ver: 2});
+            // coolris.start();
+            coolris.gnbStart();
         });
     </script>
 </head>
 <body>
-    <div id="coolProfile"></div>
-    <div id="coolris"></div>
+<!--    <div id="coolProfile"></div>-->
+<!--    <div id="coolris"></div>-->
+    <div id="coolrisGnb"></div>
 </body>
 </html>
