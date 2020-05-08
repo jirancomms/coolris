@@ -362,6 +362,7 @@ class Coolris {
                     position: absolute;
                     top: 37px;
                     right: 0;
+                    z-index: 9999;
                 }
                 div[coolrisProfile] .coolris-profile-dropdown.show {
                     display: block;
@@ -447,7 +448,7 @@ class Coolris {
                     transform: translateY(-50%);
                 }
                 ul[coolrisGnbMenu] li a {
-                    font-size: 16px;
+                    font-size: 16px !important;
                     line-height: 25px;
                     color: #000000;
                     text-decoration: none;
@@ -499,6 +500,7 @@ class Coolris {
                     background-color: #ffffff;
                     right: 0;
                     top: 39px;
+                    z-index: 9999;
                 }
                 div[coolrisMore] .coolris-more-dropdown.show {
                     display: block;
@@ -507,6 +509,7 @@ class Coolris {
                     cursor: pointer;
                     position: relative;
                     padding-right: 20px;
+                    font-size: 14px;
                 }
                 div[coolrisMore] .coolris-more-btn:after {
                     content: '';
@@ -549,12 +552,15 @@ class Coolris {
                 div[coolrisMore] ul li h4 {
                     color: #000000;
                     margin-top: 16px !important;
+                    font-size: 12px !important;
+                    line-height: 25px;
                 }
                 div[coolrisMore] ul li a {
                     color: #8d8d8d;
                     display: block;
                     margin-top: 3px;
                     width: 100%;
+                    font-size: 12px !important;
                 }
                 div[coolrisMore] div.coolris-more-dropdown div {
                     border-top: 1px solid #e1e1e1;
