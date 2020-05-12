@@ -201,6 +201,7 @@ class Coolris {
                     right: 0;
                     font-size: 12px;
                     width: 300px;
+                    z-index: 9999;
                 }
                 div[coolrisAlarm] .coolris-alarm-dropdown.show {
                     display: block;
