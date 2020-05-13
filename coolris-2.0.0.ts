@@ -1,5 +1,11 @@
 declare var $: any;
 
+interface LogoutOpts {
+    isRestoreLocation: boolean;
+    isLogoutProc: boolean;
+    logoutProcUrl: string | undefined;
+}
+
 interface CoolTemplate {
     login: string;
     menu: string;
@@ -9,32 +15,43 @@ interface CoolTemplate {
     beforeLogin: string;
 }
 
+const constants = {
+    memberUrl: '//member.coolschool.co.kr',
+    searchUrl: '//search.coolschool.co.kr',
+    clientIds:  {
+        'www' : 'NjM2YzY5NjU2ZTc0NWY2OTY0M2E0MzRmNGY0YzUzNDM0ODRmNGY0Yw==', // coolschool
+        '' : 'NjM2YzY5NjU2ZTc0NWY2OTY0M2E0MzRmNGY0YzUzNDM0ODRmNGY0Yw==' // coolschool
+    }
+}
+
 class Coolris {
-    constructor() {
+
+    constructor(private accessToken = '') {
+        // include dot.js
         // @ts-ignore
         !function(){"use strict";var u,d={name:"doT",version:"1.1.1",templateSettings:{evaluate:/\{\{([\s\S]+?(\}?)+)\}\}/g,interpolate:/\{\{=([\s\S]+?)\}\}/g,encode:/\{\{!([\s\S]+?)\}\}/g,use:/\{\{#([\s\S]+?)\}\}/g,useParams:/(^|[^\w$])def(?:\.|\[[\'\"])([\w$\.]+)(?:[\'\"]\])?\s*\:\s*([\w$\.]+|\"[^\"]+\"|\'[^\']+\'|\{[^\}]+\})/g,define:/\{\{##\s*([\w\.$]+)\s*(\:|=)([\s\S]+?)#\}\}/g,defineParams:/^\s*([\w$]+):([\s\S]+)/,conditional:/\{\{\?(\?)?\s*([\s\S]*?)\s*\}\}/g,iterate:/\{\{~\s*(?:\}\}|([\s\S]+?)\s*\:\s*([\w$]+)\s*(?:\:\s*([\w$]+))?\s*\}\})/g,varname:"it",strip:!0,append:!0,selfcontained:!1,doNotSkipEncoded:!1},template:void 0,compile:void 0,log:!0};d.encodeHTMLSource=function(e){var n={"&":"&#38;","<":"&#60;",">":"&#62;",'"':"&#34;","'":"&#39;","/":"&#47;"},t=e?/[&<>"'\/]/g:/&(?!#?\w+;)|<|>|"|'|\//g;return function(e){return e?e.toString().replace(t,function(e){return n[e]||e}):""}},u=function(){return this||(0,eval)("this")}.apply(this),"undefined"!=typeof module&&module.exports?module.exports=d:"function"==typeof define&&define.amd?define(function(){return d}):u.doT=d;var s={append:{start:"'+(",end:")+'",startencode:"'+encodeHTML("},split:{start:"';out+=(",end:");out+='",startencode:"';out+=encodeHTML("}},p=/$^/;function l(e){return e.replace(/\\('|\\)/g,"$1").replace(/[\r\t\n]/g," ")}d.template=function(e,n,t){var r,o,a=(n=n||d.templateSettings).append?s.append:s.split,c=0,i=n.use||n.define?function r(o,e,a){return("string"==typeof e?e:e.toString()).replace(o.define||p,function(e,r,n,t){return 0===r.indexOf("def.")&&(r=r.substring(4)),r in a||(":"===n?(o.defineParams&&t.replace(o.defineParams,function(e,n,t){a[r]={arg:n,text:t}}),r in a||(a[r]=t)):new Function("def","def['"+r+"']="+t)(a)),""}).replace(o.use||p,function(e,n){o.useParams&&(n=n.replace(o.useParams,function(e,n,t,r){if(a[t]&&a[t].arg&&r){var o=(t+":"+r).replace(/'|\\/g,"_");return a.__exp=a.__exp||{},a.__exp[o]=a[t].text.replace(new RegExp("(^|[^\\w$])"+a[t].arg+"([^\\w$])","g"),"$1"+r+"$2"),n+"def.__exp['"+o+"']"}}));var t=new Function("def","return "+n)(a);return t?r(o,t,a):t})}(n,e,t||{}):e;i=("var out='"+(n.strip?i.replace(/(^|\r|\n)\t* +| +\t*(\r|\n|$)/g," ").replace(/\r|\n|\t|\/\*[\s\S]*?\*\//g,""):i).replace(/'|\\/g,"\\$&").replace(n.interpolate||p,function(e,n){return a.start+l(n)+a.end}).replace(n.encode||p,function(e,n){return r=!0,a.startencode+l(n)+a.end}).replace(n.conditional||p,function(e,n,t){return n?t?"';}else if("+l(t)+"){out+='":"';}else{out+='":t?"';if("+l(t)+"){out+='":"';}out+='"}).replace(n.iterate||p,function(e,n,t,r){return n?(c+=1,o=r||"i"+c,n=l(n),"';var arr"+c+"="+n+";if(arr"+c+"){var "+t+","+o+"=-1,l"+c+"=arr"+c+".length-1;while("+o+"<l"+c+"){"+t+"=arr"+c+"["+o+"+=1];out+='"):"';} } out+='"}).replace(n.evaluate||p,function(e,n){return"';"+l(n)+"out+='"})+"';return out;").replace(/\n/g,"\\n").replace(/\t/g,"\\t").replace(/\r/g,"\\r").replace(/(\s|;|\}|^|\{)out\+='';/g,"$1").replace(/\+''/g,""),r&&(n.selfcontained||!u||u._encodeHTML||(u._encodeHTML=d.encodeHTMLSource(n.doNotSkipEncoded)),i="var encodeHTML = typeof _encodeHTML !== 'undefined' ? _encodeHTML : ("+d.encodeHTMLSource.toString()+"("+(n.doNotSkipEncoded||"")+"));"+i);try{return new Function(n.varname,i)}catch(e){throw"undefined"!=typeof console&&console.log("Could not create a template function: "+i),e}},d.compile=function(e,n){return d.template(e,null,n)}}.apply(this)
     }
 
-    start() {
+    async start() {
         // interface Cooltemplate에 템플릿 주기
         const coolTemplate = {
             login: this.getLoginTemplate(),
             menu: this.getGnbMenuTemplate(),
             more: this.getMoreTemplate(),
-            alarm: this.getAlarmTemplate(),
             point: this.getPointTemplate(),
             beforeLogin: this.getBeforLoginTemplate()
         };
 
+        // 로그인 여부에 따른 처리
+        const memberResponse = await this.loginCheck();
+        const memberResponseData = memberResponse.data;
+
+        const isLogin = memberResponse.result;
+
         // dot에 template을 준다.
         // @ts-ignore
         const coolrisTemplateFn = this.doT.template(this.getGnbTemplate(coolTemplate));
-        $('#coolrisGnb').html(coolrisTemplateFn);
-
-        // 알람 드롭다운
-        this.loginToggle('coolris-alarm-btn', 'coolris-alarm-dropdown');
-        this.loginDropdown('coolris-alarm-dropdown', this.targetAlarmCheck);
-
+        $('#coolrisGnb').html(coolrisTemplateFn({isLogin: isLogin}));
 
         // 로그인 드롭다운
         this.loginToggle('coolris-profile-btn', 'coolris-profile-dropdown');
@@ -43,9 +60,17 @@ class Coolris {
         // 더보기 드롭다운
         this.loginToggle('coolris-more-btn', 'coolris-more-dropdown');
         this.loginDropdown('coolris-more-dropdown', this.targetMoreCheck);
+
+        // 이벤트
+        this.onLoginOutEvents();
+
+        // 로그인에 되어 있다면 내 영역 데이터 로드 및 랜더
+        if (isLogin && this.accessToken) {
+            this.loadSettingMyArea();
+        }
     }
 
-    // 버튼 클릭시 드롭다운 켜짐
+// 버튼 클릭시 드롭다운 켜짐
     loginToggle(toggleBtn: string, dropDownClass: string) {
         $(`.${toggleBtn}`).on('click', () => {
             $(`.${dropDownClass}`).toggleClass('show');
@@ -144,8 +169,8 @@ class Coolris {
             </style>
             <div coolrisPoint>
                 <a href="//point.coolschool.co.kr" target="_blank">
-                    <img src="//update.coolmessenger.com/_ImageServer/coolschool/commonTop/point.png" alt="img" />   
-                    7,345        
+                    <img src="//update.coolmessenger.com/_ImageServer/coolschool/commonTop/point.png" alt="img" />
+                    <span data-name="spanPoint"></span>
                 </a>
             </div>   
         `
@@ -168,7 +193,7 @@ class Coolris {
                 }
             </style>
             <div coolrisBeforLogin>
-                <a href="">로그인</a> <span>/</span> <a href="">회원가입</a>
+                <a href="javascript:void(0)" data-name="aCoolLogin">로그인</a> <span>/</span> <a href="">회원가입</a>
             </div>
         `
     }
@@ -269,27 +294,17 @@ class Coolris {
                 <div class="coolris-alarm-dropdown">
                     <img class="dropdown-tail" src="//update.coolmessenger.com/_ImageServer/coolschool/resources/images/dropbox_tail.png" alt="img" />
                     <ul>
+                    {{ for(var idx in it.coolAlarmItems) { }}
                         <li>
-                            <a href="" target="_blank">
-                                <p>구독중인 [황제쌤의 슬기로운 초등생활]에 새 소식이 있습니다.</p>
-                                <span>5달 전</span>
+                            <a href="//samstory.coolschool.co.kr/zone{{=it.coolAlarmItems[idx].url}}" target="_blank">
+                                <p>{{=it.coolAlarmItems[idx].message}}</p>
+                                <span>{{=it.toDateYmdFormat(new Date(it.coolAlarmItems[idx].createdDate))}}</span>
                             </a>
                         </li>
-                        <li>
-                            <a href="" target="_blank">
-                                <p>구독중인 [황제쌤의 슬기로운 초등생활]에 새 소식이 있습니다.</p>
-                                <span>5달 전</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="" target="_blank">
-                                <p>구독중인 [황제쌤의 슬기로운 초등생활]에 새 소식이 있습니다.</p>
-                                <span>5달 전</span>
-                            </a>
-                        </li>
+                    {{ } }}
                     </ul>
                     <div>
-                        <a href="" target="_blank">알림 모두 보기</a>
+                        <a href="/notification/index" target="_blank">알림 모두 보기</a>
                     </div>
                 </div>
             </div>   
@@ -410,11 +425,14 @@ class Coolris {
                 <div class="coolris-profile-dropdown">
                     <img class="dropdown-tail" src="//update.coolmessenger.com/_ImageServer/coolschool/resources/images/dropbox_tail.png" alt="img" />
                     <p>내정보 보기</p>
-                    <span class="logout dropdown-close">로그아웃</span>
+                    <span class="logout dropdown-close" data-name="spanLogout">로그아웃</span>
                 </div>
                 <span class="coolris-profile-btn">
-                    <img class="profile-img" src="//update.coolmessenger.com/_ImageServer/coolschool/resources/images/default_profile.png" alt="img" />
-                    <span class="profile-name">김새미</span>
+                    <img class="profile-img" data-name="imgProfileImg"
+                        src="//update.coolmessenger.com/_ImageServer/coolschool/resources/images/default_profile.png"
+                        onerror="this.src='//update.coolmessenger.com/_ImageServer/coolschool/resources/images/default_profile.png'" 
+                        alt="img" />
+                    <span class="profile-name" data-name="spanProfileName"></span>
                 </span>
             </div>
         `
@@ -703,13 +721,205 @@ class Coolris {
                         ${coolTemplate.more}
                     </div>
                     <div class="coolris-login-section">
+                        {{? it.isLogin === false }}
                         ${coolTemplate.beforeLogin}
+                        {{?? it.isLogin === true }}
                         ${coolTemplate.login}
                         ${coolTemplate.point}
-                        ${coolTemplate.alarm}
+                        <div data-name="divAlarmArea"></div>
+                        {{?}}
                     </div>
                 </div>
             </div>
         `
+    }
+
+    async loginCheck() {
+        let result = {result: false, coolid: ''} as any;
+        try {
+            result = await $.ajax({
+                method: 'GET',
+                dataType: 'jsonp',
+                url: `${constants.memberUrl}/loginCheck`
+            });
+        } catch (e) {
+            return {result: false};
+        }
+
+        if (!result || !result.coolid) {
+            return {result: false};
+        }
+        return {result: true, data: result};
+    }
+
+    async loadProfileResult(accessToken: string) {
+        let response;
+        try {
+            response = await $.ajax(`${constants.searchUrl}/api/cool/_searchMemberByAccessToken/${accessToken}`);
+        } catch (e) {
+            response = {result: false}
+        }
+        return response;
+    }
+
+    settingProfile(profileData) {
+        $('[data-name=imgProfileImg]').attr('src', profileData.profileImage);
+        $('[data-name=spanProfileName]').html(profileData.name);
+        $('[data-name=spanPoint]').html(this.addComma(profileData.point));
+    }
+
+    async loadAlarmMessage(coolIdx: number) {
+        let response;
+        try {
+            response = await $.ajax(`${constants.searchUrl}/api/coolMessage/_search/coolIdx/${coolIdx}`);
+        } catch (e) {
+            response = {result: false}
+        }
+        return response;
+    }
+
+    private addComma(num) {
+        const regexp = /\B(?=(\d{3})+(?!\d))/g;
+        return num.toString().replace(regexp, ',');
+    }
+
+    /**
+     * 쿨스쿨 로그인 페이지로 이동
+     * @param {string} clientId
+     * @param {string} action (선택)
+     * @param env 개발 URL 사용여부
+     */
+    goDefaultCoolLogin(clientId = '', action = '') {
+        const COOL_LOGIN_CALLBACK_URL = window.location.protocol + '//' + window.location.host + '/callback';
+        const COOL_LOGIN_URL = `${constants.memberUrl}/login`;
+        const param = {
+            client_id: clientId,
+            redirect_uri: COOL_LOGIN_CALLBACK_URL,
+            redirect_uri_next: window.location.href,
+            do_action: action,
+        };
+
+        let loginURL = COOL_LOGIN_URL;
+        let paramStr = $.param(param);
+        if (param.redirect_uri_next.search('&') === -1 && action !== '') {
+            paramStr = paramStr.replace('&do_action=', '?do_action=');
+        }
+        window.location.href = `${loginURL}?${paramStr}`;
+    }
+
+    goCoolLogin() {
+        const CLIENT_ID = this.getClientId();
+        this.goDefaultCoolLogin(CLIENT_ID);
+    }
+
+    async logout(logoutOpts?: LogoutOpts | any): Promise<boolean> {
+        const logoutUrl = `${constants.memberUrl}/logout?client_id=:client_id`;
+        const logoutProc = `${constants.memberUrl}/logoutProc`;
+        const setting = {
+            url: logoutUrl.replace(':client_id', this.getClientId),
+            type: 'GET',
+            contentType: "application/json",
+            dataType: "jsonp",
+        };
+        const settingResponse = await $.ajax(setting);
+        if (settingResponse.result === 'success') {
+            this.setCookie('accessToken', '', -1 as any);
+            this.setCookie('client_id', '', -1 as any);
+
+            logoutOpts = logoutOpts || {};
+            if(logoutOpts.isLogoutProc === undefined || logoutOpts.isLogoutProc === true) {
+                if (!logoutOpts.logoutProcUrl) {
+                    await $.get(`//${window.location.host}/logoutProc`);
+                } else {
+                    await $.get(`${logoutOpts.logoutProcUrl}/logoutProc`);
+                }
+            }
+            if (logoutOpts.isRestoreLocation === undefined || logoutOpts.isRestoreLocation === true) { // 로그아웃 후 있던 페이지에 머무를 것이냐 말것이냐
+                location.href = `//${window.location.host}${window.location.pathname}`;
+            }
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * 로그인, 로그아웃 이벤트 등록
+     */
+    onLoginOutEvents() {
+        // 로그인
+        $("[data-name='aCoolLogin']").click(() => {
+            this.goCoolLogin();
+        });
+        // 로그아웃
+        $("[data-name='spanLogout']").click(() => {
+            this.logout()
+        });
+    }
+
+    getClientId() {
+        let host = location.host;
+        host = host.replace('.coolschool.co.kr', '')
+            .replace('dev', '')
+            .replace('local', '');
+        let clientId = constants.clientIds[host];
+        if(!clientId && console) {
+            console.warn('can`t not find clientId');
+        }
+        return clientId;
+    }
+
+    /**
+     * 쿠키 저장
+     * @param cname
+     * @param cvalue
+     * @param exdays
+     */
+    setCookie(cname: string, cvalue: string, exdays: number) {
+        const d = new Date();
+        // tslint:disable-next-line
+        d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+        const expires = 'expires=' + d.toUTCString();
+        document.cookie = cname + '=' + cvalue + ';' + expires + ';path=/';
+    }
+
+    /**
+     * y.m.d 형태로 format 변경
+     * @param date
+     */
+    toDateYmdFormat(date: Date) {
+        const yyyy = date.getFullYear().toString();
+        const mm = (date.getMonth() + 1).toString();
+        const dd = date.getDate().toString();
+
+        return yyyy + '.' +(mm[1] ? mm : '0' + mm[0]) + '.' + (dd[1] ? dd : '0' + dd[0]);
+    }
+
+    /**
+     *  데이터 로드 및 세팅
+     */
+    async loadSettingMyArea() {
+        let coolAlarmItems = [];
+        // 프로필 세팅
+        const profileResult = await this.loadProfileResult(this.accessToken);
+        if (!profileResult.result) {
+            return;
+        }
+        let profileData = profileResult.data;
+        this.settingProfile(profileData);
+        // 알림 세팅
+        const coolAlarmResponse = await this.loadAlarmMessage(profileData.idx);
+        if (!coolAlarmResponse.result) {
+            return;
+        }
+        coolAlarmItems = coolAlarmResponse.data;
+        // @ts-ignore
+        const alarmTemplateFn = this.doT.template(this.getAlarmTemplate());
+        $("[data-name='divAlarmArea']").html(alarmTemplateFn({
+            coolAlarmItems: coolAlarmItems,
+            toDateYmdFormat: this.toDateYmdFormat
+        }));
+        // 알람 드롭다운 이벤트
+        this.loginToggle('coolris-alarm-btn', 'coolris-alarm-dropdown');
+        this.loginDropdown('coolris-alarm-dropdown', this.targetAlarmCheck);
     }
 }
