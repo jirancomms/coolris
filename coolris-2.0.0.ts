@@ -13,16 +13,17 @@ interface CoolTemplate {
     alarm: string;
     point: string;
     beforeLogin: string;
+    topBanner: string;
 }
 
 const constants = {
-    memberUrl: '//member.coolschool.co.kr',
-    searchUrl: '//search.coolschool.co.kr',
+    memberUrl: '//local-member.coolschool.co.kr',
+    searchUrl: '//dev-search.coolschool.co.kr',
     clientIds:  {
         'www' : 'NjM2YzY5NjU2ZTc0NWY2OTY0M2E0MzRmNGY0YzUzNDM0ODRmNGY0Yw==', // coolschool
         '' : 'NjM2YzY5NjU2ZTc0NWY2OTY0M2E0MzRmNGY0YzUzNDM0ODRmNGY0Yw==' // coolschool
     }
-}
+};
 
 class Coolris {
 
@@ -33,13 +34,15 @@ class Coolris {
     }
 
     async start() {
+
         // interface Cooltemplate에 템플릿 주기
         const coolTemplate = {
             login: this.getLoginTemplate(),
             menu: this.getGnbMenuTemplate(),
             more: this.getMoreTemplate(),
             point: this.getPointTemplate(),
-            beforeLogin: this.getBeforLoginTemplate()
+            beforeLogin: this.getBeforLoginTemplate(),
+            topBanner: this.getTopBannerTemplate()
         };
 
         // 로그인 여부에 따른 처리
@@ -68,11 +71,17 @@ class Coolris {
         if (isLogin && this.accessToken) {
             this.loadSettingMyArea();
         }
+
+        // 탑배너 쿠키가 없다면 탑배너 영역 데이터 로드 및 랜더
+        if (this.getCookie('topbanner')) {
+            return;
+        }
+        this.loadSettingTopBanner();
     }
 
-// 버튼 클릭시 드롭다운 켜짐
+    // 버튼 클릭시 드롭다운 켜짐
     loginToggle(toggleBtn: string, dropDownClass: string) {
-        $(`.${toggleBtn}`).on('click', () => {
+        $(`.${toggleBtn}`).click(() => {
             $(`.${dropDownClass}`).toggleClass('show');
         });
     }
@@ -80,7 +89,7 @@ class Coolris {
     // 드롭다운 껐다가 키기
     loginDropdown(dropdownClass: string, callback: Function) {
         // 프로필 메뉴 빼고 클릭시 드롭다운 꺼짐
-        $(window).on('click', ($event: any) => {
+        $(window).click(($event: any) => {
             if (!callback($event.target.className)) {
                 const dropdown = $(`.${dropdownClass}`);
                 if (dropdown.hasClass('show')) {
@@ -89,7 +98,7 @@ class Coolris {
             }
         });
 
-        $(`.${dropdownClass}`).on('click', ($event: any) => {
+        $(`.${dropdownClass}`).click(($event: any) => {
             // 클릭한 태그가 a이거나 클릭한 태그의 부모가 a이거나 클릭한 클레스의 이름이 dropdown-close 이면 리턴
             if ($event.target.parentNode.tagName.toLowerCase() === 'a' || $event.target.tagName.toLowerCase() === 'a' || $event.target.className.indexOf('dropdown-close') !== -1) {
                 return;
@@ -124,10 +133,8 @@ class Coolris {
     // 더보기 드롭다운을 끌때 더보기 버튼 클릭하는지 체크
     targetMoreCheck(target: string) {
         let isChecked = false;
-        switch (target) {
-            case 'coolris-more-btn':
-                isChecked = true;
-                break;
+        if (target === 'coolris-more-btn') {
+            isChecked = true;
         }
         return isChecked;
     }
@@ -144,6 +151,196 @@ class Coolris {
                 break;
         }
         return isChecked;
+    }
+
+    isSlideMove: boolean = true;
+
+    // 탑배너 슬라이드 이벤트
+    topBannerSlideEvent() {
+        const topBanner = `div[data-name='topBanner']`;
+        const topBannerPaging = $(topBanner).find('.topbanner-paging');
+        const topBannerPagingNum = topBannerPaging.find('li').length;
+
+        // 처음 랜덤으로 슬라이드 보여주기
+        this.topBannerSlideManager(0);
+        // this.topBannerSlideManager(this.getRandomeNum(topBannerPagingNum - 1));
+
+        const autoSlideFnc = () => {
+            for (let i = 0; i < topBannerPagingNum; i++) {
+                if (topBannerPaging.find(`li:eq(${i})`).find('span[data-name="topbannerPaging"]').hasClass('on')) {
+                    let clickNum = i + 1;
+                    if (clickNum >= topBannerPagingNum) {
+                        clickNum = 0;
+                    }
+                    this.topBannerSlideManager(clickNum);
+                }
+            }
+        };
+
+        let autoSlideInterval = setInterval(autoSlideFnc, 5000);
+
+        for (let i = 0; i < topBannerPagingNum; i++) {
+            topBannerPaging.find(`li:eq(${i})`).find('span[data-name="topbannerPaging"]').click(() => {
+                if (this.isSlideMove) {
+                    clearInterval(autoSlideInterval);
+                    autoSlideInterval = setInterval(autoSlideFnc, 5000);
+                    this.topBannerSlideManager(i);
+                }
+            })
+        }
+
+        $(topBanner).on('mouseenter', () => {
+            if (this.isSlideMove) {
+                clearInterval(autoSlideInterval);
+                autoSlideInterval = setInterval(autoSlideFnc, 5000);
+            }
+            return false;
+        });
+    }
+
+    // topbanner 애니메이션
+    topBannerSlideManager(slideNum: number) {
+        this.isSlideMove = false;
+        const topBanner = `div[data-name='topBanner']`;
+        const topBannerList = $(topBanner).find('.topbanner-list');
+        const topBannerPaging = $(topBanner).find('.topbanner-paging');
+        const topBannerListH = 79;
+        if (!topBannerList.is(':animated')) {
+            topBannerList.stop().animate({'top': - (slideNum * topBannerListH)}, 600, () => {
+                this.isSlideMove = true;
+                topBannerPaging.find('span[data-name="topbannerPaging"]').removeClass('on');
+                topBannerPaging.find('li:eq('+ slideNum +')').find('span[data-name="topbannerPaging"]').addClass('on');
+            });
+        }
+    }
+
+    // topbanner close
+    topbannerCloseEvent() {
+        $("p[data-name='topbannerClose']").click(() => {
+            $("div[data-name='topBanner']").css('display', 'none');
+            this.setCookie('topbanner', 'yes', 1);
+        })
+    }
+
+    getRandomeNum(index: number) {
+        return Math.floor((Math.random() * index))
+    }
+
+    // 탑배너 템플릿
+    getTopBannerTemplate() {
+        return `
+            <style>
+                /*===== topBanner =====*/
+                div[coolrisTopBanner] {
+                    background-color:#24d1ab;
+                    height: 79px;
+                    /*display:none;*/
+                    text-align:center;
+                }
+                 @media screen and (max-width: 992px) {
+                     div[coolrisTopBanner] {
+                        display: none !important;
+                     }
+                }
+                div[coolrisTopBanner] > div {
+                    height:79px;
+                    overflow: hidden;
+                    position: relative;
+                }
+                div[coolrisTopBanner] > div > div { position:relative; top: 0; }
+                div[coolrisTopBanner] .inner {
+                    width: 980px;
+                }
+                div[coolrisTopBanner] .inner a { display: block; width: 100%; }
+                div[coolrisTopBanner] .top_close{
+                    color:#000;
+                    font-size:11px;
+                    position:absolute;
+                    bottom:5px;
+                    right:100px;
+                    font-family: "Dotum";
+                    z-index:999;
+                }
+                div[coolrisTopBanner] .top_close img {
+                    margin-right: 7px;
+                    margin-bottom: 3px;
+                    vertical-align: middle;
+                }
+                div[coolrisTopBanner] .topbanner-paging {
+                    display: block !important;
+                    position: relative;
+                    height: 0;
+                    z-index: 10;
+                }
+                div[coolrisTopBanner] .topbanner-paging ul {
+                    position: absolute ;
+                    right: 0;
+                    top: 10px;
+                }
+                div[coolrisTopBanner] .topbanner-paging ul li {
+                    margin-bottom: 5px;
+                }
+                div[coolrisTopBanner] .topbanner-paging ul li span[data-name='topbannerPaging'] {
+                    display: block;
+                    width: 10px;
+                    height: 10px;
+                    border-radius: 50%;
+                    background-color: rgba(100, 100, 100, 0.4);
+                    cursor: pointer;
+                }
+                
+                div[coolrisTopBanner] .topbanner-paging ul li span[data-name='topbannerPaging'].on {
+                    background-color: rgba(100, 100, 100, 1);
+                }
+                div[coolrisTopBanner] .topbanner-paging ul li span[data-name='topbannerPaging']:hover {
+                    background-color: rgba(100, 100, 100, 1);
+                }
+                div[coolrisTopBanner] .top {
+                    position: absolute;
+                    top: 0;
+                    width: 100%;
+                }
+                div[coolrisTopBanner] .topbanner-list .topbanner-item {
+                    height: 79px;
+                }
+                div[coolrisTopBanner] .topbanner-paging p[data-name='topbannerClose'] {
+                    font-size: 13px;
+                    color: #000000;
+                    position: absolute;
+                    top: 60px;
+                    right: 15px;
+                    cursor: pointer;
+                    letter-spacing: -0.5px;
+                }
+                div[coolrisTopBanner] .topbanner-paging p[data-name='topbannerClose']:hover {
+                    font-weight: bold;
+                }
+            </style>
+            <div coolrisTopBanner data-name="topBanner">
+                <div>
+                    <div class="inner topbanner-paging">
+                        <ul>
+                            {{ for(var idx in it.coolTopBannerItems) { }}
+                                <li><span data-name="topbannerPaging"></span></li>
+                            {{ } }}
+                        </ul>
+                        <p data-name="topbannerClose" class="">오늘 보지 않기</p>
+                    </div>
+                    <div class="topbanner-list">
+                        {{ for(var idx in it.coolTopBannerItems) { }}
+                        <a href="{{=it.coolTopBannerItems[idx].url}}" target="_blank">
+                            <!--suppress CssInvalidPropertyValue -->
+                            <div class="topbanner-item" style="background-color: #{{=it.coolTopBannerItems[idx].backgroundColor}}">
+                                <div class="inner">
+                                    <img src="{{=it.coolTopBannerItems[idx].img}}" alt="img" />
+                                </div>
+                            </div>
+                        </a>
+                        {{ } }}
+                    </div>
+                </div>
+            </div>
+        `
     }
 
     // 포인트 템플릿
@@ -222,7 +419,7 @@ class Coolris {
                     border: 1px solid #9b9b9b;
                     border-radius: .25rem;
                     position: absolute;
-                    top: 37px;
+                    top: 32px;
                     right: 0;
                     font-size: 12px;
                     width: 300px;
@@ -246,7 +443,7 @@ class Coolris {
                 div[coolrisAlarm] .coolris-alarm-dropdown ul {
                     height: auto;
                     max-height: 330px;
-                    overflow-y: hidden;
+                    overflow-y: auto;
                 }
                 div[coolrisAlarm] .coolris-alarm-dropdown li p {
                     color: #414141;
@@ -376,7 +573,7 @@ class Coolris {
                     border: 1px solid #9b9b9b;
                     border-radius: .25rem;
                     position: absolute;
-                    top: 37px;
+                    top: 33px;
                     right: 0;
                     z-index: 9999;
                 }
@@ -399,10 +596,12 @@ class Coolris {
                     color: #7e7e7e;
                     font-size: 14px;
                 }
-                div[coolrisProfile] .coolris-profile-dropdown a {
-                    color: #25a7df;
+                div[coolrisProfile] .coolris-profile-dropdown p a {
+                    color: #000000;
                     font-size: 14px;
-                    float: right;
+                }
+                div[coolrisProfile] .coolris-profile-dropdown p {
+                    text-align: center;
                 }
                 div[coolrisProfile] .coolris-profile-dropdown a img {
                    margin-top: -3px;
@@ -424,7 +623,7 @@ class Coolris {
             <div coolrisProfile>
                 <div class="coolris-profile-dropdown">
                     <img class="dropdown-tail" src="//update.coolmessenger.com/_ImageServer/coolschool/resources/images/dropbox_tail.png" alt="img" />
-                    <p>내정보 보기</p>
+                    <p><a href="//member.coolschool.co.kr/my/#/">내정보 보기</a></p>
                     <span class="logout dropdown-close" data-name="spanLogout">로그아웃</span>
                 </div>
                 <span class="coolris-profile-btn">
@@ -518,7 +717,7 @@ class Coolris {
                     position: absolute;
                     background-color: #ffffff;
                     right: 0;
-                    top: 39px;
+                    top: 33px;
                     z-index: 9999;
                 }
                 div[coolrisMore] .coolris-more-dropdown.show {
@@ -658,12 +857,12 @@ class Coolris {
             <style>
                 @font-face {
                     font-family: 'NotoSansKRRegular';
-                    src: url("./font/NotoSansKR-Regular-subset.woff2") format('woff2'),
+                    /*src: url("./font/NotoSansKR-Regular-subset.woff2") format('woff2'),
                     url("./font/NotoSansKR-Regular-subset.woff") format('woff'),
-                    url("./font/NotoSansKR-Regular-subset.otf") format('opentype');
-                    /*src: url("//update.coolmessenger.com/_ImageServer/coolschool/resources/fonts/notosans/subset/NotoSansKR-Thin-subset.woff2") format('woff2'),
-                    url("//update.coolmessenger.com/_ImageServer/coolschool/resources/fonts/notosans/subset/NotoSansKR-Thin-subset.woff") format('woff'),
-                    url("//update.coolmessenger.com/_ImageServer/coolschool/resources/fonts/notosans/subset/NotoSansKR-Thin-subset.otf") format('opentype');*/
+                    url("./font/NotoSansKR-Regular-subset.otf") format('opentype');*/
+                    src: url("//update.coolmessenger.com/_ImageServer/coolschool/resources/fonts/notosans/subset/NotoSansKR-subset-subset.woff2") format('woff2'),
+                    url("//update.coolmessenger.com/_ImageServer/coolschool/resources/fonts/notosans/subset/NotoSansKR-subset-subset.woff") format('woff'),
+                    url("//update.coolmessenger.com/_ImageServer/coolschool/resources/fonts/notosans/subset/NotoSansKR-subset-subset.otf") format('opentype');
                 }
             
                 body {
@@ -702,19 +901,32 @@ class Coolris {
                     width: 980px;
                     margin: 0 auto;
                     padding: 12px 0;
-                    height: 51px;
                     box-sizing: border-box;
+                }
+                .coolris-gnb[coolrisGnb] > div:nth-child(2) {
+                    height: 51px;
+                }
+                .coolris-gnb[coolrisGnb] > div[data-name='divTopBannerArea'] {
+                    padding: 0;
+                    width: 100%;
                 }
                 .coolris-gnb[coolrisGnb] .coolris-login-section {
                     float: right;
-                    display: table;
+                    /*display: table;*/
                     margin-top: 2px;
+                    display: flex;
+                    align-items: center;
+                    height: 100%;
                 }
                 .coolris-gnb[coolrisGnb] .coolris-menu-section {
                     float: left;
+                    display: flex;
+                    align-items: center;
+                    height: 100%;
                 }
             </style>
             <div class="coolris-gnb" coolrisGnb>
+                <div data-name="divTopBannerArea"></div>
                 <div>
                     <div class="coolris-menu-section">
                         ${coolTemplate.menu}
@@ -722,11 +934,11 @@ class Coolris {
                     </div>
                     <div class="coolris-login-section">
                         {{? it.isLogin === false }}
-                        ${coolTemplate.beforeLogin}
+                            ${coolTemplate.beforeLogin}
                         {{?? it.isLogin === true }}
-                        ${coolTemplate.login}
-                        ${coolTemplate.point}
-                        <div data-name="divAlarmArea"></div>
+                            ${coolTemplate.login}
+                            ${coolTemplate.point}
+                            <div data-name="divAlarmArea"></div>
                         {{?}}
                     </div>
                 </div>
@@ -762,7 +974,7 @@ class Coolris {
         return response;
     }
 
-    settingProfile(profileData) {
+    settingProfile(profileData: any) {
         $('[data-name=imgProfileImg]').attr('src', profileData.profileImage);
         $('[data-name=spanProfileName]').html(profileData.name);
         $('[data-name=spanPoint]').html(this.addComma(profileData.point));
@@ -778,7 +990,7 @@ class Coolris {
         return response;
     }
 
-    private addComma(num) {
+    private addComma(num: any) {
         const regexp = /\B(?=(\d{3})+(?!\d))/g;
         return num.toString().replace(regexp, ',');
     }
@@ -861,7 +1073,7 @@ class Coolris {
         host = host.replace('.coolschool.co.kr', '')
             .replace('dev', '')
             .replace('local', '');
-        let clientId = constants.clientIds[host];
+        let clientId = (constants as any).clientIds[host];
         if(!clientId && console) {
             console.warn('can`t not find clientId');
         }
@@ -883,6 +1095,26 @@ class Coolris {
     }
 
     /**
+     * 쿠키 가져오기
+     * @param cname
+     */
+    getCookie(cname: string) {
+        const name = cname + "=";
+        const decodedCookie = decodeURIComponent(document.cookie);
+        const ca = decodedCookie.split(';');
+        for(var i = 0; i <ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+            }
+        }
+        return "";
+    }
+
+    /**
      * y.m.d 형태로 format 변경
      * @param date
      */
@@ -895,7 +1127,7 @@ class Coolris {
     }
 
     /**
-     *  데이터 로드 및 세팅
+     *  알람 데이터 로드 및 세팅
      */
     async loadSettingMyArea() {
         let coolAlarmItems = [];
@@ -921,5 +1153,52 @@ class Coolris {
         // 알람 드롭다운 이벤트
         this.loginToggle('coolris-alarm-btn', 'coolris-alarm-dropdown');
         this.loginDropdown('coolris-alarm-dropdown', this.targetAlarmCheck);
+    }
+
+    /**
+     *  탑배너 데이터 로드 및 세팅
+     */
+    async loadSettingTopBanner() {
+        const setting = {
+            url: '//samstory.coolschool.co.kr/api/externalJsonInfo?type=topBanner',
+            type: 'GET'
+        };
+
+        const responseStr = await $.ajax(setting);
+        const response = JSON.parse(responseStr);
+
+        if (!response || !response.categories || response.categories.length === 0) {
+            return;
+        }
+
+        // 배너 기한 체크
+        const nowDate = new Date();
+        response.bannerData = response.categories.filter((k: any) => {
+            if (nowDate >= new Date(k.startDate) && nowDate <= new Date(k.endDate)) {
+                return k;
+            }
+        });
+
+        this.suffle(response.bannerData);
+        // @ts-ignore
+        const topBannerTemplateFn = this.doT.template(this.getTopBannerTemplate());
+        $("[data-name='divTopBannerArea']").html(topBannerTemplateFn({
+            coolTopBannerItems: response.bannerData,
+        }));
+
+        // 탑배너 슬라이드 이벤트
+        this.topBannerSlideEvent();
+        // 탑배너 닫기 이벤트
+        this.topbannerCloseEvent();
+    }
+
+    suffle(a: any) {
+        let j, x, i;
+        for (i = a.length; i; i -= 1) {
+            j = Math.floor(Math.random() * i);
+            x = a[i - 1];
+            a[i - 1] = a[j];
+            a[j] = x;
+        }
     }
 }
