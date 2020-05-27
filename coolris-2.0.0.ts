@@ -17,8 +17,8 @@ interface CoolTemplate {
 }
 
 const constants = {
-    memberUrl: '//local-member.coolschool.co.kr',
-    searchUrl: '//dev-search.coolschool.co.kr',
+    memberUrl: '//member.coolschool.co.kr',
+    searchUrl: '//search.coolschool.co.kr',
     clientIds:  {
         'www' : 'NjM2YzY5NjU2ZTc0NWY2OTY0M2E0MzRmNGY0YzUzNDM0ODRmNGY0Yw==', // coolschool
         '' : 'NjM2YzY5NjU2ZTc0NWY2OTY0M2E0MzRmNGY0YzUzNDM0ODRmNGY0Yw==' // coolschool
@@ -34,6 +34,15 @@ class Coolris {
     }
 
     async start() {
+
+        // @ts-ignore
+        const gnbOuterTemplateFn = this.doT.template(this.getGnbOuterTemplate());
+        $('#coolrisGnb').html(gnbOuterTemplateFn());
+
+        // 탑배너 쿠키가 없다면 탑배너 영역 데이터 로드 및 랜더
+        if (!this.getCookie('topbanner')) {
+            this.loadSettingTopBanner();
+        }
 
         // interface Cooltemplate에 템플릿 주기
         const coolTemplate = {
@@ -54,7 +63,7 @@ class Coolris {
         // dot에 template을 준다.
         // @ts-ignore
         const coolrisTemplateFn = this.doT.template(this.getGnbTemplate(coolTemplate));
-        $('#coolrisGnb').html(coolrisTemplateFn({isLogin: isLogin}));
+        $('[data-name=coolrisGnbArea]').html(coolrisTemplateFn({isLogin: isLogin}));
 
         // 로그인 드롭다운
         this.loginToggle('coolris-profile-btn', 'coolris-profile-dropdown');
@@ -71,12 +80,6 @@ class Coolris {
         if (isLogin && this.accessToken) {
             this.loadSettingMyArea();
         }
-
-        // 탑배너 쿠키가 없다면 탑배너 영역 데이터 로드 및 랜더
-        if (this.getCookie('topbanner')) {
-            return;
-        }
-        this.loadSettingTopBanner();
     }
 
     // 버튼 클릭시 드롭다운 켜짐
@@ -224,6 +227,13 @@ class Coolris {
 
     getRandomeNum(index: number) {
         return Math.floor((Math.random() * index))
+    }
+
+    getGnbOuterTemplate() {
+        return `
+            <div data-name="divTopBannerArea"></div>
+            <div data-name="coolrisGnbArea"></div>
+        `
     }
 
     // 탑배너 템플릿
@@ -926,7 +936,6 @@ class Coolris {
                 }
             </style>
             <div class="coolris-gnb" coolrisGnb>
-                <div data-name="divTopBannerArea"></div>
                 <div>
                     <div class="coolris-menu-section">
                         ${coolTemplate.menu}
