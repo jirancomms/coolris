@@ -878,6 +878,11 @@ class Coolris {
                 body {
                     margin: 0;
                 }
+                @media screen and (max-width: 980px) {
+                    #coolrisGnb > div {
+                        display: none;
+                    }
+                }
                 .coolris-gnb[coolrisGnb] {
                     font-family: NotoSansKRRegular, sans-serif;
                     width: 100%;
