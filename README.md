@@ -52,3 +52,40 @@ $(function() {
 ```
 ## 예제
 - index.html 참고
+
+
+# 쿨스쿨 연계 서비스(coolschool relationship service, coolris-service) - 2.0.0
+
+## 브라우져 최소버전
+- IE 9
+- chrome
+- firefox
+
+## 필요한 프레임워크
+- jquery 최소 v1.12.4
+
+## 주의사항
+- 스크립트의 순서가 중요하다
+    1. jquery.js
+    5.. coolris.js
+
+## 사용방법
+- css, js파일을 포함시킨다.
+```html
+<script type="text/javascript" src="//update.coolmessenger.com/_ImageServer/coolschool/commonTop/jquery.min.js"></script><!-- 1.12.4 -->
+<script type="text/javascript" src="//update.coolmessenger.com/_ImageServer/coolschool/commonTop/coolris-2.0.0.js"></script>
+```
+- 쿨서비스 팝업이 들어갈 div를 **id를 coolris**로 만들어준다.
+```html
+<div id="coolris"></div>     - 패밀리 드롭다운이 들어갈 id지정
+```
+- coolris 함수를 실행시켜준다.
+```html
+// ready가 되면
+$(function() {
+    var coolris = new Coolris();
+    coolris.start();
+});
+```
+## 예제
+- index2.html 참고

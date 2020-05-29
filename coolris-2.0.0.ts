@@ -260,6 +260,7 @@ class Coolris {
                 div[coolrisTopBanner] > div > div { position:relative; top: 0; }
                 div[coolrisTopBanner] .inner {
                     width: 980px;
+                    margin: 0 auto;
                 }
                 div[coolrisTopBanner] .inner a { display: block; width: 100%; }
                 div[coolrisTopBanner] .top_close{
@@ -286,6 +287,9 @@ class Coolris {
                     position: absolute ;
                     right: 0;
                     top: 10px;
+                    list-style: none;
+                    padding: 0;
+                    margin: 0;
                 }
                 div[coolrisTopBanner] .topbanner-paging ul li {
                     margin-bottom: 5px;
@@ -313,6 +317,10 @@ class Coolris {
                 div[coolrisTopBanner] .topbanner-list .topbanner-item {
                     height: 79px;
                 }
+                div[coolrisTopBanner] .topbanner-list .topbanner-item img{
+                    display: block;
+                    margin: 0 auto;
+                }
                 div[coolrisTopBanner] .topbanner-paging p[data-name='topbannerClose'] {
                     font-size: 13px;
                     color: #000000;
@@ -320,6 +328,7 @@ class Coolris {
                     top: 60px;
                     right: 15px;
                     cursor: pointer;
+                    margin: 0;
                     letter-spacing: -0.5px;
                 }
                 div[coolrisTopBanner] .topbanner-paging p[data-name='topbannerClose']:hover {
@@ -685,10 +694,10 @@ class Coolris {
             </style>
             <ul coolrisGnbMenu>
                 <li>
-                    <a href="" target="_blank">쿨스쿨 홈</a>
+                    <a href="//www.coolschool.co.kr/" target="_blank">쿨스쿨 홈</a>
                 </li>
                 <li>
-                    <a href="" target="_blank">쿨메신저</a>
+                    <a href="//school.coolmessenger.com/" target="_blank">쿨메신저</a>
                 </li>
                 <li>
                     <a href="" target="_blank">문자</a>
@@ -697,7 +706,7 @@ class Coolris {
                     <a href="" target="_blank">교육자료</a>
                 </li>
                 <li>
-                    <a href="" target="_blank">연수,모임</a>
+                    <a href="//cooledu.coolschool.co.kr/" target="_blank">연수,모임</a>
                 </li>
                 <li>
                     <a href="" target="_blank">교직원몰</a>
@@ -714,6 +723,7 @@ class Coolris {
                     position: relative;
                     float: left;
                     margin-top: -2px;
+                    line-height: 1;
                 }
                 div[coolrisMore] .coolris-more-dropdown a:hover {
                     text-decoration: underline;
@@ -882,6 +892,7 @@ class Coolris {
                     }
                 }
                 .coolris-gnb[coolrisGnb] {
+                    /*line-height: 1;*/
                     font-family: NotoSansKRRegular, sans-serif;
                     width: 100%;
                     border-bottom: 1px solid #dedede;
@@ -926,7 +937,7 @@ class Coolris {
                 .coolris-gnb[coolrisGnb] .coolris-login-section {
                     float: right;
                     /*display: table;*/
-                    margin-top: 2px;
+                    /*margin-top: 2px;*/
                     display: flex;
                     align-items: center;
                     height: 100%;
