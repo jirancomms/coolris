@@ -851,7 +851,6 @@ class Coolris {
                             <a href="" target="_blank">교구몰</a>
                             <a href="" target="_blank">복지몰</a>
                             <a href="" target="_blank">펀딩</a>
-                            <a href="" target="_blank">여행</a>
                         </li>
                         <li>
                             <h4>교육이슈</h4>
