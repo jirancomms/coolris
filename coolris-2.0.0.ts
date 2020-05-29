@@ -388,7 +388,7 @@ class Coolris {
         return `
             <style>
                 div[coolrisBeforLogin] {
-                    margin-top: -3px;
+                    /*margin-top: -3px;*/
                 }
                 div[coolrisBeforLogin] a {
                     font-size: 13px;
@@ -713,6 +713,7 @@ class Coolris {
                 div[coolrisMore] {
                     position: relative;
                     float: left;
+                    margin-top: -2px;
                 }
                 div[coolrisMore] .coolris-more-dropdown a:hover {
                     text-decoration: underline;
@@ -867,12 +868,9 @@ class Coolris {
             <style>
                 @font-face {
                     font-family: 'NotoSansKRRegular';
-                    /*src: url("./font/NotoSansKR-Regular-subset.woff2") format('woff2'),
-                    url("./font/NotoSansKR-Regular-subset.woff") format('woff'),
-                    url("./font/NotoSansKR-Regular-subset.otf") format('opentype');*/
-                    src: url("//update.coolmessenger.com/_ImageServer/coolschool/resources/fonts/notosans/subset/NotoSansKR-subset-subset.woff2") format('woff2'),
-                    url("//update.coolmessenger.com/_ImageServer/coolschool/resources/fonts/notosans/subset/NotoSansKR-subset-subset.woff") format('woff'),
-                    url("//update.coolmessenger.com/_ImageServer/coolschool/resources/fonts/notosans/subset/NotoSansKR-subset-subset.otf") format('opentype');
+                    src: url("//update.coolmessenger.com/_ImageServer/coolschool/resources/fonts/notosans/subset/NotoSansKR-Regular-subset.woff2") format('woff2'),
+                    url("//update.coolmessenger.com/_ImageServer/coolschool/resources/fonts/notosans/subset/NotoSansKR-Regular-subset.woff") format('woff'),
+                    url("//update.coolmessenger.com/_ImageServer/coolschool/resources/fonts/notosans/subset/NotoSansKR-Regular-subset.otf") format('opentype');
                 }
             
                 body {
