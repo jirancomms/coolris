@@ -67,12 +67,14 @@ $(function() {
 ## 주의사항
 - 스크립트의 순서가 중요하다
     1. jquery.js
-    2. coolris.js
+    2. pollify.js // ie에서 나오지 않을 때 추가
+    3. coolris.js
 
 ## 사용방법
 - css, js파일을 포함시킨다.
 ```html
 <script type="text/javascript" src="//update.coolmessenger.com/_ImageServer/coolschool/commonTop/jquery.min.js"></script><!-- 1.12.4 -->
+<script type="text/javascript" src="//update.coolmessenger.com/_ImageServer/coolschool/commonTop/polyfills.js"></script>  // ie에서 나오지 않을 때 추가
 <script type="text/javascript" src="//update.coolmessenger.com/_ImageServer/coolschool/commonTop/coolris-2.0.0.js"></script>
 ```
 - 쿨서비스 팝업이 들어갈 div를 **id를 coolrisGnb**로 만들어준다.
