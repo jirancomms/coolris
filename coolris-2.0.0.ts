@@ -30,6 +30,8 @@ declare var ga: any;
 
 class Coolris {
 
+    private loginInfo = {result: false, data: undefined} as any;
+
     constructor(private accessToken = '') {
         // include dot.js
         // @ts-ignore
@@ -986,7 +988,12 @@ class Coolris {
         `
     }
 
-    async loginCheck() {
+    private async loginCheck() {
+        if(this.loginInfo.result) {
+            return this.loginInfo;
+        }
+        this.loginInfo.result = false;
+        this.loginInfo.data = undefined;
         let result = {result: false, coolid: ''} as any;
         try {
             result = await $.ajax({
@@ -1001,7 +1008,9 @@ class Coolris {
         if (!result || !result.coolid) {
             return {result: false};
         }
-        return {result: true, data: result};
+        this.loginInfo.result = true;
+        this.loginInfo.data = result;
+        return this.loginInfo;
     }
 
     async loadProfileResult(accessToken: string) {
@@ -1239,13 +1248,21 @@ class Coolris {
         this.topbannerCloseEvent();
     }
 
-    suffle(a: any) {
+    private suffle(a: any) {
         let j, x, i;
         for (i = a.length; i; i -= 1) {
             j = Math.floor(Math.random() * i);
             x = a[i - 1];
             a[i - 1] = a[j];
             a[j] = x;
+        }
+    }
+
+    async loginResultPromise() {
+        if(this.loginInfo.result) {
+            return this.loginInfo;
+        } else {
+            return this.loginCheck();
         }
     }
 }
