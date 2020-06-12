@@ -429,6 +429,7 @@ class Coolris {
                 div[coolrisBeforLogin] a {
                     font-size: 13px;
                     color: #000000;
+                    cursor: pointer;
                 }
                 div[coolrisBeforLogin] span {
                     display: inline-block;
@@ -438,7 +439,7 @@ class Coolris {
             <div coolrisBeforLogin>
                 <a href="javascript:void(0)" data-name="aCoolLogin">로그인</a> 
                 <span>/</span> 
-                <a onclick="ga('send', 'event', 'link', {{=it.serviceName}}, 'join');" href="">회원가입</a>
+                <a href="javascript:void(0)" data-name="aCoolJoin">회원가입</a>
             </div>
         `
     }
@@ -1120,8 +1121,26 @@ class Coolris {
         return false;
     }
 
+    // 회원가입
+    join() {
+        const CLIENT_ID = this.getClientId();
+        const form = document.createElement('form');                                     // form 엘리멘트 생성
+        form.setAttribute('method', 'post');                                   // method 속성 설정
+        form.setAttribute('action', 'https://member.coolschool.co.kr/');       // action 속성 설정
+        document.body.appendChild(form);                                                          // 현재 페이지에 form 엘리멘트 추가
+        const insert1 = document.createElement("input");                                 // input 엘리멘트 생성
+        const insert2 = document.createElement("input");
+        insert1.setAttribute('name', 'svcid');                                 // clidentId
+        insert1.setAttribute('value', CLIENT_ID);
+        insert2.setAttribute('name', 'redirect_uri');                          // 완료 후 돌아올 url
+        insert2.setAttribute('value', window.location.href);
+        form.appendChild(insert1);
+        form.appendChild(insert2);
+        form.submit();
+    }
+
     /**
-     * 로그인, 로그아웃 이벤트 등록
+     * 로그인, 회원가입, 로그아웃 이벤트 등록
      */
     onLoginOutEvents(serviceName: string) {
         // 로그인
@@ -1129,6 +1148,13 @@ class Coolris {
             ga('send', 'event', 'link', serviceName, 'gnb_login');
             this.goCoolLogin();
         });
+
+        // 회원가입
+        $("[data-name='aCoolJoin']").click(() => {
+            ga('send', 'event', 'link', serviceName, 'gnb_join');
+            this.join();
+        });
+
         // 로그아웃
         $("[data-name='spanLogout']").click(() => {
             ga('send', 'event', 'link', serviceName, 'gnb_logout');
