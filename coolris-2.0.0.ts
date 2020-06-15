@@ -43,9 +43,9 @@ class Coolris {
     }
 
     async start(serviceName?: string) {
-        if (!serviceName) {
+        // if (!serviceName) {
             serviceName = 'coolschool';
-        }
+        // }
 
         // @ts-ignore
         const gnbOuterTemplateFn = this.doT.template(this.getGnbOuterTemplate());
@@ -374,7 +374,7 @@ class Coolris {
                     </div>
                     <div class="topbanner-list">
                         {{ for(var idx in it.coolTopBannerItems) { }}
-                        <a onclick="ga('send', 'event', 'link', {{=it.serviceName}}, 'main_banner_top');" href="{{=it.coolTopBannerItems[idx].url}}" target="_blank">
+                        <a onclick="ga('send', 'event', 'link', 'coolschool', 'main_banner_top');" href="{{=it.coolTopBannerItems[idx].url}}" target="_blank">
                             <!--suppress CssInvalidPropertyValue -->
                             <div class="topbanner-item" style="background-color: #{{=it.coolTopBannerItems[idx].backgroundColor}}">
                                 <div class="inner">
@@ -411,7 +411,7 @@ class Coolris {
                 }
             </style>
             <div coolrisPoint>
-                <a onclick="ga('send', 'event', 'link', {{=it.serviceName}}//point.coolschool.co.kr" target="_blank">
+                <a onclick="ga('send', 'event', 'link', {{=it.serviceName}}, 'gnb_point');" href="//point.coolschool.co.kr" target="_blank">
                     <img src="//update.coolmessenger.com/_ImageServer/coolschool/commonTop/point.png" alt="img" />
                     <span data-name="spanPoint"></span>
                 </a>
@@ -541,7 +541,7 @@ class Coolris {
                     <img class="dropdown-tail" src="//update.coolmessenger.com/_ImageServer/coolschool/resources/images/dropbox_tail.png" alt="img" />
                     <ul>
                     {{ for(var idx in it.coolAlarmItems) { }}
-                        <li onclick="ga('send', 'event', 'link', {{=it.serviceName}}, 'gnb_alarm_item');">
+                        <li onclick="ga('send', 'event', 'link', 'coolschool', 'gnb_alarm_item');">
                             <a href="{{=it.coolAlarmItems[idx].url}}" target="_blank">
                                 <p>{{=it.coolAlarmItems[idx].message}}</p>
                                 <span>{{=it.toDateYmdFormat(new Date(it.coolAlarmItems[idx].createdDate))}}</span>
@@ -550,7 +550,7 @@ class Coolris {
                     {{ } }}
                     </ul>
                     <div>
-                        <a onclick="ga('send', 'event', 'link', {{=it.serviceName}}, 'all_alarm');" href="/notification/index" target="_blank">알림 모두 보기</a>
+                        <a onclick="ga('send', 'event', 'link', 'coolschool', 'all_alarm');" href="/notification/index" target="_blank">알림 모두 보기</a>
                     </div>
                 </div>
             </div>   
@@ -672,7 +672,7 @@ class Coolris {
             <div coolrisProfile>
                 <div class="coolris-profile-dropdown">
                     <img class="dropdown-tail" src="//update.coolmessenger.com/_ImageServer/coolschool/resources/images/dropbox_tail.png" alt="img" />
-                    <p><a onclick="ga('send', 'event', 'link', {{=it.serviceName}}, 'gnb_myinfo');" href="//member.coolschool.co.kr/my/#/">내정보 보기</a></p>
+                    <p><a onclick="ga('send', 'event', 'link', 'coolschool', 'gnb_myinfo');" href="//member.coolschool.co.kr/my/#/">내정보 보기</a></p>
                     <span class="logout dropdown-close" data-name="spanLogout">로그아웃</span>
                 </div>
                 <span class="coolris-profile-btn">
@@ -723,22 +723,22 @@ class Coolris {
                 }
             </style>
             <ul coolrisGnbMenu>
-                <li onclick="ga('send', 'event', 'link', {{=it.serviceName}}, 'gnb_home');">
+                <li onclick="ga('send', 'event', 'link', 'coolschool', 'gnb_home');">
                     <a href="//www.coolschool.co.kr/" target="_blank">쿨스쿨 홈</a>
                 </li>
-                <li onclick="ga('send', 'event', 'link', {{=it.serviceName}}, 'gnb_coolmsg');">
+                <li onclick="ga('send', 'event', 'link', 'coolschool', 'gnb_coolmsg');">
                     <a href="//school.coolmessenger.com/" target="_blank">쿨메신저</a>
                 </li>
-                <li onclick="ga('send', 'event', 'link', {{=it.serviceName}}, 'gnb_sms');">
+                <li onclick="ga('send', 'event', 'link', 'coolschool', 'gnb_sms');">
                     <a href="//coolsms.coolmessenger.com/" target="_blank">문자</a>
                 </li>
-                <li onclick="ga('send', 'event', 'link', {{=it.serviceName}}, 'gnb_samstory');">
+                <li onclick="ga('send', 'event', 'link', 'coolschool', 'gnb_samstory');">
                     <a href="//samstory.coolschool.co.kr/zone/" target="_blank">교육자료</a>
                 </li>
-                <li onclick="ga('send', 'event', 'link', {{=it.serviceName}}, 'gnb_cooledu');">
+                <li onclick="ga('send', 'event', 'link', 'coolschool', 'gnb_cooledu');">
                     <a href="//cooledu.coolschool.co.kr/" target="_blank">연수,모임</a>
                 </li>
-                <li onclick="ga('send', 'event', 'link', {{=it.serviceName}}, 'gnb_coolmarket');">
+                <li onclick="ga('send', 'event', 'link', 'coolschool', 'gnb_coolmarket');">
                     <a href="//coolmarket.coolschool.co.kr/" target="_blank">교직원몰</a>
                 </li>
             </ul>
@@ -859,42 +859,42 @@ class Coolris {
                     <ul>
                         <li>
                             <h4>학교업무</h4>
-                            <a onclick="ga('send', 'event', 'link', {{=it.serviceName}}, 'gnb_more_coolmsg');" href="//school.coolmessenger.com/" target="_blank">쿨메신저</a>
-                            <a onclick="ga('send', 'event', 'link', {{=it.serviceName}}, 'gnb_more_sms');" href="//coolsms.coolmessenger.com/" target="_blank">문자</a>
-                            <a onclick="ga('send', 'event', 'link', {{=it.serviceName}}, 'gnb_more_mova');" href="//coolmova.coolschool.co.kr/" target="_blank">안심번호</a>
-                            <a onclick="ga('send', 'event', 'link', {{=it.serviceName}}, 'gnb_more_banner');" href="//school.coolbooks.co.kr/" target="_blank">학교간행물</a>
+                            <a onclick="ga('send', 'event', 'link', 'coolschool', 'gnb_more_coolmsg');" href="//school.coolmessenger.com/" target="_blank">쿨메신저</a>
+                            <a onclick="ga('send', 'event', 'link', 'coolschool', 'gnb_more_sms');" href="//coolsms.coolmessenger.com/" target="_blank">문자</a>
+                            <a onclick="ga('send', 'event', 'link', 'coolschool', 'gnb_more_mova');" href="//coolmova.coolschool.co.kr/" target="_blank">안심번호</a>
+                            <a onclick="ga('send', 'event', 'link', 'coolschool', 'gnb_more_banner');" href="//school.coolbooks.co.kr/" target="_blank">학교간행물</a>
                         </li>
                         <li>
                             <h4>교사생활</h4>
-                            <a onclick="ga('send', 'event', 'link', {{=it.serviceName}}, 'gnb_more_samstory');" href="//samstory.coolschool.co.kr/" target="_blank">블로그</a>
-                            <a onclick="ga('send', 'event', 'link', {{=it.serviceName}}, 'gnb_more_books');" href="//coolbooks.coolschool.co.kr/" target="_blank">책</a>
-                            <a onclick="ga('send', 'event', 'link', {{=it.serviceName}}, 'gnb_more_edu_meeting');" href="//cooledu.coolschool.co.kr/cooledulub/trainingList#ing" target="_blank">모임</a>
-                            <a onclick="ga('send', 'event', 'link', {{=it.serviceName}}, 'gnb_more_mentoring');" href="//www.coolschool.co.kr/kin/mentoringList" target="_blank">학교생활상담</a>
+                            <a onclick="ga('send', 'event', 'link', 'coolschool', 'gnb_more_samstory');" href="//samstory.coolschool.co.kr/" target="_blank">블로그</a>
+                            <a onclick="ga('send', 'event', 'link', 'coolschool' 'gnb_more_books');" href="//coolbooks.coolschool.co.kr/" target="_blank">책</a>
+                            <a onclick="ga('send', 'event', 'link', 'coolschool', 'gnb_more_edu_meeting');" href="//cooledu.coolschool.co.kr/cooledulub/trainingList#ing" target="_blank">모임</a>
+                            <a onclick="ga('send', 'event', 'link', 'coolschool', 'gnb_more_mentoring');" href="//www.coolschool.co.kr/kin/mentoringList" target="_blank">학교생활상담</a>
                         </li>
                         <li>
                             <h4>학교연수</h4>
-                            <a onclick="ga('send', 'event', 'link', {{=it.serviceName}}, 'gnb_more_edu');" href="//cooledu.coolschool.co.kr/" target="_blank">원격연수</a>
-                            <a onclick="ga('send', 'event', 'link', {{=it.serviceName}}, 'gnb_more_edu_platform');" href="//cooledu.coolschool.co.kr/cooledulub/trainingList#ing" target="_blank">집합연수</a>
-                            <a onclick="ga('send', 'event', 'link', {{=it.serviceName}}, 'gnb_more_edu_pama');" href="//coolpama.coolschool.co.kr/" target="_blank">학부모연수</a>
+                            <a onclick="ga('send', 'event', 'link', 'coolschool', 'gnb_more_edu');" href="//cooledu.coolschool.co.kr/" target="_blank">원격연수</a>
+                            <a onclick="ga('send', 'event', 'link', 'coolschool', 'gnb_more_edu_platform');" href="//cooledu.coolschool.co.kr/cooledulub/trainingList#ing" target="_blank">집합연수</a>
+                            <a onclick="ga('send', 'event', 'link', 'coolschool', 'gnb_more_edu_pama');" href="//coolpama.coolschool.co.kr/" target="_blank">학부모연수</a>
                         </li>
                         <li>
                             <h4>학교마켓</h4>
-                            <a onclick="ga('send', 'event', 'link', {{=it.serviceName}}, 'gnb_more_market');" href="//coolmarket.coolschool.co.kr/" target="_blank">교구몰</a>
-                            <a onclick="ga('send', 'event', 'link', {{=it.serviceName}}, 'gnb_more_market_tmall');" href="//t-mall.coolschool.co.kr/" target="_blank">복지몰</a>
-                            <a onclick="ga('send', 'event', 'link', {{=it.serviceName}}, 'gnb_more_market_funding');" href="//t-fun.coolschool.co.kr/" target="_blank">펀딩</a>
+                            <a onclick="ga('send', 'event', 'link', 'coolschool', 'gnb_more_market');" href="//coolmarket.coolschool.co.kr/" target="_blank">교구몰</a>
+                            <a onclick="ga('send', 'event', 'link', 'coolschool', 'gnb_more_market_tmall');" href="//t-mall.coolschool.co.kr/" target="_blank">복지몰</a>
+                            <a onclick="ga('send', 'event', 'link', 'coolschool', 'gnb_more_market_funding');" href="//t-fun.coolschool.co.kr/" target="_blank">펀딩</a>
                         </li>
                         <li>
                             <h4>교육이슈</h4>
-                            <a onclick="ga('send', 'event', 'link', {{=it.serviceName}}, 'gnb_more_news');" href="//samstory.coolschool.co.kr/zone/story/eduin" target="_blank">교육뉴스</a>
-                            <a onclick="ga('send', 'event', 'link', {{=it.serviceName}}, 'gnb_more_edutech');" href="//www.coolschool.co.kr/edutech" target="_blank" style="margin-bottom: 10px;">교육트렌드</a>
+                            <a onclick="ga('send', 'event', 'link', 'coolschool', 'gnb_more_news');" href="//samstory.coolschool.co.kr/zone/story/eduin" target="_blank">교육뉴스</a>
+                            <a onclick="ga('send', 'event', 'link', 'coolschool', 'gnb_more_edutech');" href="//www.coolschool.co.kr/edutech" target="_blank" style="margin-bottom: 10px;">교육트렌드</a>
                             <h4>쿨스쿨소식</h4>
-                            <a onclick="ga('send', 'event', 'link', {{=it.serviceName}}, 'gnb_more_notice');" href="//www.coolschool.co.kr/news/index" target="_blank">공지/소식</a>
-                            <a onclick="ga('send', 'event', 'link', {{=it.serviceName}}, 'gnb_more_contact');" href="//www.coolschool.co.kr/messenger/technicalSupport" target="_blank">문의하기</a>
-                            <a onclick="ga('send', 'event', 'link', {{=it.serviceName}}, 'gnb_more_profile');" href="//www.coolschool.co.kr/profile/search" target="_blank" style="margin-bottom: 22px">선생님찾기</a>
+                            <a onclick="ga('send', 'event', 'link', 'coolschool', 'gnb_more_notice');" href="//www.coolschool.co.kr/news/index" target="_blank">공지/소식</a>
+                            <a onclick="ga('send', 'event', 'link', 'coolschool', 'gnb_more_contact');" href="//www.coolschool.co.kr/messenger/technicalSupport" target="_blank">문의하기</a>
+                            <a onclick="ga('send', 'event', 'link', 'coolschool', 'gnb_more_profile');" href="//www.coolschool.co.kr/profile/search" target="_blank" style="margin-bottom: 22px">선생님찾기</a>
                         </li>
                     </ul>
                     <div>
-                        <a onclick="ga('send', 'event', 'link', {{=it.serviceName}}, 'gnb_more_all_service');" href="//local.coolschool.co.kr/allService" target="_blank">서비스 전체보기</a>
+                        <a onclick="ga('send', 'event', 'link', 'coolschool', 'gnb_more_all_service');" href="//local.coolschool.co.kr/allService" target="_blank">서비스 전체보기</a>
                         <span class="dropdown-close">닫기</span>
                     </div>
                 </div>
