@@ -894,7 +894,7 @@ class Coolris {
                         </li>
                     </ul>
                     <div>
-                        <a onclick="ga('send', 'event', 'link', 'coolschool', 'gnb_more_all_service');" href="//local.coolschool.co.kr/allService" target="_blank">서비스 전체보기</a>
+                        <a onclick="ga('send', 'event', 'link', 'coolschool', 'gnb_more_all_service');" href="//coolschool.co.kr/allService" target="_blank">서비스 전체보기</a>
                         <span class="dropdown-close">닫기</span>
                     </div>
                 </div>
