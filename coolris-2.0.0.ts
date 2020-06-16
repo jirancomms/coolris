@@ -411,7 +411,7 @@ class Coolris {
                 }
             </style>
             <div coolrisPoint>
-                <a onclick="ga('send', 'event', 'link', {{=it.serviceName}}, 'gnb_point');" href="//point.coolschool.co.kr" target="_blank">
+                <a onclick="ga('send', 'event', 'link', 'coolschool', 'gnb_point');" href="//point.coolschool.co.kr" target="_blank">
                     <img src="//update.coolmessenger.com/_ImageServer/coolschool/commonTop/point.png" alt="img" />
                     <span data-name="spanPoint"></span>
                 </a>
