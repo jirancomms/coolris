@@ -282,6 +282,7 @@ class Coolris {
                     background-color:#24d1ab;
                     /*display:none;*/
                     text-align:center;
+                    font-family: NotoSansKRRegular, sans-serif;
                 }
                  @media screen and (max-width: 992px) {
                      div[coolrisTopBanner] {
@@ -366,6 +367,7 @@ class Coolris {
                     cursor: pointer;
                     margin: 0;
                     letter-spacing: -0.5px;
+                    line-height: initial;
                 }
                 div[coolrisTopBanner] .topbanner-paging p[data-name='topbannerClose']:hover {
                     font-weight: bold;
@@ -519,6 +521,7 @@ class Coolris {
                     color: #b0b0b0;
                     display: block;
                     margin-top: 10px;
+                    line-height: initial;
                 }
                 div[coolrisAlarm] .coolris-alarm-dropdown div {
                     text-align: center;
@@ -983,9 +986,23 @@ class Coolris {
                     height: 100%;
                 }
                 .coolris-gnb[coolrisGnb] .coolris-login-section .custom-section .btn-custom {
-                    font-size: 13px;
+                    font-size: 14px;
                     cursor: pointer;
-                    color: #000000;
+                    color: #727272;
+                    font-weight: bold;
+                    position: relative;
+                }
+                .coolris-gnb[coolrisGnb] .coolris-login-section .custom-section .btn-custom:after {
+                    content: '';
+                    display: block;
+                    position: absolute;
+                    width: 1px;
+                    height: 14px;
+                    background-color: #dcdedf;
+                    right: -11px;
+                    top: 50%;
+                    margin-top: -6px;
+                    cursor: default;
                 }
                 .coolris-gnb[coolrisGnb] .coolris-menu-section {
                     float: left;
