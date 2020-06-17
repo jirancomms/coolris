@@ -41,7 +41,7 @@ class Coolris {
 
     private loginInfo = {result: false, data: undefined} as any;
 
-    constructor(private accessToken = '') {
+    constructor(private accessToken: string = '', private serviceName: string = 'coolschool') {
         // include dot.js
         // @ts-ignore
         !function(){"use strict";var u,d={name:"doT",version:"1.1.1",templateSettings:{evaluate:/\{\{([\s\S]+?(\}?)+)\}\}/g,interpolate:/\{\{=([\s\S]+?)\}\}/g,encode:/\{\{!([\s\S]+?)\}\}/g,use:/\{\{#([\s\S]+?)\}\}/g,useParams:/(^|[^\w$])def(?:\.|\[[\'\"])([\w$\.]+)(?:[\'\"]\])?\s*\:\s*([\w$\.]+|\"[^\"]+\"|\'[^\']+\'|\{[^\}]+\})/g,define:/\{\{##\s*([\w\.$]+)\s*(\:|=)([\s\S]+?)#\}\}/g,defineParams:/^\s*([\w$]+):([\s\S]+)/,conditional:/\{\{\?(\?)?\s*([\s\S]*?)\s*\}\}/g,iterate:/\{\{~\s*(?:\}\}|([\s\S]+?)\s*\:\s*([\w$]+)\s*(?:\:\s*([\w$]+))?\s*\}\})/g,varname:"it",strip:!0,append:!0,selfcontained:!1,doNotSkipEncoded:!1},template:void 0,compile:void 0,log:!0};d.encodeHTMLSource=function(e){var n={"&":"&#38;","<":"&#60;",">":"&#62;",'"':"&#34;","'":"&#39;","/":"&#47;"},t=e?/[&<>"'\/]/g:/&(?!#?\w+;)|<|>|"|'|\//g;return function(e){return e?e.toString().replace(t,function(e){return n[e]||e}):""}},u=function(){return this||(0,eval)("this")}.apply(this),"undefined"!=typeof module&&module.exports?module.exports=d:"function"==typeof define&&define.amd?define(function(){return d}):u.doT=d;var s={append:{start:"'+(",end:")+'",startencode:"'+encodeHTML("},split:{start:"';out+=(",end:");out+='",startencode:"';out+=encodeHTML("}},p=/$^/;function l(e){return e.replace(/\\('|\\)/g,"$1").replace(/[\r\t\n]/g," ")}d.template=function(e,n,t){var r,o,a=(n=n||d.templateSettings).append?s.append:s.split,c=0,i=n.use||n.define?function r(o,e,a){return("string"==typeof e?e:e.toString()).replace(o.define||p,function(e,r,n,t){return 0===r.indexOf("def.")&&(r=r.substring(4)),r in a||(":"===n?(o.defineParams&&t.replace(o.defineParams,function(e,n,t){a[r]={arg:n,text:t}}),r in a||(a[r]=t)):new Function("def","def['"+r+"']="+t)(a)),""}).replace(o.use||p,function(e,n){o.useParams&&(n=n.replace(o.useParams,function(e,n,t,r){if(a[t]&&a[t].arg&&r){var o=(t+":"+r).replace(/'|\\/g,"_");return a.__exp=a.__exp||{},a.__exp[o]=a[t].text.replace(new RegExp("(^|[^\\w$])"+a[t].arg+"([^\\w$])","g"),"$1"+r+"$2"),n+"def.__exp['"+o+"']"}}));var t=new Function("def","return "+n)(a);return t?r(o,t,a):t})}(n,e,t||{}):e;i=("var out='"+(n.strip?i.replace(/(^|\r|\n)\t* +| +\t*(\r|\n|$)/g," ").replace(/\r|\n|\t|\/\*[\s\S]*?\*\//g,""):i).replace(/'|\\/g,"\\$&").replace(n.interpolate||p,function(e,n){return a.start+l(n)+a.end}).replace(n.encode||p,function(e,n){return r=!0,a.startencode+l(n)+a.end}).replace(n.conditional||p,function(e,n,t){return n?t?"';}else if("+l(t)+"){out+='":"';}else{out+='":t?"';if("+l(t)+"){out+='":"';}out+='"}).replace(n.iterate||p,function(e,n,t,r){return n?(c+=1,o=r||"i"+c,n=l(n),"';var arr"+c+"="+n+";if(arr"+c+"){var "+t+","+o+"=-1,l"+c+"=arr"+c+".length-1;while("+o+"<l"+c+"){"+t+"=arr"+c+"["+o+"+=1];out+='"):"';} } out+='"}).replace(n.evaluate||p,function(e,n){return"';"+l(n)+"out+='"})+"';return out;").replace(/\n/g,"\\n").replace(/\t/g,"\\t").replace(/\r/g,"\\r").replace(/(\s|;|\}|^|\{)out\+='';/g,"$1").replace(/\+''/g,""),r&&(n.selfcontained||!u||u._encodeHTML||(u._encodeHTML=d.encodeHTMLSource(n.doNotSkipEncoded)),i="var encodeHTML = typeof _encodeHTML !== 'undefined' ? _encodeHTML : ("+d.encodeHTMLSource.toString()+"("+(n.doNotSkipEncoded||"")+"));"+i);try{return new Function(n.varname,i)}catch(e){throw"undefined"!=typeof console&&console.log("Could not create a template function: "+i),e}},d.compile=function(e,n){return d.template(e,null,n)}}.apply(this)
@@ -51,11 +51,7 @@ class Coolris {
         var _hashq=_hashq||[],_httpRequest=null,_ja_famliy_site={};!function(e: any,t: any,a: any,n: any,i: any,s: any,o: any){e.GoogleAnalyticsObject=i,e.ga=e.ga||function(){(e.ga.q=e.ga.q||[]).push(arguments)},e.ga.l=1*new Date,s=t.createElement(a),o=t.getElementsByTagName(a)[0],s.async=1,s.src="https://www.google-analytics.com/analytics.js",o.parentNode.insertBefore(s,o)}(window,document,"script",0,"ga"),ga("create","UA-92421532-1","auto"),ga("send","pageview"),function(){a(document,"click",function(e){var t,a,n,i=function e(t){if(null==t.tagName)return!1;if("a"==t.tagName.toLowerCase()||"area"==t.tagName.toLowerCase())return t;if(t.parentNode)return e(t.parentNode);return!1}(e.target);i&&(t=function e(t){var a=[];t.parentNode&&"body"!=t.parentNode.tagName.toLowerCase()&&(a=e(t.parentNode));t.id?a.push(t.id):t.className&&a.push(t.className);return a}(i).join("-"),a=i.href.indexOf(".pdf")>-1||i.href.indexOf(".mov")>-1||i.href.indexOf(".avi")>-1||i.href.indexOf(".m4v")>-1||i.href.indexOf(".wmv")>-1||i.href.indexOf(".mp3")>-1||i.href.indexOf(".rar")>-1||i.href.indexOf(".zip")>-1?"download":i.href.indexOf(".html")>-1||i.href.indexOf(".txt")>-1||i.href.indexOf(".js")>-1?"example":"link",n=i.innerHTML,_hashq.push(["_trackEvent",t,a,n]),i.id)}),_ja_famliy_site.readyState=function(){var e=o("_jc");e||(e=t(1e9,9999999999),s("_jc",e+="."+(new Date).getTime())),_hashq.push(["_host",location.hostname]),_hashq.push(["_url",location.href]),_hashq.push(["_jc",e]),n()};var e=!1;a(document,"readystatechange",function(a){if(!e){var i=o("_jc");i||(i=t(1e9,9999999999),s("_jc",i+="."+(new Date).getTime())),_hashq.push(["_host",location.hostname]),_hashq.push(["_url",location.href]),_hashq.push(["_jc",i]),n(),e=!0}});var t=function(e,t){return Math.floor(Math.random()*(t-e+1))+e};function a(e,t,a){e.addEventListener?e.addEventListener(t,a,!1):e.attachEvent&&(e["e"+t+a]=a,e[t+a]=function(){e["e"+t+a](window.event)},e.attachEvent("on"+t,e[t+a]))}function n(){for(var e,t="",a=0;a<_hashq.length;a++)""!=t&&(t+="&"),t+=(e=_hashq[a])[0]+"="+e[1];!function(e){var t=("https:"==document.location.protocol?"https://":"http://")+"st.coolschool.co.kr/ja/stat_js.html";$.ajax({url:t,contentType:"application/json",dataType:"jsonp",type:"POST",data:e,success:function(e){if(e.family_html&&$(".family-sites")){var t=$(".family-sites").html(e.family_html).text();$(".family-sites").html(t)}},error:function(e){console.log("�ㅽ뙣 - ",e)}})}(t)}var i="1000";function s(e,t){var a=new Date;a.setDate(a.getDate()+i),document.cookie=e+"="+t+"; path=/; expires="+a.toGMTString()+";"}function o(e){e+="=";var t=document.cookie,a=t.indexOf(e),n="";if(-1!=a){a+=e.length;var i=t.indexOf(";",a);-1==i&&(i=t.length),n=t.substring(a,i)}return unescape(n)}_ja_famliy_site.start=function(){var e=location.href,t=$("#footer");if(t&&0!==t.length){var a=t.find(".family-site-back");if(a){var n=parseInt(a.css("height"))+1;if(e.indexOf("coolbooks")<0){var i=$(window),s=$(document),o=$("html"),r=$("body");a.css({top:-n+"px"}),s.on("click","#togglerFamilySite",function(e){e.preventDefault();var t=$("#togglerFamilySite span.up").removeClass("hide"),a=s.height();o.toggleClass("is-family-sites"),r.toggleClass("is-family-sites"),i.trigger(".sticky"),(o.hasClass("is-family-sites")||r.hasClass("is-family-sites"))&&(t.addClass("hide"),$("html, body").animate({scrollTop:a},0))}),a.find("a").on("click",function(){o.removeClass("is-family-sites")})}}}},_ja_famliy_site.start()}();
     }
 
-    async start(serviceName?: string) {
-        // if (!serviceName) {
-            serviceName = 'coolschool';
-        // }
-
+    async start() {
         // @ts-ignore
         const gnbOuterTemplateFn = this.doT.template(this.getGnbOuterTemplate());
         $('#coolrisGnb').html(gnbOuterTemplateFn());
@@ -67,12 +63,12 @@ class Coolris {
 
         // interface Cooltemplate에 템플릿 주기
         const coolTemplate = {
-            login: this.getLoginTemplate(serviceName),
-            menu: this.getGnbMenuTemplate(serviceName),
-            more: this.getMoreTemplate(serviceName),
-            point: this.getPointTemplate(serviceName),
-            beforeLogin: this.getBeforLoginTemplate(serviceName),
-            topBanner: this.getTopBannerTemplate(serviceName)
+            login: this.getLoginTemplate(),
+            menu: this.getGnbMenuTemplate(),
+            more: this.getMoreTemplate(),
+            point: this.getPointTemplate(),
+            beforeLogin: this.getBeforLoginTemplate(),
+            topBanner: this.getTopBannerTemplate()
         };
 
         // 로그인 여부에 따른 처리
@@ -87,41 +83,41 @@ class Coolris {
         $('[data-name=coolrisGnbArea]').html(coolrisTemplateFn({isLogin: isLogin}));
 
         // 로그인 드롭다운
-        this.loginToggle('coolris-profile-btn', 'coolris-profile-dropdown', serviceName);
+        this.loginToggle('coolris-profile-btn', 'coolris-profile-dropdown');
         this.loginDropdown('coolris-profile-dropdown', this.targetProfileCheck);
 
         // 더보기 드롭다운
-        this.loginToggle('coolris-more-btn', 'coolris-more-dropdown', serviceName);
+        this.loginToggle('coolris-more-btn', 'coolris-more-dropdown');
         this.loginDropdown('coolris-more-dropdown', this.targetMoreCheck);
 
         // 이벤트
-        this.onLoginOutEvents(serviceName);
+        this.onLoginOutEvents();
 
         // 로그인에 되어 있다면 내 영역 데이터 로드 및 랜더
         if (isLogin && this.accessToken) {
-            this.loadSettingMyArea(serviceName);
+            this.loadSettingMyArea();
         }
     }
 
     // 버튼 클릭시 드롭다운 켜짐
-    loginToggle(toggleBtn: string, dropDownClass: string, serviceName: string) {
+    loginToggle(toggleBtn: string, dropDownClass: string) {
         $(`.${toggleBtn}`).click(() => {
             $(`.${dropDownClass}`).toggleClass('show');
-            this.onClickBtnGoogleCode(toggleBtn, serviceName);
+            this.onClickBtnGoogleCode(toggleBtn);
         });
     }
 
     // 더보기 버튼 클릭할 때 구글코드
-    onClickBtnGoogleCode(toggleBtn: string, serviceName: string) {
+    onClickBtnGoogleCode(toggleBtn: string) {
         switch(toggleBtn) {
             case 'coolris-more-btn':
-                ga('send', 'event', 'link', serviceName, 'main_banner_top');
+                ga('send', 'event', 'link', this.serviceName, 'main_banner_top');
                 break;
             case 'coolris-alarm-btn':
-                ga('send', 'event', 'link', serviceName, 'gnb_alarm');
+                ga('send', 'event', 'link', this.serviceName, 'gnb_alarm');
                 break;
             case 'coolris-profile-btn':
-                ga('send', 'event', serviceName, 'coolris', 'gnb_my');
+                ga('send', 'event', this.serviceName, 'coolris', 'gnb_my');
                 break;
         }
     }
@@ -274,7 +270,7 @@ class Coolris {
     }
 
     // 탑배너 템플릿
-    getTopBannerTemplate(serviceName: string) {
+    getTopBannerTemplate() {
         return `
             <style>
                 /*===== topBanner =====*/
@@ -306,7 +302,7 @@ class Coolris {
                     position:absolute;
                     bottom:5px;
                     right:100px;
-                    font-family: "Dotum";
+                    font-family: "Dotum", sans-serif;
                     z-index:999;
                 }
                 div[coolrisTopBanner] .top_close img {
@@ -385,7 +381,7 @@ class Coolris {
                     </div>
                     <div class="topbanner-list">
                         {{ for(var idx in it.coolTopBannerItems) { }}
-                        <a onclick="ga('send', 'event', 'link', 'coolschool', 'main_banner_top');" href="{{=it.coolTopBannerItems[idx].url}}" target="_blank">
+                        <a onclick="ga('send', 'event', 'link', '${this.serviceName}', 'main_banner_top');" href="{{=it.coolTopBannerItems[idx].url}}" target="_blank">
                             <!--suppress CssInvalidPropertyValue -->
                             <div class="topbanner-item" style="background-color: #{{=it.coolTopBannerItems[idx].backgroundColor}}">
                                 <div class="inner">
@@ -401,7 +397,7 @@ class Coolris {
     }
 
     // 포인트 템플릿
-    getPointTemplate(serviceName: string) {
+    getPointTemplate() {
         return `
             <style>
                 div[coolrisPoint] {
@@ -422,7 +418,7 @@ class Coolris {
                 }
             </style>
             <div coolrisPoint>
-                <a onclick="ga('send', 'event', 'link', 'coolschool', 'gnb_point');" href="//point.coolschool.co.kr" target="_blank">
+                <a onclick="ga('send', 'event', 'link', '${this.serviceName}', 'gnb_point');" href="//point.coolschool.co.kr" target="_blank">
                     <img src="//update.coolmessenger.com/_ImageServer/coolschool/commonTop/point.png" alt="img" />
                     <span data-name="spanPoint"></span>
                 </a>
@@ -431,7 +427,7 @@ class Coolris {
     }
 
     // 로그인 전 템플릿
-    getBeforLoginTemplate(serviceName: string) {
+    getBeforLoginTemplate() {
         return `
             <style>
                 div[coolrisBeforLogin] {
@@ -456,7 +452,7 @@ class Coolris {
     }
 
     // 알람 템플릿
-    getAlarmTemplate(serviceName: string) {
+    getAlarmTemplate() {
         return `
             <style>
                 div[coolrisAlarm] {
@@ -553,7 +549,7 @@ class Coolris {
                     <img class="dropdown-tail" src="//update.coolmessenger.com/_ImageServer/coolschool/resources/images/dropbox_tail.png" alt="img" />
                     <ul>
                     {{ for(var idx in it.coolAlarmItems) { }}
-                        <li onclick="ga('send', 'event', 'link', 'coolschool', 'gnb_alarm_item');">
+                        <li onclick="ga('send', 'event', 'link', '${this.serviceName}', 'gnb_alarm_item');">
                             <a href="{{=it.coolAlarmItems[idx].url}}" target="_blank">
                                 <p>{{=it.coolAlarmItems[idx].message}}</p>
                                 <span>{{=it.toDateYmdFormat(new Date(it.coolAlarmItems[idx].createdDate))}}</span>
@@ -562,7 +558,7 @@ class Coolris {
                     {{ } }}
                     </ul>
                     <div>
-                        <a onclick="ga('send', 'event', 'link', 'coolschool', 'all_alarm');" href="/notification/index" target="_blank">알림 모두 보기</a>
+                        <a onclick="ga('send', 'event', 'link', '${this.serviceName}', 'all_alarm');" href="/notification/index" target="_blank">알림 모두 보기</a>
                     </div>
                 </div>
             </div>   
@@ -570,7 +566,7 @@ class Coolris {
     }
 
     // 로그인 템플릿
-    getLoginTemplate(serviceName: string) {
+    getLoginTemplate() {
         return  `
             <style>
                 div[coolrisProfile] {
@@ -684,7 +680,7 @@ class Coolris {
             <div coolrisProfile>
                 <div class="coolris-profile-dropdown">
                     <img class="dropdown-tail" src="//update.coolmessenger.com/_ImageServer/coolschool/resources/images/dropbox_tail.png" alt="img" />
-                    <p><a onclick="ga('send', 'event', 'link', 'coolschool', 'gnb_myinfo');" href="//member.coolschool.co.kr/my/#/">내정보 보기</a></p>
+                    <p><a onclick="ga('send', 'event', 'link', '${this.serviceName}', 'gnb_myinfo');" href="//member.coolschool.co.kr/my/#/">내정보 보기</a></p>
                     <span class="logout dropdown-close" data-name="spanLogout">로그아웃</span>
                 </div>
                 <span class="coolris-profile-btn">
@@ -699,7 +695,7 @@ class Coolris {
     }
 
     // gnb 메뉴 템플릿
-    getGnbMenuTemplate(serviceName: string) {
+    getGnbMenuTemplate() {
         return `
             <style>
                 ul[coolrisGnbMenu] {
@@ -735,22 +731,22 @@ class Coolris {
                 }
             </style>
             <ul coolrisGnbMenu>
-                <li onclick="ga('send', 'event', 'link', 'coolschool', 'gnb_home');">
+                <li onclick="ga('send', 'event', 'link', '${this.serviceName}', 'gnb_home');">
                     <a href="//www.coolschool.co.kr/" target="_blank">쿨스쿨 홈</a>
                 </li>
-                <li onclick="ga('send', 'event', 'link', 'coolschool', 'gnb_coolmsg');">
+                <li onclick="ga('send', 'event', 'link', '${this.serviceName}', 'gnb_coolmsg');">
                     <a href="//school.coolmessenger.com/" target="_blank">쿨메신저</a>
                 </li>
-                <li onclick="ga('send', 'event', 'link', 'coolschool', 'gnb_sms');">
+                <li onclick="ga('send', 'event', 'link', '${this.serviceName}', 'gnb_sms');">
                     <a href="//coolsms.coolmessenger.com/" target="_blank">문자</a>
                 </li>
-                <li onclick="ga('send', 'event', 'link', 'coolschool', 'gnb_samstory');">
+                <li onclick="ga('send', 'event', 'link', '${this.serviceName}', 'gnb_samstory');">
                     <a href="//samstory.coolschool.co.kr/zone/" target="_blank">교육자료</a>
                 </li>
-                <li onclick="ga('send', 'event', 'link', 'coolschool', 'gnb_cooledu');">
+                <li onclick="ga('send', 'event', 'link', '${this.serviceName}', 'gnb_cooledu');">
                     <a href="//cooledu.coolschool.co.kr/" target="_blank">연수,모임</a>
                 </li>
-                <li onclick="ga('send', 'event', 'link', 'coolschool', 'gnb_coolmarket');">
+                <li onclick="ga('send', 'event', 'link', '${this.serviceName}', 'gnb_coolmarket');">
                     <a href="//coolmarket.coolschool.co.kr/" target="_blank">교직원몰</a>
                 </li>
             </ul>
@@ -758,7 +754,7 @@ class Coolris {
     }
 
     // 더보기 템플릿
-    getMoreTemplate(serviceName: string) {
+    getMoreTemplate() {
         return `
             <style>
                 div[coolrisMore] {
@@ -871,42 +867,42 @@ class Coolris {
                     <ul>
                         <li>
                             <h4>학교업무</h4>
-                            <a onclick="ga('send', 'event', 'link', 'coolschool', 'gnb_more_coolmsg');" href="//school.coolmessenger.com/" target="_blank">쿨메신저</a>
-                            <a onclick="ga('send', 'event', 'link', 'coolschool', 'gnb_more_sms');" href="//coolsms.coolmessenger.com/" target="_blank">문자</a>
-                            <a onclick="ga('send', 'event', 'link', 'coolschool', 'gnb_more_mova');" href="//coolmova.coolschool.co.kr/" target="_blank">안심번호</a>
-                            <a onclick="ga('send', 'event', 'link', 'coolschool', 'gnb_more_banner');" href="//school.coolbooks.co.kr/" target="_blank">학교간행물</a>
+                            <a onclick="ga('send', 'event', 'link', '${this.serviceName}', 'gnb_more_coolmsg');" href="//school.coolmessenger.com/" target="_blank">쿨메신저</a>
+                            <a onclick="ga('send', 'event', 'link', '${this.serviceName}', 'gnb_more_sms');" href="//coolsms.coolmessenger.com/" target="_blank">문자</a>
+                            <a onclick="ga('send', 'event', 'link', '${this.serviceName}', 'gnb_more_mova');" href="//coolmova.coolschool.co.kr/" target="_blank">안심번호</a>
+                            <a onclick="ga('send', 'event', 'link', '${this.serviceName}', 'gnb_more_banner');" href="//school.coolbooks.co.kr/" target="_blank">학교간행물</a>
                         </li>
                         <li>
                             <h4>교사생활</h4>
-                            <a onclick="ga('send', 'event', 'link', 'coolschool', 'gnb_more_samstory');" href="//samstory.coolschool.co.kr/" target="_blank">블로그</a>
-                            <a onclick="ga('send', 'event', 'link', 'coolschool' 'gnb_more_books');" href="//coolbooks.coolschool.co.kr/" target="_blank">책</a>
-                            <a onclick="ga('send', 'event', 'link', 'coolschool', 'gnb_more_edu_meeting');" href="//cooledu.coolschool.co.kr/cooledulub/trainingList#ing" target="_blank">모임</a>
-                            <a onclick="ga('send', 'event', 'link', 'coolschool', 'gnb_more_mentoring');" href="//www.coolschool.co.kr/kin/mentoringList" target="_blank">학교생활상담</a>
+                            <a onclick="ga('send', 'event', 'link', '${this.serviceName}', 'gnb_more_samstory');" href="//samstory.coolschool.co.kr/" target="_blank">블로그</a>
+                            <a onclick="ga('send', 'event', 'link', '${this.serviceName}' 'gnb_more_books');" href="//coolbooks.coolschool.co.kr/" target="_blank">책</a>
+                            <a onclick="ga('send', 'event', 'link', '${this.serviceName}', 'gnb_more_edu_meeting');" href="//cooledu.coolschool.co.kr/cooledulub/trainingList#ing" target="_blank">모임</a>
+                            <a onclick="ga('send', 'event', 'link', '${this.serviceName}', 'gnb_more_mentoring');" href="//www.coolschool.co.kr/kin/mentoringList" target="_blank">학교생활상담</a>
                         </li>
                         <li>
                             <h4>학교연수</h4>
-                            <a onclick="ga('send', 'event', 'link', 'coolschool', 'gnb_more_edu');" href="//cooledu.coolschool.co.kr/" target="_blank">원격연수</a>
-                            <a onclick="ga('send', 'event', 'link', 'coolschool', 'gnb_more_edu_platform');" href="//cooledu.coolschool.co.kr/cooledulub/trainingList#ing" target="_blank">집합연수</a>
-                            <a onclick="ga('send', 'event', 'link', 'coolschool', 'gnb_more_edu_pama');" href="//coolpama.coolschool.co.kr/" target="_blank">학부모연수</a>
+                            <a onclick="ga('send', 'event', 'link', '${this.serviceName}', 'gnb_more_edu');" href="//cooledu.coolschool.co.kr/" target="_blank">원격연수</a>
+                            <a onclick="ga('send', 'event', 'link', '${this.serviceName}', 'gnb_more_edu_platform');" href="//cooledu.coolschool.co.kr/cooledulub/trainingList#ing" target="_blank">집합연수</a>
+                            <a onclick="ga('send', 'event', 'link', '${this.serviceName}', 'gnb_more_edu_pama');" href="//coolpama.coolschool.co.kr/" target="_blank">학부모연수</a>
                         </li>
                         <li>
                             <h4>학교마켓</h4>
-                            <a onclick="ga('send', 'event', 'link', 'coolschool', 'gnb_more_market');" href="//coolmarket.coolschool.co.kr/" target="_blank">교구몰</a>
-                            <a onclick="ga('send', 'event', 'link', 'coolschool', 'gnb_more_market_tmall');" href="//t-mall.coolschool.co.kr/" target="_blank">복지몰</a>
-                            <a onclick="ga('send', 'event', 'link', 'coolschool', 'gnb_more_market_funding');" href="//t-fun.coolschool.co.kr/" target="_blank">펀딩</a>
+                            <a onclick="ga('send', 'event', 'link', '${this.serviceName}', 'gnb_more_market');" href="//coolmarket.coolschool.co.kr/" target="_blank">교구몰</a>
+                            <a onclick="ga('send', 'event', 'link', '${this.serviceName}', 'gnb_more_market_tmall');" href="//t-mall.coolschool.co.kr/" target="_blank">복지몰</a>
+                            <a onclick="ga('send', 'event', 'link', '${this.serviceName}', 'gnb_more_market_funding');" href="//t-fun.coolschool.co.kr/" target="_blank">펀딩</a>
                         </li>
                         <li>
                             <h4>교육이슈</h4>
-                            <a onclick="ga('send', 'event', 'link', 'coolschool', 'gnb_more_news');" href="//samstory.coolschool.co.kr/zone/story/eduin" target="_blank">교육뉴스</a>
-                            <a onclick="ga('send', 'event', 'link', 'coolschool', 'gnb_more_edutech');" href="//www.coolschool.co.kr/edutech" target="_blank" style="margin-bottom: 10px;">교육트렌드</a>
+                            <a onclick="ga('send', 'event', 'link', '${this.serviceName}', 'gnb_more_news');" href="//samstory.coolschool.co.kr/zone/story/eduin" target="_blank">교육뉴스</a>
+                            <a onclick="ga('send', 'event', 'link', '${this.serviceName}', 'gnb_more_edutech');" href="//www.coolschool.co.kr/edutech" target="_blank" style="margin-bottom: 10px;">교육트렌드</a>
                             <h4>쿨스쿨소식</h4>
-                            <a onclick="ga('send', 'event', 'link', 'coolschool', 'gnb_more_notice');" href="//www.coolschool.co.kr/news/index" target="_blank">공지/소식</a>
-                            <a onclick="ga('send', 'event', 'link', 'coolschool', 'gnb_more_contact');" href="//www.coolschool.co.kr/messenger/technicalSupport" target="_blank">문의하기</a>
-                            <a onclick="ga('send', 'event', 'link', 'coolschool', 'gnb_more_profile');" href="//www.coolschool.co.kr/profile/search" target="_blank" style="margin-bottom: 22px">선생님찾기</a>
+                            <a onclick="ga('send', 'event', 'link', '${this.serviceName}', 'gnb_more_notice');" href="//www.coolschool.co.kr/news/index" target="_blank">공지/소식</a>
+                            <a onclick="ga('send', 'event', 'link', '${this.serviceName}', 'gnb_more_contact');" href="//www.coolschool.co.kr/messenger/technicalSupport" target="_blank">문의하기</a>
+                            <a onclick="ga('send', 'event', 'link', '${this.serviceName}', 'gnb_more_profile');" href="//www.coolschool.co.kr/profile/search" target="_blank" style="margin-bottom: 22px">선생님찾기</a>
                         </li>
                     </ul>
                     <div>
-                        <a onclick="ga('send', 'event', 'link', 'coolschool', 'gnb_more_all_service');" href="//coolschool.co.kr/allService" target="_blank">서비스 전체보기</a>
+                        <a onclick="ga('send', 'event', 'link', '${this.serviceName}', 'gnb_more_all_service');" href="//coolschool.co.kr/allService" target="_blank">서비스 전체보기</a>
                         <span class="dropdown-close">닫기</span>
                     </div>
                 </div>
@@ -1168,22 +1164,22 @@ class Coolris {
     /**
      * 로그인, 회원가입, 로그아웃 이벤트 등록
      */
-    onLoginOutEvents(serviceName: string) {
+    onLoginOutEvents() {
         // 로그인
         $("[data-name='aCoolLogin']").click(() => {
-            ga('send', 'event', 'link', serviceName, 'gnb_login');
+            ga('send', 'event', 'link', this.serviceName, 'gnb_login');
             this.goCoolLogin();
         });
 
         // 회원가입
         $("[data-name='aCoolJoin']").click(() => {
-            ga('send', 'event', 'link', serviceName, 'gnb_join');
+            ga('send', 'event', 'link', this.serviceName, 'gnb_join');
             this.join();
         });
 
         // 로그아웃
         $("[data-name='spanLogout']").click(() => {
-            ga('send', 'event', 'link', serviceName, 'gnb_logout');
+            ga('send', 'event', 'link', this.serviceName, 'gnb_logout');
             this.logout();
         });
     }
@@ -1254,7 +1250,7 @@ class Coolris {
     /**
      *  알람 데이터 로드 및 세팅
      */
-    async loadSettingMyArea(serviceName: string) {
+    async loadSettingMyArea() {
         let coolAlarmItems = [];
         // 프로필 세팅
         const profileResult = await this.loadProfileResult(this.accessToken);
@@ -1277,7 +1273,7 @@ class Coolris {
         }));
 
         // 알람 드롭다운 이벤트
-        this.loginToggle('coolris-alarm-btn', 'coolris-alarm-dropdown', serviceName);
+        this.loginToggle('coolris-alarm-btn', 'coolris-alarm-dropdown');
         this.loginDropdown('coolris-alarm-dropdown', this.targetAlarmCheck);
     }
 

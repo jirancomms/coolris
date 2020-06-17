@@ -74,8 +74,8 @@ $(function() {
 - css, js파일을 포함시킨다.
 ```html
 <script type="text/javascript" src="//update.coolmessenger.com/_ImageServer/coolschool/commonTop/jquery.min.js"></script><!-- 1.12.4 -->
-<script type="text/javascript" src="//update.coolmessenger.com/_ImageServer/coolschool/commonTop/polyfills.js"></script>  // ie에서 나오지 않을 때 추가
-<script type="text/javascript" src="//update.coolmessenger.com/_ImageServer/coolschool/commonTop/coolris-2.0.0.js"></script>
+<script type="text/javascript" src="//resource.coolmessenger.com/coolschool/resources/js/polyfills.js"></script>  // ie에서 나오지 않을 때 추가
+<script type="text/javascript" src="//resource.coolmessenger.com/coolschool/resources/js/coolris-2.0.0.js"></script>
 ```
 - 쿨서비스 팝업이 들어갈 div를 **id를 coolrisGnb**로 만들어준다.
 ```html
@@ -88,9 +88,8 @@ $(function() {
 // ready가 되면
 $(function() {
     var coolris = new Coolris();
-    엑세스 토큰이 있다면 new Coolris(엑세스토큰)
-
-    coolris.start('사이트명');
+    엑세스 토큰이 있다면 new Coolris('엑세스토큰', '사이트명');
+    coolris.start();
 });
 ```
 ## 예제
@@ -102,8 +101,8 @@ $(function() {
 - 커스텀된 버튼을 .custom-section 안에 넣어줍니다.
 - 클릭시의 이벤트를 걸어줍니다.
 ```
-var coolris = new Coolris(엑세스 토큰);
-            coolris.start('사이트명').then(function() {
+var coolris = new Coolris('엑세스 토큰', '사이트명');
+            coolris.start().then(function() {
                 coolris.loginResultPromise().then(function(response) {
                     if (response.result) {
                         // 로그인 시
