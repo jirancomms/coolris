@@ -979,7 +979,7 @@ class Coolris {
                     float: right;
                     display: flex;
                     align-items: center;
-                    height: 100%;
+                    /*height: 100%;*/
                 }
                 .coolris-gnb[coolrisGnb] .coolris-login-section .custom-section .btn-custom {
                     font-size: 14px;
@@ -1004,7 +1004,7 @@ class Coolris {
                     float: left;
                     display: flex;
                     align-items: center;
-                    height: 100%;
+                    /*height: 100%;*/
                 }
             </style>
             <nav class="coolris-gnb" coolrisGnb>
