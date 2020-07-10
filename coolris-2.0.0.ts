@@ -741,7 +741,7 @@ class Coolris {
                     <a href="//coolsms.coolmessenger.com/" target="_blank">문자</a>
                 </li>
                 <li onclick="ga('send', 'event', 'link', '${this.serviceName}', 'gnb_samstory');">
-                    <a href="//samstory.coolschool.co.kr/zone/" target="_blank">교육자료</a>
+                    <a href="//samstory.coolschool.co.kr/zone/" target="_blank">블로그</a>
                 </li>
                 <li onclick="ga('send', 'event', 'link', '${this.serviceName}', 'gnb_cooledu');">
                     <a href="//cooledu.coolschool.co.kr/" target="_blank">연수,모임</a>
