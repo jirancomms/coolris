@@ -111,7 +111,7 @@ class Coolris {
     onClickBtnGoogleCode(toggleBtn: string) {
         switch(toggleBtn) {
             case 'coolris-more-btn':
-                ga('send', 'event', 'link', this.serviceName, 'main_banner_top');
+                ga('send', 'event', 'link', this.serviceName, 'gnb_more');
                 break;
             case 'coolris-alarm-btn':
                 ga('send', 'event', 'link', this.serviceName, 'gnb_alarm');
