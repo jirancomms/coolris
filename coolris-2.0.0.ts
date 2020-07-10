@@ -1099,7 +1099,23 @@ class Coolris {
             redirect_uri_next: window.location.href,
             do_action: action,
         };
-
+        switch(clientId) {
+            case 'NjM2YzY5NjU2ZTc0NWY2OTY0M2E0NDQxNWE1YTRjNDU0NTQ0NTU=': // t-fun
+                param.redirect_uri = 'http://t-fun.coolschool.co.kr/oauth_cool.php';
+                param.redirect_uri_next = 'http://t-fun.coolschool.co.kr/happy_member_login.php?mode=logout';
+                break;
+            case 'NjM2YzY5NjU2ZTc0NWY2OTY0M2E0MzRmNGY0YzRkNDE1MjRiNDU1NA==': // coolmarket
+                param.redirect_uri = 'https://coolmarket.coolschool.co.kr/api/coolschool/callbackLogin.asp';
+                param.redirect_uri_next = 'https://coolmarket.coolschool.co.kr';
+                break;
+            case 'NjM2YzY5NjU2ZTc0NWY2OTY0M2E1NzQ1NTQ0NTQxNDM0ODQ1NTI=': // t-mall
+                param.redirect_uri = 'https://t-mall.coolschool.co.kr/api/coolschool/callbackLogin.asp';
+                param.redirect_uri_next = 'https://t-mall.coolschool.co.kr/';
+                break;
+            case 'NjM2YzY5NjU2ZTc0NWY2OTY0M2E0ZDRmNTY0MQ==': // coolmova
+                param.redirect_uri = 'https://coolmova.coolschool.co.kr:443/jiran/api/login';
+                break;
+        }
         let loginURL = COOL_LOGIN_URL;
         let paramStr = $.param(param);
         if (param.redirect_uri_next.search('&') === -1 && action !== '') {
@@ -1127,6 +1143,8 @@ class Coolris {
             this.setCookie('accessToken', '', -1 as any);
             this.setCookie('client_id', '', -1 as any);
 
+            this.logoutForOtherSite(); // 외부의 다른 사이트들 로그아웃을 위함
+
             logoutOpts = logoutOpts || {};
             if(logoutOpts.isLogoutProc === undefined || logoutOpts.isLogoutProc === true) {
                 if (!logoutOpts.logoutProcUrl) {
@@ -1141,6 +1159,22 @@ class Coolris {
             return true;
         }
         return false;
+    }
+
+    logoutForOtherSite() {
+        const clientId = this.getClientId();
+        switch(clientId) {
+            case 'NjM2YzY5NjU2ZTc0NWY2OTY0M2E0NDQxNWE1YTRjNDU0NTQ0NTU=': // t-fun
+                location.href = 'http://t-fun.coolschool.co.kr/happy_member_login.php?mode=logout';
+                break;
+            case 'NjM2YzY5NjU2ZTc0NWY2OTY0M2E0MzRmNGY0YzRkNDE1MjRiNDU1NA==': // coolmarket
+                location.href = 'https://coolmarket.coolschool.co.kr//member/logout.asp';
+                break;
+            case 'NjM2YzY5NjU2ZTc0NWY2OTY0M2E1NzQ1NTQ0NTQxNDM0ODQ1NTI=': // t-mall
+                break;
+            case 'NjM2YzY5NjU2ZTc0NWY2OTY0M2E0ZDRmNTY0MQ==': // coolmova
+                break;
+        }
     }
 
     // 회원가입
