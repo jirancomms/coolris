@@ -877,7 +877,7 @@ class Coolris {
                             <a onclick="ga('send', 'event', 'link', '${this.serviceName}', 'gnb_more_samstory');" href="//samstory.coolschool.co.kr/" target="_blank">블로그</a>
                             <a onclick="ga('send', 'event', 'link', '${this.serviceName}' 'gnb_more_books');" href="//coolbooks.coolschool.co.kr/" target="_blank">책</a>
                             <a onclick="ga('send', 'event', 'link', '${this.serviceName}', 'gnb_more_edu_meeting');" href="//cooledu.coolschool.co.kr/cooledulub/trainingList#ing" target="_blank">모임</a>
-                            <a onclick="ga('send', 'event', 'link', '${this.serviceName}', 'gnb_more_mentoring');" href="//www.coolschool.co.kr/kin/mentoringList" target="_blank">학교생활상담</a>
+                            /*<a onclick="ga('send', 'event', 'link', '${this.serviceName}', 'gnb_more_mentoring');" href="//www.coolschool.co.kr/kin/mentoringList" target="_blank">학교생활상담</a>*/
                         </li>
                         <li>
                             <h4>학교연수</h4>
