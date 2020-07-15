@@ -278,7 +278,7 @@ class Coolris {
                     background-color:#24d1ab;
                     /*display:none;*/
                     text-align:center;
-                    font-family: NotoSansKRRegular, sans-serif;
+                    font-family: NanumSquareRound, sans-serif;
                 }
                  @media screen and (max-width: 992px) {
                      div[coolrisTopBanner] {
@@ -437,6 +437,8 @@ class Coolris {
                     font-size: 13px;
                     color: #000000;
                     cursor: pointer;
+                    line-height: 25px;
+                    display: inline-block;
                 }
                 div[coolrisBeforLogin] span {
                     display: inline-block;
@@ -723,7 +725,7 @@ class Coolris {
                     transform: translateY(-50%);
                 }
                 ul[coolrisGnbMenu] li a {
-                    font-size: 16px !important;
+                    font-size: 15px !important;
                     line-height: 25px;
                     color: #000000;
                     text-decoration: none;
@@ -918,10 +920,10 @@ class Coolris {
         return `
             <style>
                 @font-face {
-                    font-family: 'NotoSansKRRegular';
-                    src: url("//update.coolmessenger.com/_ImageServer/coolschool/resources/fonts/notosans/subset/NotoSansKR-Regular-subset.woff2") format('woff2'),
-                    url("//update.coolmessenger.com/_ImageServer/coolschool/resources/fonts/notosans/subset/NotoSansKR-Regular-subset.woff") format('woff'),
-                    url("//update.coolmessenger.com/_ImageServer/coolschool/resources/fonts/notosans/subset/NotoSansKR-Regular-subset.otf") format('opentype');
+                    font-family: 'NanumSquareRound';
+                    src: url("//resource.coolmessenger.com/coolschool/resources/fonts/nanum-square-round/NanumSquareRoundR.woff2") format('woff2'),
+                    url("//resource.coolmessenger.com/coolschool/resources/fonts/nanum-square-round/NanumSquareRoundR.woff") format('woff'),
+                    url("//resource.coolmessenger.com/coolschool/resources/fonts/nanum-square-round/NanumSquareRoundR.eot") format('opentype');
                 }
             
                 body {
@@ -934,7 +936,7 @@ class Coolris {
                 }
                 .coolris-gnb[coolrisGnb] {
                     /*line-height: 1;*/
-                    font-family: NotoSansKRRegular, sans-serif;
+                    font-family: NanumSquareRound, sans-serif;
                     width: 100%;
                     border-bottom: 1px solid #dedede;
                     background-color: #f7f7f7;
@@ -979,6 +981,7 @@ class Coolris {
                     float: right;
                     display: flex;
                     align-items: center;
+                    line-height: 25px;
                     /*height: 100%;*/
                 }
                 .coolris-gnb[coolrisGnb] .coolris-login-section .custom-section .btn-custom {
