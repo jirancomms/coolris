@@ -749,7 +749,7 @@ class Coolris {
                     <a href="//cooledu.coolschool.co.kr/" target="_blank">연수,모임</a>
                 </li>
                 <li onclick="ga('send', 'event', 'link', '${this.serviceName}', 'gnb_coolmarket');">
-                    <a href="//coolmarket.coolschool.co.kr/" target="_blank">교직원몰</a>
+                    <a href="//coolmarket.coolschool.co.kr/" target="_blank">교구몰</a>
                 </li>
             </ul>
         `
@@ -896,7 +896,7 @@ class Coolris {
                         <li>
                             <h4>교육이슈</h4>
                             <a onclick="ga('send', 'event', 'link', '${this.serviceName}', 'gnb_more_news');" href="//samstory.coolschool.co.kr/zone/story/eduin" target="_blank">교육뉴스</a>
-                            <a onclick="ga('send', 'event', 'link', '${this.serviceName}', 'gnb_more_edutech');" href="//www.coolschool.co.kr/edutech" target="_blank" style="margin-bottom: 10px;">교육트렌드</a>
+                            <a onclick="ga('send', 'event', 'link', '${this.serviceName}', 'gnb_more_edutech');" href="//www.coolschool.co.kr/edutech" target="_blank" style="margin-bottom: 10px;">에듀테크스토리</a>
                             <h4>쿨스쿨소식</h4>
                             <a onclick="ga('send', 'event', 'link', '${this.serviceName}', 'gnb_more_notice');" href="//www.coolschool.co.kr/news/index" target="_blank">공지/소식</a>
                             <a onclick="ga('send', 'event', 'link', '${this.serviceName}', 'gnb_more_contact');" href="//www.coolschool.co.kr/messenger/technicalSupport" target="_blank">문의하기</a>
