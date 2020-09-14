@@ -736,21 +736,30 @@ class Coolris {
                 <li onclick="ga('send', 'event', 'link', '${this.serviceName}', 'gnb_home');">
                     <a href="//www.coolschool.co.kr/" target="_blank">쿨스쿨 홈</a>
                 </li>
+                <li onclick="ga('send', 'event', 'link', '${this.serviceName}', 'gnb_samstory');">
+                    <a href="//samstory.coolschool.co.kr/zone" target="_blank">블로그</a>
+                </li>
+                <li onclick="ga('send', 'event', 'link', '${this.serviceName}', 'gnb_cooledu');">
+                    <a href="//cooledu.coolschool.co.kr" target="_blank">연수/모임</a>
+                </li>
+                <li onclick="ga('send', 'event', 'link', '${this.serviceName}', 'gnb_cooledutech');">
+                    <a href="//www.coolschool.co.kr/edutech" target="_blank">에듀테크</a>
+                </li>
+                <li onclick="ga('send', 'event', 'link', '${this.serviceName}', 'gnb_coolmarket');">
+                    <a href="//coolmarket.coolschool.co.kr" target="_blank">교구몰</a>
+                </li>
+                <li onclick="ga('send', 'event', 'link', '${this.serviceName}', 'gnb_coolendar');">
+                    <a href="//coolendar.coolschool.co.kr" target="_blank">일정관리</a>
+                </li>
+                <!--<li onclick="ga('send', 'event', 'link', '${this.serviceName}', 'gnb_home');">
+                    <a href="//www.coolschool.co.kr/" target="_blank">쿨스쿨 홈</a>
+                </li>
                 <li onclick="ga('send', 'event', 'link', '${this.serviceName}', 'gnb_coolmsg');">
                     <a href="//school.coolmessenger.com/" target="_blank">쿨메신저</a>
                 </li>
                 <li onclick="ga('send', 'event', 'link', '${this.serviceName}', 'gnb_sms');">
                     <a href="//coolsms.coolmessenger.com/" target="_blank">문자</a>
-                </li>
-                <li onclick="ga('send', 'event', 'link', '${this.serviceName}', 'gnb_samstory');">
-                    <a href="//samstory.coolschool.co.kr/zone/" target="_blank">블로그</a>
-                </li>
-                <li onclick="ga('send', 'event', 'link', '${this.serviceName}', 'gnb_cooledu');">
-                    <a href="//cooledu.coolschool.co.kr/" target="_blank">연수,모임</a>
-                </li>
-                <li onclick="ga('send', 'event', 'link', '${this.serviceName}', 'gnb_coolmarket');">
-                    <a href="//coolmarket.coolschool.co.kr/" target="_blank">교구몰</a>
-                </li>
+                </li>-->
             </ul>
         `
     }
