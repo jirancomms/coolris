@@ -1235,6 +1235,7 @@ class Coolris {
     getClientId() {
         let host = location.host;
         host = host.replace('.coolschool.co.kr', '')
+            .replace('coolschool.co.kr', '')
             .replace('local-', '')
             .replace('dev-', '')
             .replace('local', '')
