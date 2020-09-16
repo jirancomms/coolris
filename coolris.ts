@@ -11,7 +11,7 @@
 declare var $: any;
 declare var ga: any;
 
-class Coolris {
+class CoolrisOld {
     constructor() {
     }
 
