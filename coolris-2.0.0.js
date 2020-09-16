@@ -39,6 +39,8 @@ var constants = {
     clientIds: {
         'www': 'NjM2YzY5NjU2ZTc0NWY2OTY0M2E0MzRmNGY0YzUzNDM0ODRmNGY0Yw==',
         '': 'NjM2YzY5NjU2ZTc0NWY2OTY0M2E0MzRmNGY0YzUzNDM0ODRmNGY0Yw==',
+        'coolschool': 'NjM2YzY5NjU2ZTc0NWY2OTY0M2E0MzRmNGY0YzUzNDM0ODRmNGY0Yw==',
+        'my': 'NjM2YzY5NjU2ZTc0NWY2OTY0M2E0MzRmNGY0YzUzNDM0ODRmNGY0Yw==',
         'coolendar': 'NjM2YzY5NjU2ZTc0NWY2OTY0M2E0MzRmNGY0YzRhNGY0Mg==',
         'coolendar3': 'NjM2YzY5NjU2ZTc0NWY2OTY0M2E0MzRmNGY0YzRhNGY0Mg==',
         'cooledu': 'NjM2YzY5NjU2ZTc0NWY2OTY0M2E0MzRmNGY0YzQ1NDQ1NQ==',
@@ -50,14 +52,12 @@ var constants = {
         'coolmarket': 'NjM2YzY5NjU2ZTc0NWY2OTY0M2E0MzRmNGY0YzRkNDE1MjRiNDU1NA==',
         'coolmova': 'NjM2YzY5NjU2ZTc0NWY2OTY0M2E0ZDRmNTY0MQ==',
         't-fun': 'NjM2YzY5NjU2ZTc0NWY2OTY0M2E0NDQxNWE1YTRjNDU0NTQ0NTU=',
-        'my': 'NjM2YzY5NjU2ZTc0NWY2OTY0M2E0MzRmNGY0YzUzNDM0ODRmNGY0Yw==',
         'member': 'NjM2YzY5NjU2ZTc0NWY2OTY0M2E0MzRmNGY0YzUzNDM0ODRmNGY0Yw==' // myInfo
     }
 };
 var Coolris = /** @class */ (function () {
     function Coolris(accessToken, serviceName) {
         if (accessToken === void 0) { accessToken = ''; }
-        if (serviceName === void 0) { serviceName = 'coolschool'; }
         this.accessToken = accessToken;
         this.serviceName = serviceName;
         this.loginInfo = { result: false, data: undefined };
@@ -107,8 +107,12 @@ var Coolris = /** @class */ (function () {
                 }
             }
         } }, _ja_famliy_site.start(); }();
+        if (serviceName == undefined) {
+            this.serviceName = this.getHost();
+        }
     }
-    Coolris.prototype.start = function () {
+    Coolris.prototype.start = function (coolrisOpt) {
+        if (coolrisOpt === void 0) { coolrisOpt = undefined; }
         return __awaiter(this, void 0, void 0, function () {
             var gnbOuterTemplateFn, coolTemplate, memberResponse, memberResponseData, isLogin, coolrisTemplateFn;
             return __generator(this, function (_a) {
@@ -142,7 +146,7 @@ var Coolris = /** @class */ (function () {
                         this.loginToggle('coolris-more-btn', 'coolris-more-dropdown');
                         this.loginDropdown('coolris-more-dropdown', this.targetMoreCheck);
                         // 이벤트
-                        this.onLoginOutEvents();
+                        this.onLoginOutEvents(coolrisOpt);
                         // 로그인에 되어 있다면 내 영역 데이터 로드 및 랜더
                         if (isLogin && this.accessToken) {
                             this.loadSettingMyArea();
@@ -479,7 +483,7 @@ var Coolris = /** @class */ (function () {
                         logoutUrl = constants.memberUrl + "/logout?client_id=:client_id";
                         logoutProc = constants.memberUrl + "/logoutProc";
                         setting = {
-                            url: logoutUrl.replace(':client_id', this.getClientId),
+                            url: logoutUrl.replace(':client_id', this.getClientId()),
                             type: 'GET',
                             contentType: "application/json",
                             dataType: "jsonp"
@@ -547,8 +551,9 @@ var Coolris = /** @class */ (function () {
     /**
      * 로그인, 회원가입, 로그아웃 이벤트 등록
      */
-    Coolris.prototype.onLoginOutEvents = function () {
+    Coolris.prototype.onLoginOutEvents = function (coolrisOpts) {
         var _this = this;
+        if (coolrisOpts === void 0) { coolrisOpts = undefined; }
         // 로그인
         $("[data-name='aCoolLogin']").click(function () {
             ga('send', 'event', 'link', _this.serviceName, 'gnb_login');
@@ -560,13 +565,22 @@ var Coolris = /** @class */ (function () {
             _this.join();
         });
         // 로그아웃
+        var logoutResult;
         $("[data-name='spanLogout']").click(function () {
             ga('send', 'event', 'link', _this.serviceName, 'gnb_logout');
-            _this.logout();
+            if (coolrisOpts && coolrisOpts.logoutOpts) {
+                logoutResult = _this.logout(coolrisOpts.logoutOpts);
+            }
+            else {
+                logoutResult = _this.logout();
+            }
+            if (coolrisOpts && coolrisOpts.logoutOpts && coolrisOpts.logoutOpts.callbackLogoutComplete) {
+                coolrisOpts.logoutOpts.callbackLogoutComplete(logoutResult);
+            }
         });
     };
-    Coolris.prototype.getClientId = function () {
-        var host = location.host;
+    Coolris.prototype.getHost = function () {
+        var host = location.hostname;
         host = host.replace('.coolschool.co.kr', '')
             .replace('coolschool.co.kr', '')
             .replace('local-', '')
@@ -576,6 +590,13 @@ var Coolris = /** @class */ (function () {
             .replace('.com', '')
             .replace('.co.kr', '')
             .replace('school.', '');
+        if (host === '' || host === 'www') {
+            return 'coolschool';
+        }
+        return host;
+    };
+    Coolris.prototype.getClientId = function () {
+        var host = this.getHost();
         var clientId = constants.clientIds[host];
         if (!clientId && console) {
             console.warn('can`t not find clientId');

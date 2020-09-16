@@ -1,9 +1,14 @@
 declare var $: any;
 
+interface CoolrisOpts {
+    logoutOpts: LogoutOpts;
+}
+
 interface LogoutOpts {
     isRestoreLocation: boolean;
     isLogoutProc: boolean;
     logoutProcUrl: string | undefined;
+    callbackLogoutComplete: Function;
 }
 
 interface CoolTemplate {
@@ -22,6 +27,8 @@ const constants = {
     clientIds:  {
         'www' : 'NjM2YzY5NjU2ZTc0NWY2OTY0M2E0MzRmNGY0YzUzNDM0ODRmNGY0Yw==', // coolschool
         '' : 'NjM2YzY5NjU2ZTc0NWY2OTY0M2E0MzRmNGY0YzUzNDM0ODRmNGY0Yw==', // coolschool
+        'coolschool' : 'NjM2YzY5NjU2ZTc0NWY2OTY0M2E0MzRmNGY0YzUzNDM0ODRmNGY0Yw==', // coolschool
+        'my': 'NjM2YzY5NjU2ZTc0NWY2OTY0M2E0MzRmNGY0YzUzNDM0ODRmNGY0Yw==', // myInfo
         'coolendar': 'NjM2YzY5NjU2ZTc0NWY2OTY0M2E0MzRmNGY0YzRhNGY0Mg==', // coolendar
         'coolendar3': 'NjM2YzY5NjU2ZTc0NWY2OTY0M2E0MzRmNGY0YzRhNGY0Mg==', // coolendar3
         'cooledu': 'NjM2YzY5NjU2ZTc0NWY2OTY0M2E0MzRmNGY0YzQ1NDQ1NQ==', // cooledu
@@ -33,7 +40,6 @@ const constants = {
         'coolmarket': 'NjM2YzY5NjU2ZTc0NWY2OTY0M2E0MzRmNGY0YzRkNDE1MjRiNDU1NA==', //coolmarket
         'coolmova': 'NjM2YzY5NjU2ZTc0NWY2OTY0M2E0ZDRmNTY0MQ==', // coolmova
         't-fun': 'NjM2YzY5NjU2ZTc0NWY2OTY0M2E0NDQxNWE1YTRjNDU0NTQ0NTU=', // t-fun
-        'my': 'NjM2YzY5NjU2ZTc0NWY2OTY0M2E0MzRmNGY0YzUzNDM0ODRmNGY0Yw==', // myInfo
         'member': 'NjM2YzY5NjU2ZTc0NWY2OTY0M2E0MzRmNGY0YzUzNDM0ODRmNGY0Yw==' // myInfo
     }
 };
@@ -43,7 +49,7 @@ class Coolris {
 
     private loginInfo = {result: false, data: undefined} as any;
 
-    constructor(private accessToken: string = '', private serviceName: string = 'coolschool') {
+    constructor(private accessToken: string = '', private serviceName) {
         // include dot.js
         // @ts-ignore
         !function(){"use strict";var u,d={name:"doT",version:"1.1.1",templateSettings:{evaluate:/\{\{([\s\S]+?(\}?)+)\}\}/g,interpolate:/\{\{=([\s\S]+?)\}\}/g,encode:/\{\{!([\s\S]+?)\}\}/g,use:/\{\{#([\s\S]+?)\}\}/g,useParams:/(^|[^\w$])def(?:\.|\[[\'\"])([\w$\.]+)(?:[\'\"]\])?\s*\:\s*([\w$\.]+|\"[^\"]+\"|\'[^\']+\'|\{[^\}]+\})/g,define:/\{\{##\s*([\w\.$]+)\s*(\:|=)([\s\S]+?)#\}\}/g,defineParams:/^\s*([\w$]+):([\s\S]+)/,conditional:/\{\{\?(\?)?\s*([\s\S]*?)\s*\}\}/g,iterate:/\{\{~\s*(?:\}\}|([\s\S]+?)\s*\:\s*([\w$]+)\s*(?:\:\s*([\w$]+))?\s*\}\})/g,varname:"it",strip:!0,append:!0,selfcontained:!1,doNotSkipEncoded:!1},template:void 0,compile:void 0,log:!0};d.encodeHTMLSource=function(e){var n={"&":"&#38;","<":"&#60;",">":"&#62;",'"':"&#34;","'":"&#39;","/":"&#47;"},t=e?/[&<>"'\/]/g:/&(?!#?\w+;)|<|>|"|'|\//g;return function(e){return e?e.toString().replace(t,function(e){return n[e]||e}):""}},u=function(){return this||(0,eval)("this")}.apply(this),"undefined"!=typeof module&&module.exports?module.exports=d:"function"==typeof define&&define.amd?define(function(){return d}):u.doT=d;var s={append:{start:"'+(",end:")+'",startencode:"'+encodeHTML("},split:{start:"';out+=(",end:");out+='",startencode:"';out+=encodeHTML("}},p=/$^/;function l(e){return e.replace(/\\('|\\)/g,"$1").replace(/[\r\t\n]/g," ")}d.template=function(e,n,t){var r,o,a=(n=n||d.templateSettings).append?s.append:s.split,c=0,i=n.use||n.define?function r(o,e,a){return("string"==typeof e?e:e.toString()).replace(o.define||p,function(e,r,n,t){return 0===r.indexOf("def.")&&(r=r.substring(4)),r in a||(":"===n?(o.defineParams&&t.replace(o.defineParams,function(e,n,t){a[r]={arg:n,text:t}}),r in a||(a[r]=t)):new Function("def","def['"+r+"']="+t)(a)),""}).replace(o.use||p,function(e,n){o.useParams&&(n=n.replace(o.useParams,function(e,n,t,r){if(a[t]&&a[t].arg&&r){var o=(t+":"+r).replace(/'|\\/g,"_");return a.__exp=a.__exp||{},a.__exp[o]=a[t].text.replace(new RegExp("(^|[^\\w$])"+a[t].arg+"([^\\w$])","g"),"$1"+r+"$2"),n+"def.__exp['"+o+"']"}}));var t=new Function("def","return "+n)(a);return t?r(o,t,a):t})}(n,e,t||{}):e;i=("var out='"+(n.strip?i.replace(/(^|\r|\n)\t* +| +\t*(\r|\n|$)/g," ").replace(/\r|\n|\t|\/\*[\s\S]*?\*\//g,""):i).replace(/'|\\/g,"\\$&").replace(n.interpolate||p,function(e,n){return a.start+l(n)+a.end}).replace(n.encode||p,function(e,n){return r=!0,a.startencode+l(n)+a.end}).replace(n.conditional||p,function(e,n,t){return n?t?"';}else if("+l(t)+"){out+='":"';}else{out+='":t?"';if("+l(t)+"){out+='":"';}out+='"}).replace(n.iterate||p,function(e,n,t,r){return n?(c+=1,o=r||"i"+c,n=l(n),"';var arr"+c+"="+n+";if(arr"+c+"){var "+t+","+o+"=-1,l"+c+"=arr"+c+".length-1;while("+o+"<l"+c+"){"+t+"=arr"+c+"["+o+"+=1];out+='"):"';} } out+='"}).replace(n.evaluate||p,function(e,n){return"';"+l(n)+"out+='"})+"';return out;").replace(/\n/g,"\\n").replace(/\t/g,"\\t").replace(/\r/g,"\\r").replace(/(\s|;|\}|^|\{)out\+='';/g,"$1").replace(/\+''/g,""),r&&(n.selfcontained||!u||u._encodeHTML||(u._encodeHTML=d.encodeHTMLSource(n.doNotSkipEncoded)),i="var encodeHTML = typeof _encodeHTML !== 'undefined' ? _encodeHTML : ("+d.encodeHTMLSource.toString()+"("+(n.doNotSkipEncoded||"")+"));"+i);try{return new Function(n.varname,i)}catch(e){throw"undefined"!=typeof console&&console.log("Could not create a template function: "+i),e}},d.compile=function(e,n){return d.template(e,null,n)}}.apply(this)
@@ -51,9 +57,13 @@ class Coolris {
         // ja.js
         // @ts-ignore
         var _hashq=_hashq||[],_httpRequest=null,_ja_famliy_site={};!function(e: any,t: any,a: any,n: any,i: any,s: any,o: any){e.GoogleAnalyticsObject=i,e.ga=e.ga||function(){(e.ga.q=e.ga.q||[]).push(arguments)},e.ga.l=1*new Date,s=t.createElement(a),o=t.getElementsByTagName(a)[0],s.async=1,s.src="https://www.google-analytics.com/analytics.js",o.parentNode.insertBefore(s,o)}(window,document,"script",0,"ga"),ga("create","UA-92421532-1","auto"),ga("send","pageview"),function(){a(document,"click",function(e){var t,a,n,i=function e(t){if(null==t.tagName)return!1;if("a"==t.tagName.toLowerCase()||"area"==t.tagName.toLowerCase())return t;if(t.parentNode)return e(t.parentNode);return!1}(e.target);i&&(t=function e(t){var a=[];t.parentNode&&"body"!=t.parentNode.tagName.toLowerCase()&&(a=e(t.parentNode));t.id?a.push(t.id):t.className&&a.push(t.className);return a}(i).join("-"),a=i.href.indexOf(".pdf")>-1||i.href.indexOf(".mov")>-1||i.href.indexOf(".avi")>-1||i.href.indexOf(".m4v")>-1||i.href.indexOf(".wmv")>-1||i.href.indexOf(".mp3")>-1||i.href.indexOf(".rar")>-1||i.href.indexOf(".zip")>-1?"download":i.href.indexOf(".html")>-1||i.href.indexOf(".txt")>-1||i.href.indexOf(".js")>-1?"example":"link",n=i.innerHTML,_hashq.push(["_trackEvent",t,a,n]),i.id)}),_ja_famliy_site.readyState=function(){var e=o("_jc");e||(e=t(1e9,9999999999),s("_jc",e+="."+(new Date).getTime())),_hashq.push(["_host",location.hostname]),_hashq.push(["_url",location.href]),_hashq.push(["_jc",e]),n()};var e=!1;a(document,"readystatechange",function(a){if(!e){var i=o("_jc");i||(i=t(1e9,9999999999),s("_jc",i+="."+(new Date).getTime())),_hashq.push(["_host",location.hostname]),_hashq.push(["_url",location.href]),_hashq.push(["_jc",i]),n(),e=!0}});var t=function(e,t){return Math.floor(Math.random()*(t-e+1))+e};function a(e,t,a){e.addEventListener?e.addEventListener(t,a,!1):e.attachEvent&&(e["e"+t+a]=a,e[t+a]=function(){e["e"+t+a](window.event)},e.attachEvent("on"+t,e[t+a]))}function n(){for(var e,t="",a=0;a<_hashq.length;a++)""!=t&&(t+="&"),t+=(e=_hashq[a])[0]+"="+e[1];!function(e){var t=("https:"==document.location.protocol?"https://":"http://")+"st.coolschool.co.kr/ja/stat_js.html";$.ajax({url:t,contentType:"application/json",dataType:"jsonp",type:"POST",data:e,success:function(e){if(e.family_html&&$(".family-sites")){var t=$(".family-sites").html(e.family_html).text();$(".family-sites").html(t)}},error:function(e){console.log("�ㅽ뙣 - ",e)}})}(t)}var i="1000";function s(e,t){var a=new Date;a.setDate(a.getDate()+i),document.cookie=e+"="+t+"; path=/; expires="+a.toGMTString()+";"}function o(e){e+="=";var t=document.cookie,a=t.indexOf(e),n="";if(-1!=a){a+=e.length;var i=t.indexOf(";",a);-1==i&&(i=t.length),n=t.substring(a,i)}return unescape(n)}_ja_famliy_site.start=function(){var e=location.href,t=$("#footer");if(t&&0!==t.length){var a=t.find(".family-site-back");if(a){var n=parseInt(a.css("height"))+1;if(e.indexOf("coolbooks")<0){var i=$(window),s=$(document),o=$("html"),r=$("body");a.css({top:-n+"px"}),s.on("click","#togglerFamilySite",function(e){e.preventDefault();var t=$("#togglerFamilySite span.up").removeClass("hide"),a=s.height();o.toggleClass("is-family-sites"),r.toggleClass("is-family-sites"),i.trigger(".sticky"),(o.hasClass("is-family-sites")||r.hasClass("is-family-sites"))&&(t.addClass("hide"),$("html, body").animate({scrollTop:a},0))}),a.find("a").on("click",function(){o.removeClass("is-family-sites")})}}}},_ja_famliy_site.start()}();
+
+        if(serviceName == undefined) {
+            this.serviceName = this.getHost();
+        }
     }
 
-    async start() {
+    async start(coolrisOpt: CoolrisOpts | any = undefined) {
         // @ts-ignore
         const gnbOuterTemplateFn = this.doT.template(this.getGnbOuterTemplate());
         $('#coolrisGnb').html(gnbOuterTemplateFn());
@@ -93,7 +103,7 @@ class Coolris {
         this.loginDropdown('coolris-more-dropdown', this.targetMoreCheck);
 
         // 이벤트
-        this.onLoginOutEvents();
+        this.onLoginOutEvents(coolrisOpt);
 
         // 로그인에 되어 있다면 내 영역 데이터 로드 및 랜더
         if (isLogin && this.accessToken) {
@@ -1147,7 +1157,7 @@ class Coolris {
         const logoutUrl = `${constants.memberUrl}/logout?client_id=:client_id`;
         const logoutProc = `${constants.memberUrl}/logoutProc`;
         const setting = {
-            url: logoutUrl.replace(':client_id', this.getClientId),
+            url: logoutUrl.replace(':client_id', this.getClientId()),
             type: 'GET',
             contentType: "application/json",
             dataType: "jsonp",
@@ -1212,7 +1222,7 @@ class Coolris {
     /**
      * 로그인, 회원가입, 로그아웃 이벤트 등록
      */
-    onLoginOutEvents() {
+    private onLoginOutEvents(coolrisOpts: CoolrisOpts = undefined) {
         // 로그인
         $("[data-name='aCoolLogin']").click(() => {
             ga('send', 'event', 'link', this.serviceName, 'gnb_login');
@@ -1226,14 +1236,22 @@ class Coolris {
         });
 
         // 로그아웃
+        let logoutResult;
         $("[data-name='spanLogout']").click(() => {
             ga('send', 'event', 'link', this.serviceName, 'gnb_logout');
-            this.logout();
+            if(coolrisOpts && coolrisOpts.logoutOpts) {
+                logoutResult = this.logout(coolrisOpts.logoutOpts);
+            } else {
+                logoutResult = this.logout();
+            }
+            if(coolrisOpts && coolrisOpts.logoutOpts && coolrisOpts.logoutOpts.callbackLogoutComplete) {
+                coolrisOpts.logoutOpts.callbackLogoutComplete(logoutResult);
+            }
         });
     }
 
-    getClientId() {
-        let host = location.host;
+    getHost() {
+        let host = location.hostname;
         host = host.replace('.coolschool.co.kr', '')
             .replace('coolschool.co.kr', '')
             .replace('local-', '')
@@ -1243,6 +1261,14 @@ class Coolris {
             .replace('.com', '')
             .replace('.co.kr', '')
             .replace('school.', '');
+        if(host === '' || host === 'www') {
+            return 'coolschool';
+        }
+        return host;
+    }
+
+    getClientId() {
+        const host = this.getHost();
         let clientId = (constants as any).clientIds[host];
         if(!clientId && console) {
             console.warn('can`t not find clientId');
