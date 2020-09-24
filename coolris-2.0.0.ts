@@ -21,9 +21,46 @@ interface CoolTemplate {
     topBanner: string;
 }
 
+
+class CoolEnv {
+
+    getEnv()  {
+        let localHost = location.hostname.indexOf('local');
+        let devHost = location.hostname.indexOf('dev');
+        if(localHost === -1 && devHost === -1) {
+            return 'prod';
+        }
+        if(localHost === 0) {
+            return 'local';
+        }
+        if(devHost === 0) {
+            return 'dev';
+        }
+    }
+
+    getEnvPrefix() {
+        let prefix = '';
+        const env = this.getEnv();
+        switch (env) {
+            case "prod":
+                break
+            case "local":
+            case "dev":
+                prefix = env + '-'
+                break;
+            default:
+                break;
+        }
+        return prefix;
+    }
+
+}
+
+const coolEnv = new CoolEnv();
+
 const constants = {
-    memberUrl: '//member.coolschool.co.kr',
-    searchUrl: '//search.coolschool.co.kr',
+    memberUrl: `//${coolEnv.getEnvPrefix()}member.coolschool.co.kr`,
+    searchUrl: `//${coolEnv.getEnvPrefix()}search.coolschool.co.kr`,
     clientIds:  {
         'www' : 'NjM2YzY5NjU2ZTc0NWY2OTY0M2E0MzRmNGY0YzUzNDM0ODRmNGY0Yw==', // coolschool
         '' : 'NjM2YzY5NjU2ZTc0NWY2OTY0M2E0MzRmNGY0YzUzNDM0ODRmNGY0Yw==', // coolschool
@@ -694,7 +731,7 @@ class Coolris {
             <div coolrisProfile>
                 <div class="coolris-profile-dropdown">
                     <img class="dropdown-tail" src="//update.coolmessenger.com/_ImageServer/coolschool/resources/images/dropbox_tail.png" alt="img" />
-                    <p><a onclick="ga('send', 'event', 'link', '${this.serviceName}', 'gnb_myinfo');" href="//member.coolschool.co.kr/my/#/">내정보 보기</a></p>
+                    <p><a onclick="ga('send', 'event', 'link', '${this.serviceName}', 'gnb_myinfo');" href="${constants.memberUrl}/my/#/">내정보 보기</a></p>
                     <span class="logout dropdown-close" data-name="spanLogout">로그아웃</span>
                 </div>
                 <span class="coolris-profile-btn">
@@ -1206,7 +1243,7 @@ class Coolris {
         const CLIENT_ID = this.getClientId();
         const form = document.createElement('form');                                     // form 엘리멘트 생성
         form.setAttribute('method', 'post');                                   // method 속성 설정
-        form.setAttribute('action', 'https://member.coolschool.co.kr/');       // action 속성 설정
+        form.setAttribute('action', constants.memberUrl);       // action 속성 설정
         document.body.appendChild(form);                                                          // 현재 페이지에 form 엘리멘트 추가
         const insert1 = document.createElement("input");                                 // input 엘리멘트 생성
         const insert2 = document.createElement("input");
