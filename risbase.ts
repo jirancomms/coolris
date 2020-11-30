@@ -352,11 +352,13 @@ export class Risbase {
                     </div>
                     <div class="topbanner-list">
                         {{ for(var idx in it.coolTopBannerItems) { }}
-                        <a onclick="ga('send', 'event', 'link', '${this.serviceName}', 'main_banner_top');" href="{{=it.coolTopBannerItems[idx].url}}" target="_blank">
+                        <a onclick="gtag('event', this.serviceName, {'event_category': 'link',
+                        'event_label': 'main_banner_top_{{=idx}}', 'send_to': 'UA-92421532-1'});"
+                        href="{{=it.coolTopBannerItems[idx].landingUrl}}" target="_blank">
                             <!--suppress CssInvalidPropertyValue -->
-                            <div class="topbanner-item" style="background-color: #{{=it.coolTopBannerItems[idx].backgroundColor}}">
+                            <div class="topbanner-item" style="background-color: {{=it.coolTopBannerItems[idx].backgroundColor}}">
                                 <div class="inner">
-                                    <img src="{{=it.coolTopBannerItems[idx].img}}" alt="img" />
+                                    <img src="{{=it.coolTopBannerItems[idx].imageUrl}}" alt="img" />
                                 </div>
                             </div>
                         </a>
@@ -1316,21 +1318,21 @@ export class Risbase {
      */
     async loadSettingTopBanner() {
         const setting = {
-            url: '//samstory.coolschool.co.kr/api/externalJsonInfo?type=topBanner',
+            url: '//samstory.coolschool.co.kr/api/mainViewList?views=topBandBanner',
             type: 'GET'
         };
 
-        const responseStr = await $.ajax(setting);
-        const response = JSON.parse(responseStr);
+        const responseData = await $.ajax(setting);
+        const response = responseData.data.topBandBannerList;
 
-        if (!response || !response.categories || response.categories.length === 0) {
+        if (!response || response.length === 0) {
             return;
         }
 
         // 배너 기한 체크
         const nowDate = new Date();
-        response.bannerData = response.categories.filter((k: any) => {
-            if (nowDate >= new Date(k.startDate + ' 00:00:00') && nowDate <= new Date(k.endDate + ' 23:59:59')) {
+        response.bannerData = response.filter((k: any) => {
+            if (nowDate >= new Date(k.startDate) && nowDate <= new Date(k.endDate)) {
                 return k;
             }
         });
