@@ -1,5 +1,6 @@
 export interface CoolrisOpts {
     logoutOpts: LogoutOpts;
+    gaMeasurementId: string;
 }
 
 export interface LogoutOpts {
