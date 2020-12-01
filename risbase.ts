@@ -21,7 +21,7 @@ export class Risbase {
     }
 
     async start(coolrisOpt: CoolrisOpts | any = undefined) {
-        if (coolrisOpt.gaMeasurementId) {
+        if (coolrisOpt && coolrisOpt.gaMeasurementId) {
             this.gaMeasurementId = coolrisOpt.gaMeasurementId;
             this.addCcAnalytics(coolrisOpt.gaMeasurementId);
         }

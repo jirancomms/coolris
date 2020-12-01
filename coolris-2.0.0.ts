@@ -10,8 +10,10 @@ export class Coolris extends Risbase {
         super(accessToken, serviceName);
     }
 
-
     async start(coolrisOpt: CoolrisOpts | any = undefined): Promise<void> {
+        if (!coolrisOpt) {
+            coolrisOpt = {};
+        }
         coolrisOpt.gaMeasurementId = 'UA-92421532-1';
         await super.start(coolrisOpt);
     }
