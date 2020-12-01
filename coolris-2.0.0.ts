@@ -11,10 +11,6 @@ export class Coolris extends Risbase {
     }
 
     async start(coolrisOpt: CoolrisOpts | any = undefined): Promise<void> {
-        if (!coolrisOpt) {
-            coolrisOpt = {};
-        }
-        coolrisOpt.gaMeasurementId = 'UA-92421532-1';
-        await super.start(coolrisOpt);
+        await super.start(this.initOption(coolrisOpt));
     }
 }

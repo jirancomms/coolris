@@ -1,4 +1,4 @@
-import {constants, CoolrisOpts, CoolTemplate, LogoutOpts} from "./coolris-common";
+import {constants, CoolrisOpts, CoolTemplate, GaOpts, LogoutOpts} from "./coolris-common";
 
 declare var $: any;
 
@@ -20,10 +20,20 @@ export class Risbase {
         }
     }
 
+    initOption(coolrisOpt: CoolrisOpts | any = undefined): CoolrisOpts {
+        const defOption: CoolrisOpts = {
+            gaOpts: {
+                gaPageviewCall: true,
+                gaMeasurementId: 'UA-92421532-1'
+            }
+        } as any;
+        return $.extend(true, defOption, coolrisOpt);
+    }
+
     async start(coolrisOpt: CoolrisOpts | any = undefined) {
-        if (coolrisOpt && coolrisOpt.gaMeasurementId) {
-            this.gaMeasurementId = coolrisOpt.gaMeasurementId;
-            this.addCcAnalytics(coolrisOpt.gaMeasurementId);
+        if (coolrisOpt && coolrisOpt.gaOpts && coolrisOpt.gaOpts.gaMeasurementId) {
+            this.gaMeasurementId = coolrisOpt.gaOpts.gaMeasurementId;
+            this.addCcAnalytics(coolrisOpt.gaOpts);
         }
         // @ts-ignore
         const gnbOuterTemplateFn = this.doT.template(this.getGnbOuterTemplate());
@@ -72,7 +82,7 @@ export class Risbase {
         }
     }
 
-    protected addCcAnalytics(gaMeasurementId: string) {
+    protected addCcAnalytics(gaOpts: GaOpts) {
         // include gtag
         $(document).ready(() => {
             const glTagLen = $("script[src*='www.googletagmanager.com/gtag/js']").length;
@@ -80,7 +90,7 @@ export class Risbase {
                 const ga = document.createElement('script');
                 ga.type = 'text/javascript';
                 ga.async = true;
-                ga.src = 'https://www.googletagmanager.com/gtag/js?id=' + gaMeasurementId;
+                ga.src = 'https://www.googletagmanager.com/gtag/js?id=' + gaOpts.gaMeasurementId;
                 const s = document.getElementsByTagName('script')[0];
                 s.parentNode.insertBefore(ga, s);
             }
@@ -90,7 +100,10 @@ export class Risbase {
                 window.gtag = () => {window.dataLayer.push(arguments);}
             }
             gtag('js', new Date());
-            gtag('config', gaMeasurementId);
+            if (gaOpts.gaPageviewCall === undefined) {
+                gaOpts.gaPageviewCall = true;
+            }
+            gtag('config', gaOpts.gaMeasurementId, {'send_page_view': gaOpts.gaPageviewCall});
         });
     }
 
