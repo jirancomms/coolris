@@ -19,10 +19,18 @@ export interface CoolTemplate {
     login: string;
     menu: string;
     more: string;
-    alarm: string;
+    alarm?: string;
     point: string;
     beforeLogin: string;
     topBanner: string;
+}
+
+export interface FooterTemplate {
+    bi: string;
+    quickMenu: string;
+    link: string;
+    familySite: string;
+    info: string;
 }
 
 export class CoolEnv {
@@ -80,6 +88,7 @@ export const constants = {
         'coolmarket': 'NjM2YzY5NjU2ZTc0NWY2OTY0M2E0MzRmNGY0YzRkNDE1MjRiNDU1NA==', //coolmarket
         'coolmova': 'NjM2YzY5NjU2ZTc0NWY2OTY0M2E0ZDRmNTY0MQ==', // coolmova
         't-fun': 'NjM2YzY5NjU2ZTc0NWY2OTY0M2E0NDQxNWE1YTRjNDU0NTQ0NTU=', // t-fun
-        'member': 'NjM2YzY5NjU2ZTc0NWY2OTY0M2E0MzRmNGY0YzUzNDM0ODRmNGY0Yw==' // myInfo
+        'member': 'NjM2YzY5NjU2ZTc0NWY2OTY0M2E0MzRmNGY0YzUzNDM0ODRmNGY0Yw==', // myInfo
+        'point': 'NjM2YzY5NjU2ZTc0NWY2OTY0M2E0MzRmNGY0YzUzNDM0ODRmNGY0Yw==' // point
     }
 };
