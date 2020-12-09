@@ -311,7 +311,7 @@ export class CommsrisService extends RisService {
                     }
                 }
             </style>
-            <a coolrisBi onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'footer_bi', 'send_to': '${gaMeasurementId}'});" href="//coolschool.co.kr" target="_blank">
+            <a coolrisBi onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'footer_bi', 'send_to': '${gaMeasurementId}'});" href="//www.jirancomms.co.kr/" target="_blank">
                 <img src="//update.coolmessenger.com/_ImageServer/samgular/bi-jirancomms.png" alt="image">
             </a>
         `
