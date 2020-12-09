@@ -17,6 +17,7 @@ module.exports = env => {
         resolve: {
             extensions: ['.tsx', '.ts', '.js'],
         },
+        target: ['web', 'es5'],
         output: {
             filename: env.FILE.replace('.ts', '') + '.js',
             path: path.resolve(__dirname, 'dist'),
