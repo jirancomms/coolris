@@ -180,8 +180,8 @@ export class RisbaseCommon {
         let host = location.hostname;
         host = host.replace('.coolschool.co.kr', '')
             .replace('coolschool.co.kr', '')
-            .replace('coolmessenger.com', '')
             .replace('.coolmessenger.com', '')
+            .replace('coolmessenger.com', '')
             .replace('local-', '')
             .replace('dev-', '')
             .replace('local', '')
