@@ -1,4 +1,60 @@
-# 쿨스쿨 연계 서비스(coolschool relationship service, coolris-service(2.0.0), commsris-service(1.0.0))
+# 쿨스쿨 연계 서비스(coolschool relationship service, coolris-service)
+
+## 브라우져 최소버전
+- IE 9
+- chrome
+- firefox
+
+## 필요한 프레임워크
+- 구글 폰트(NotoSansRegular)
+- jquery 최소 v1.12.4
+- popper v1.14.6
+- bootstrap v4.2.1
+
+## 주의사항
+- 스크립트의 순서가 중요하다
+    1. jquery.js
+    2. popper.js
+    3. bootstrap.js
+    4. 필요한 구글코드 (예시: 쿨스쿨의 구글코드)
+    5.. coolris.js
+- 포로토콜에 맞게 스크립트를 삽입한다. (http -> http, https -> https)
+
+## 사용방법
+- css, js파일을 포함시킨다. (jquery, popper, bootstrap, coolris)
+```html
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
+<script type="text/javascript" src="//update.coolmessenger.com/_ImageServer/coolschool/commonTop/jquery.min.js"></script><!-- 1.12.4 -->
+<script type="text/javascript" src="//update.coolmessenger.com/_ImageServer/coolschool/commonTop/popper.min.js"></script>
+<script type="text/javascript" src="//update.coolmessenger.com/_ImageServer/coolschool/commonTop/bootstrap.min.js"></script><!-- 4.1.1-->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-119402731-1', 'auto');
+    ga('send', 'pageview');
+</script>
+<script type="text/javascript" src="//update.coolmessenger.com/_ImageServer/coolschool/commonTop/coolris.js"></script>
+```
+- 쿨서비스 팝업이 들어갈 div를 **id를 coolris**로 만들어준다.
+```html
+<div id="coolris"></div>     - 패밀리 드롭다운이 들어갈 id지정
+```
+- coolris 함수를 실행시켜준다.
+```html
+// ready가 되면
+$(function() {
+    var coolris = new Coolris();
+    coolris.start();
+});
+```
+## 예제
+- index.html 참고
+
+
+# 쿨스쿨 연계 서비스(coolschool relationship service, coolris-service) - 2.0.0
 
 ## 브라우져 최소버전
 - IE 9
@@ -9,80 +65,35 @@
 - jquery 최소 v1.12.4
 
 ## 주의사항
-- 스크립트의 순서
+- 스크립트의 순서가 중요하다
     1. jquery.js
-    2. coolris or commsris
-- 포로토콜에 맞게 스크립트를 삽입한다. (http -> http, https -> https)
+    2. pollify.js // ie에서 나오지 않을 때 추가
+    3. coolris.js
 
 ## 사용방법
-- js파일을 포함시킨다.
+- css, js파일을 포함시킨다.
 ```html
 <script type="text/javascript" src="//update.coolmessenger.com/_ImageServer/coolschool/commonTop/jquery.min.js"></script><!-- 1.12.4 -->
-// ie에서 나오지 않을 때 추가
-<script type="text/javascript" src="//resource.coolmessenger.com/coolschool/resources/js/polyfills.js"></script>
-// coolris 서비스
+<script type="text/javascript" src="//resource.coolmessenger.com/coolschool/resources/js/polyfills.js"></script>  // ie에서 나오지 않을 때 추가
 <script type="text/javascript" src="//resource.coolmessenger.com/coolschool/resources/js/coolris-2.0.0.js"></script>
-// commsris 서비스
-<script type="text/javascript" src="//resource.coolmessenger.com/coolschool/resources/js/commsris-1.0.0.js"></script>
-// 필요한 서비스에 따라 스크립트를 coolris, commsris구분하여 하나 삽입한다. 
 ```
-
-- 서비스에 따라 필요한 div를 만든다
-  1. coolris, commsris의 gnb는 id를 coolrisGnb
-  2. coolris, commsris의 footer은 id를 각각 coolrisFooter, commsrisFooter
+- 쿨서비스 팝업이 들어갈 div를 **id를 coolrisGnb**로 만들어준다.
 ```html
-<div id="coolrisGnb"></div> // gnb
-<div id="coolrisFooter"></div> // coolris의 footer
-<div id="commsrisFooter"></div> // commsris의 footer
+<div id="coolrisGnb"></div>     - 패밀리 드롭다운이 들어갈 id지정
 ```
-
-- 필요한 이벤트를 실행시켜준다.
-    1. (필수) 생성자에 토큰을 넣어준다.
-    2. (옵션) 서비스명은 토큰뒤에 파람으로 넘겨줄 수 있는데, 구글코드에 필요한 값으로 넣지않으면 기본값으로
-함수를 실행한 홈페이지에서 따간다. (ex: cooledu.coolschool.co.kr -> cooledu, school.coolmessenger.com -> school,
-       coolschool.co.kr -> coolschool, coolendar.coolschool.co.kr -> coolendar) 
-```js
-// coolris
+- coolris 함수를 실행시켜준다.
+- 구글코드를 위해 start함수에 구분가능한 사이트명을 입력한다 ex) coolschool.co.kr -> coolschool, coolendar.coolschool.co.kr -> coolendar
+- 사이트명 미기재 시 coolschool로 구글코드 적용됩니다.
+```html
+// ready가 되면
 $(function() {
-    var coolris = new Coolris(토큰, 서비스명);
+    var coolris = new Coolris();
+    엑세스 토큰이 있다면 new Coolris('엑세스토큰', '사이트명');
     coolris.start();
-    coolris.footerStart();
 });
-
-// commsris
-$(function() {
-    var commsris = new Commsris(토큰, 서비스명);
-    commsris.start();
-    commsris.footerStart();
-});
-```
-
-- 필요한 옵션을 넣어준다.
-    1. 위에서 언급한 서비스명
-    2. 구글코드 관련 옵션
-    3. 로그아웃 관련 옵션
-    4. 함수를 넣지 않으면 기본값으로 셋팅된다.
-```js
-var opts = {
-    // 로그아웃 옵션 (gnb용)
-    logoutOpts: {
-        isRestoreLocation: boolean, // 로그아웃한 사이트에 남아있을 여부
-        isLogoutProc: boolean, // 
-        logoutProcUrl: string | undefined, // 다른 로그아웃 url이 필요할 때
-        callbackLogoutComplete: Function // 로그아웃 완료 후 콜백함수
-    },
-    // 구글코드 옵션 (gnb, footer용)
-    gaOpts: {
-        gaMeasurementId: 구글코드ID, // 구글코드 ID
-        gaPageviewCall: boolean // 페이지뷰 여부
-    }
-}
-coolris.start(opts);
-coolris.footerStart({gaOpts: {gaPageviewCall: false}});
-
 ```
 ## 예제
-- directTest2.html, directTestComms.html 참고
+- index2.html 참고
 
 ## 버튼 커스텀 예제
 - 엑세스 토큰을 넣어서 로그인의 유무를 알아야 커스텀이 가능합니다.
@@ -107,7 +118,7 @@ var coolris = new Coolris('엑세스 토큰', '사이트명');
                             // 랜딩페이지
                             window.open('//cooledu.coolschool.co.kr/cooledulub/myclass#paymentList');
                             // 구글코드 입력
-                            // gtag('event', '서비스명', {'event_category': 'link', 'event_label': '이벤트라벨', 'send_to': '구글ID'});
+                            // ga('send', 'event', 'link', 'coolschool', 'mobile_nav_samstory');
                         })
                         $customSection.appendChild(btnMyclass);
 
@@ -120,7 +131,7 @@ var coolris = new Coolris('엑세스 토큰', '사이트명');
                             // 랜딩페이지
                             window.open('//cooledu.coolschool.co.kr/cooledulub/setupedu#openlist');
                             // 구글코드 입력
-                            // gtag('event', '서비스명', {'event_category': 'link', 'event_label': '이벤트라벨', 'send_to': '구글ID'});
+                            // ga('send', 'event', 'link', 'coolschool', 'mobile_nav_samstory');
                         })
                         $customSection.appendChild(btnSetUp);
                     } else {
@@ -140,7 +151,7 @@ var coolris = new Coolris('엑세스 토큰', '사이트명');
                             // 랜딩페이지
                             window.open('//samstory.coolschool.co.kr/mySamstory#!/make');
                             // 구글코드
-                            // gtag('event', '서비스명', {'event_category': 'link', 'event_label': '이벤트라벨', 'send_to': '구글ID'});
+                            // ga('send', 'event', 'link', 'coolschool', 'mobile_nav_samstory');
                         })
 
                         // 샘스토리 운영팀 버튼
@@ -155,7 +166,7 @@ var coolris = new Coolris('엑세스 토큰', '사이트명');
                             // 랜딩페이지
                             window.open('//samstory.coolschool.co.kr/zone/story/samstory');
                             // 구글코드
-                            // gtag('event', '서비스명', {'event_category': 'link', 'event_label': '이벤트라벨', 'send_to': '구글ID'});
+                            // ga('send', 'event', 'link', 'coolschool', 'mobile_nav_samstory');
                         })
                     }
                 })
