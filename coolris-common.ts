@@ -70,7 +70,12 @@ export class CoolEnv {
 const coolEnv = new CoolEnv();
 
 export const constants = {
-    memberUrl: `//${coolEnv.getEnvPrefix()}member.coolschool.co.kr`,
+    memberUrl:  (() => {
+        if (location.hostname.indexOf('coolmessenger.com') !== -1) {
+            return `//${coolEnv.getEnvPrefix()}member.coolmessenger.com`;
+        }
+        return `//${coolEnv.getEnvPrefix()}member.coolschool.co.kr`;
+    })(),
     searchUrl: `//${coolEnv.getEnvPrefix()}search.coolschool.co.kr`,
     clientIds: {
         'www': 'NjM2YzY5NjU2ZTc0NWY2OTY0M2E0MzRmNGY0YzUzNDM0ODRmNGY0Yw==', // coolschool
