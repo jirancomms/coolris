@@ -85,7 +85,6 @@ export class Risbase extends RisbaseCommon {
             bi: this.risService.getBiTemplate(this.serviceName, this.gaMeasurementId),
             quickMenu: this.risService.getQuickMenuTemplate(),
             link: this.risService.getLinkTemplate(this.serviceName, this.gaMeasurementId),
-            familySite: this.risService.getFamilySiteTemplate(),
             info: this.risService.getInfoTemplate()
         };
 

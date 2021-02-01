@@ -774,12 +774,18 @@ export class RisService {
     getFooterTemplate(footerTemplate: FooterTemplate) {
         return `
             <style>
+                @font-face {
+                    font-family: 'NanumGothic';
+                    src: url("//resource.coolmessenger.com/coolschool/resources/fonts/nanumgothic/NanumGothic.woff2") format('woff2'),
+                    url("//resource.coolmessenger.com/coolschool/resources/fonts/nanumgothic/NanumGothic.woff") format('woff'),
+                    url("//resource.coolmessenger.com/coolschool/resources/fonts/nanumgothic/NanumGothic.eot") format('opentype');
+                }
                 .coolris-footer[coolrisFooter] {
                     border-top: 1px solid #dedede;
                     background-color: #ffffff;
                 }
                 .coolris-footer[coolrisFooter] * {
-                    font-family: "Dotum", sans-serif;
+                    font-family: "NanumGothic","Dotum", sans-serif;
                     box-sizing: border-box;
                 }
                 .coolris-footer[coolrisFooter] .inner {
@@ -812,7 +818,6 @@ export class RisService {
                     ${footerTemplate.bi}
                     <div class="intro">
                         ${footerTemplate.link}
-                        ${footerTemplate.familySite}
                     </div>
                     ${footerTemplate.info}
                 </div>
@@ -951,16 +956,12 @@ export class RisService {
                 }
             </style>
             <div coolrisLink>
-                <a onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'intro_company', 'send_to': '${gaMeasurementId}'});" href="//jirancomms.com" target="_blank">회사소개</a>
-                <a onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'intro_coolschool', 'send_to': '${gaMeasurementId}'});" href="//www.coolschool.co.kr/news/coolschoolGuide" target="_blank">쿨스쿨 소개</a>
-                <a onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'blog', 'send_to': '${gaMeasurementId}'});" href="//blog.coolschool.co.kr" target="_blank">블로그</a>
-                <a onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'facebook', 'send_to': '${gaMeasurementId}'});" href="//www.facebook.com/coolschool.co.kr" target="_blank">페이스북</a>
-                <a onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'contactus', 'send_to': '${gaMeasurementId}'});" href="//www.coolschool.co.kr/together" target="_blank">제휴제안</a>
+                <a onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'contactus', 'send_to': '${gaMeasurementId}'});"
+                href="//www.coolschool.co.kr/together" target="_blank">광고·제휴·입점문의</a>
                 <a onClick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'terms_of_service_policy', 'send_to': '${gaMeasurementId}'});
                 window.open('http://www.coolschool.co.kr/contract/term?type=html', 'coolschool_terms_of_service', 'width=500,height=350');" class="pointer">이용약관</a>
                 <a onClick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'privacy_policy', 'send_to': '${gaMeasurementId}'});
                 window.open('http://www.coolschool.co.kr/contract/privacy?type=html', 'coolschool_privacy', 'width=500,height=350');" class="pointer">개인정보처리방침</a>
-                <a onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'support', 'send_to': '${gaMeasurementId}'});" href="http://www.coolschool.co.kr/messenger/technicalSupport" target="_blank">온라인문의</a>
             </div>
         `
     }
@@ -1054,7 +1055,10 @@ export class RisService {
                     font-family: "Dotum", sans-serif;
                     margin: 0;
                     padding: 0;
-                }      
+                }
+                section[coolrisInfo] a {
+                    text-decoration: none;
+                }
                 section[coolrisInfo] p:first-child {
                     margin-top: 20px;
                 }
@@ -1070,17 +1074,19 @@ export class RisService {
             </style>
             <section coolrisInfo>
                 <p>
-                    상호명 : (주)쿨스쿨 ㅣ 대표이사 : 오진연 ㅣ 사업자 등록번호 : 314-86-66749 | 주소 : 서울특별시 강남구 역삼로92길 7 3층
+                    ㈜쿨스쿨 ㅣ 대표: 오진연 ㅣ 서울특별시 강남구 역삼로 92길 7, 3층 ㅣ 사업자번호 : 314-86-66749 ㅣ통신판매업신고 : 제2020-서울강남-03761호
                 </p>
+                <br/>
                 <p>
-                    고객센터 : <a href="tel:02-6325-6300">02-6325-6300</a> 내선 - 쿨메신저, SMS 사용 및 기술(1번) / 구매(2번) / 쿨스쿨(3번) / 제휴 및 광고(4번) / 마켓(5번)ㅣ 평일 9시~17시 (주말,공휴일 제외) ㅣ 점심시간 12시~13시
+                    고객센터 <a href="tel:1600-1354">1600-1354</a> ㅣ <a href="mailto:cs@coolschool.co.kr">cs@coolschool.co.kr</a>  ㅣ 평일 9-17시 ㅣ 점심시간 12-13시 ㅣ 주말/공휴일 제외
                 </p>
+                <br/>
                 <p class="patent">
-                    <img src="//update.coolmessenger.com/_ImageServer/samstory/images/sun.png" alt="image" />특허출원 : 개인 콘텐츠 제공방법 및 장치 (특허출원번호 10-2019-0071409)<br/>
-                    <img src="//update.coolmessenger.com/_ImageServer/samstory/images/sun.png" alt="image" />특허출원 : 개인 프로필 정보 제공방법 및 장치 (특허출원번호 10-2019-0071076)<br/>
+                    <img src="//update.coolmessenger.com/_ImageServer/samstory/images/sun.png" alt="image" />특허출원번호 10-2019-0071409 개인 콘텐츠 제공방법 및 장치<br/>
+                    <img src="//update.coolmessenger.com/_ImageServer/samstory/images/sun.png" alt="image" />특허출원번호 10-2019-0071076 개인 프로필 정보 제공방법 및 장치<br/>
                 </p>
                 <p>
-                    © JiranComms. All rights reserved.
+                    Copyrightⓒ  2020 ㈜쿨스쿨 ALL RIGHTS RESERVED
                 </p>
             </section>
         `
