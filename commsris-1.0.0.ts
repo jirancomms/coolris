@@ -11,13 +11,13 @@ export class Commsris extends Risbase {
 
     async start(coolrisOpt: CoolrisOpts | any = undefined): Promise<void> {
         const options: any = this.initOption(coolrisOpt);
-        options.gaOpts.gaMeasurementId = 'UA-92421532-1';
+        options.gaOpts.gaMeasurementId = options.gaOpts.gaMeasurementId ? options.gaOpts.gaMeasurementId : 'UA-92421532-1';
         await super.start(options);
     }
 
     footerStart(coolrisOpt: CoolrisOpts | any = undefined) {
         const options: any = this.initOption(coolrisOpt);
-        options.gaOpts.gaMeasurementId = 'UA-92421532-1';
+        options.gaOpts.gaMeasurementId = options.gaOpts.gaMeasurementId ? options.gaOpts.gaMeasurementId : 'UA-92421532-1';
         this.setGoogleCode(options); // 구글 ID적용, 구글 코드 함수 적용
 
         // interface footerTemplate에 템플릿 주기
