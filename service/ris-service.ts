@@ -1078,7 +1078,10 @@ export class RisService {
                 </p>
                 <br/>
                 <p>
-                    고객센터 <a href="tel:1600-1354">1600-1354</a> ㅣ <a href="mailto:cs@coolschool.co.kr">cs@coolschool.co.kr</a>  ㅣ 평일 9-17시 ㅣ 점심시간 12-13시 ㅣ 주말/공휴일 제외
+                    쿨스쿨 대표번호 <a href="tel:1600-1354">1600-1354</a> ㅣ <a href="mailto:cs@coolschool.co.kr">cs@coolschool.co.kr</a>  ㅣ 평일 9-17시 ㅣ 점심시간 12-13시 ㅣ 주말/공휴일 제외
+                </p>
+                <p>
+                    ※ 쿨메신저/쿨알리미 문의 02-6325-6300
                 </p>
                 <br/>
                 <p class="patent">
