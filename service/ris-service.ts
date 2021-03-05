@@ -1070,7 +1070,11 @@ export class RisService {
                     line-height: 19px;
                     font-size: 12px;
                     margin-bottom: 15px;
-                }      
+                }
+                section[coolrisInfo] p.emphasis {
+                    color: #ff4d66;
+                    font-weight: bold;
+                }
             </style>
             <section coolrisInfo>
                 <p>
@@ -1080,7 +1084,7 @@ export class RisService {
                 <p>
                     쿨스쿨 대표번호 <a href="tel:1600-1354">1600-1354</a> ㅣ <a href="mailto:cs@coolschool.co.kr">cs@coolschool.co.kr</a>  ㅣ 평일 9-17시 ㅣ 점심시간 12-13시 ㅣ 주말/공휴일 제외
                 </p>
-                <p>
+                <p class="emphasis">
                     ※ 쿨메신저/쿨알리미 문의 02-6325-6300
                 </p>
                 <br/>
