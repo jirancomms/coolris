@@ -71,7 +71,7 @@ const coolEnv = new CoolEnv();
 
 export const constants = {
     memberUrl:  (() => {
-        if (location.hostname.indexOf('coolmessenger.com') !== -1) {
+        if (location.hostname.indexOf('coolmessenger.com') !== -1 || location.hostname.indexOf('coolalimi') !== -1) {
             return `//${coolEnv.getEnvPrefix()}member.coolmessenger.com`;
         }
         return `//${coolEnv.getEnvPrefix()}member.coolschool.co.kr`;
@@ -95,6 +95,7 @@ export const constants = {
         't-fun': 'NjM2YzY5NjU2ZTc0NWY2OTY0M2E0NDQxNWE1YTRjNDU0NTQ0NTU=', // t-fun
         'member': 'NjM2YzY5NjU2ZTc0NWY2OTY0M2E0MzRmNGY0YzUzNDM0ODRmNGY0Yw==', // myInfo
         'point': 'NjM2YzY5NjU2ZTc0NWY2OTY0M2E0MzRmNGY0YzUzNDM0ODRmNGY0Yw==', // point
-        'alimi': 'NjM2YzY5NjU2ZTc0NWY2OTY0M2E0MzZmNmY2YzQxNmM2MTcyNmQ=' // alimi
+        'alimi': 'NjM2YzY5NjU2ZTc0NWY2OTY0M2E0MzZmNmY2YzQxNmM2MTcyNmQ=', // alimi
+        'coolalimi': 'NjM2YzY5NjU2ZTc0NWY2OTY0M2E0MzZmNmY2YzQxNmM2MTcyNmQ=' // coolalimi
     }
 };
