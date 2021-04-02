@@ -376,7 +376,7 @@ export class CommsrisService extends RisService {
             </style>
             <div coolrisLink>
                 <a onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'contactus', 'send_to': '${gaMeasurementId}'});" href="mailto:jc-sale@jiran.com" target="_blank">광고문의</a>
-                <a onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'support', 'send_to': '${gaMeasurementId}'});" href="//www.coolschool.co.kr/messenger/technicalSupport/qna" target="_blank">기술문의</a>
+                <a onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'support', 'send_to': '${gaMeasurementId}'});" href="https://school.coolmessenger.com/support/question#qna" target="_blank">기술문의</a>
             </div>
         `
     }
