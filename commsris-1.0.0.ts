@@ -1,4 +1,4 @@
-import {CoolrisOpts} from "./coolris-common";
+import {CoolrisOpts, CoolTemplate} from "./coolris-common";
 import {Risbase} from "./risbase";
 import {CommsrisService} from "./service/commsris-service";
 
@@ -13,6 +13,17 @@ export class Commsris extends Risbase {
         const options: any = this.initOption(coolrisOpt);
         options.gaOpts.gaMeasurementId = options.gaOpts.gaMeasurementId ? options.gaOpts.gaMeasurementId : 'UA-92421532-1';
         await super.start(options);
+    }
+
+    getCoolTemplate(): CoolTemplate {
+        return  {
+            login: this.risService.getLoginTemplate(this.serviceName, this.gaMeasurementId),
+            menu: this.risService.getGnbMenuTemplate(this.serviceName, this.gaMeasurementId),
+            more: '',
+            point: '',
+            beforeLogin: this.risService.getBeforeLoginTemplate(),
+            topBanner: this.risService.getTopBannerTemplate(this.serviceName, this.gaMeasurementId)
+        };
     }
 
     footerStart(coolrisOpt: CoolrisOpts | any = undefined) {
@@ -35,5 +46,20 @@ export class Commsris extends Risbase {
         $('#commsrisFooter').html(coolrisTemplateFn());
 
         this.eventDropdownAndQuickMenu();
+    }
+
+    async loadSettingMyArea(): Promise<void> {
+        // 프로필 세팅
+        const profileResult = await this.loadProfileResult(this.accessToken);
+        if (!profileResult.result) {
+            return;
+        }
+        let profileData = profileResult.data;
+        this.settingProfile(profileData);
+    }
+
+    settingProfile(profileData: any) {
+        $('[data-name=imgProfileImg]').attr('src', profileData.profileImage);
+        $('[data-name=spanProfileName]').html(profileData.name);
     }
 }

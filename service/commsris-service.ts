@@ -19,6 +19,9 @@ export class CommsrisService extends RisService {
                     margin-right: 28px;
                     position: relative;
                 }
+                ul[coolrisGnbMenu] li:last-child {
+                    margin-right: 0;
+                }
                 ul[coolrisGnbMenu] li:after {
                     content: '';
                     display: block;
@@ -29,6 +32,9 @@ export class CommsrisService extends RisService {
                     right: -15px;
                     top: 50%;
                     transform: translateY(-50%);
+                }
+                ul[coolrisGnbMenu] li:last-child:after {
+                    display: none;
                 }
                 ul[coolrisGnbMenu] li a {
                     font-size: 15px !important;
@@ -52,7 +58,7 @@ export class CommsrisService extends RisService {
                     <a href="//coolendar.coolschool.co.kr" target="_blank">일정관리</a>
                 </li>
                 <li onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_coolschool', 'send_to': '${gaMeasurementId}'});">
-                    <a href="//www.coolschool.co.kr/" target="_blank">쿨스쿨</a>
+                    <a href="//www.coolschool.co.kr/" target="_blank">쿨스쿨 바로가기</a>
                 </li>
             </ul>
         `
