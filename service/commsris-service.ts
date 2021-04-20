@@ -55,7 +55,7 @@ export class CommsrisService extends RisService {
                     <a href="//coolsms.coolmessenger.com/" target="_blank">문자</a>
                 </li>
                 <li onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_coolendar', 'send_to': '${gaMeasurementId}'});">
-                    <a href="//coolendar.coolschool.co.kr" target="_blank">일정관리</a>
+                    <a href="//coolendar.coolmessenger.com" target="_blank">일정관리</a>
                 </li>
                 <li onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_coolschool', 'send_to': '${gaMeasurementId}'});">
                     <a href="//www.coolschool.co.kr/" target="_blank">쿨스쿨 바로가기</a>
@@ -180,7 +180,7 @@ export class CommsrisService extends RisService {
                             <h4>학교업무</h4>
                             <a onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_more_coolmsg', 'send_to': '${gaMeasurementId}'});" href="//school.coolmessenger.com/" target="_blank">쿨메신저</a>
                             <a onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_more_sms', 'send_to': '${gaMeasurementId}'});" href="//coolsms.coolmessenger.com/" target="_blank">문자</a>
-                            <a onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_more_coolendar', 'send_to': '${gaMeasurementId}'});" href="//coolendar.coolschool.co.kr" target="_blank">일정관리</a>
+                            <a onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_more_coolendar', 'send_to': '${gaMeasurementId}'});" href="//coolendar.coolmessenger.com" target="_blank">일정관리</a>
                             <a onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_more_banner', 'send_to': '${gaMeasurementId}'});" href="//school.coolbooks.co.kr/" target="_blank">학교간행물</a>
                             <a onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_more_schoolp', 'send_to': '${gaMeasurementId}'});" href="//schoolp.co.kr/store/placard" target="_blank">현수막/배너</a>
                         </li>
