@@ -686,6 +686,7 @@ export class RisService {
                     font-size: 12px;
                     width: 300px;
                     z-index: 9999;
+                    text-align: center;
                 }
                 div[coolrisAlarm] .coolris-alarm-dropdown.show {
                     display: block;
@@ -698,6 +699,7 @@ export class RisService {
                 div[coolrisAlarm] .coolris-alarm-dropdown li {
                     border-bottom: 1px solid #ebebeb;
                     padding: 13px;
+                    text-align: left;
                 }
                 div[coolrisAlarm] .coolris-alarm-dropdown li:hover {
                     background-color: rgba(100,100,100,0.1);
@@ -746,6 +748,20 @@ export class RisService {
                     opacity: 0.6;
                     box-shadow: 2px 2px 3px 0 rgba(0,0,0,0.26);
                 }
+                div[coolrisAlarm] .coolris-alarm-dropdown .all-alam-btn {
+                    height: 30px;
+                    line-height: 30px;
+                    font-size: 13px;
+                    color: #6f6f6f;
+                    background-color: #ffffff;
+                    display: inline-block;
+                    border: 1px solid #dedede;
+                    text-align: center;
+                    margin-top: 7px;
+                    cursor: pointer;
+                    width: auto;
+                    padding: 0 16px;
+                }
             </style>
             <div coolrisAlarm>
                 <span class="coolris-alarm-btn">
@@ -763,7 +779,7 @@ export class RisService {
                         </li>
                     {{ } }}
                     </ul>
-                        <a onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'all_alarm', 'send_to': '${gaMeasurementId}'});" href="/notification/index" target="_blank">알림 모두 보기</a>
+                        <a class="all-alam-btn" onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'all_alarm', 'send_to': '${gaMeasurementId}'});" href="/notification/index" target="_blank">알림 모두 보기</a>
                     </div>
                 </div>
             </div>
