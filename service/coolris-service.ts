@@ -69,6 +69,7 @@ export class CoolrisService extends RisService {
                     top: 33px;
                     right: 0;
                     z-index: 9999;
+                    box-sizing: border-box;
                 }
                 div[coolrisProfile] .coolris-profile-dropdown:after {
                     content: '';
@@ -133,6 +134,7 @@ export class CoolrisService extends RisService {
                 div[coolrisProfile] .coolris-profile-dropdown .user-info {
                     width: calc(100% - 80px);
                     padding-left: 18px;
+                    box-sizing: border-box;
                 }
                 div[coolrisProfile] .coolris-profile-dropdown .user-info .user-name {
                     font-size: 14px;
@@ -160,6 +162,7 @@ export class CoolrisService extends RisService {
                 div[coolrisProfile] .coolris-profile-dropdown .user-info p {
                     margin-bottom: 0;
                     line-height: 24px;
+                    text-align: left;
                 }
                 div[coolrisProfile] .coolris-profile-dropdown {
                 
