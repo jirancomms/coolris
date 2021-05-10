@@ -52,9 +52,20 @@ export class Coolris extends Risbase {
             spanUserId.css({'margin-left': 0, 'display': 'block'});
         }
 
-        // 소셜일 때
+        // 소셜일 때 통합계정아이디 대신에 서비스명 노출
+        const facebookRule = /^f_([a-zA-Z0-9])*$/gi;
+        const googleRule = /^g_([a-zA-Z0-9])*$/gi;
+        const naverRule = /^n_([a-zA-Z0-9])*$/gi;
         if (new RegExp(socialCheckRule).test(profileData.id)) {
-            spanUserId.text(`(SNS연동-${profileData.id})`);
+            if (new RegExp(naverRule).test(profileData.id)) {
+                spanUserId.text(`(SNS연동-네이버)`);
+            }
+            if (new RegExp(facebookRule).test(profileData.id)) {
+                spanUserId.text(`(SNS연동-페이스북)`);
+            }
+            if (new RegExp(googleRule).test(profileData.id)) {
+                spanUserId.text(`(SNS연동-구글)`);
+            }
             return;
         }
         
