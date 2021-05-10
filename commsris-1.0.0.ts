@@ -62,4 +62,8 @@ export class Commsris extends Risbase {
         $('[data-name=imgProfileImg]').attr('src', profileData.profileImage);
         $('[data-name=spanProfileName]').html(profileData.name);
     }
+
+    async loadSettingTopBanner() {
+
+    }
 }
