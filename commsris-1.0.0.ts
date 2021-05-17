@@ -63,7 +63,14 @@ export class Commsris extends Risbase {
         $('[data-name=spanProfileName]').html(profileData.name);
     }
 
-    async loadSettingTopBanner() {
-
+    /**
+     *  탑배너 데이터 가져오기
+     */
+    async getBannerData() {
+        const setting = {
+            url: '//search.coolmessenger.com/api/commsrating/_search?q=topBandBanner&qf=viewType&serviceType=commsBanner',
+            type: 'GET'
+        };
+        return $.ajax(setting).then(response => {return response.data});
     }
 }

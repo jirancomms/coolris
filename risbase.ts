@@ -438,17 +438,21 @@ export class Risbase extends RisbaseCommon {
     }
 
     /**
-     *  탑배너 데이터 로드 및 세팅
+     *  탑배너 데이터 가져오기
      */
-    async loadSettingTopBanner() {
+    async getBannerData() {
         const setting = {
             url: '//samstory.coolschool.co.kr/api/mainViewList?views=topBandBanner',
             type: 'GET'
         };
+        return $.ajax(setting).then(response => {return response.data.topBandBannerList});
+    }
 
-        const responseData = await $.ajax(setting);
-        const response = responseData.data.topBandBannerList;
-
+    /**
+     *  탑배너 데이터 로드 및 세팅
+     */
+    async loadSettingTopBanner() {
+        const response = await this.getBannerData();
         if (!response || response.length === 0) {
             return;
         }
@@ -483,5 +487,12 @@ export class Risbase extends RisbaseCommon {
         } else {
             return this.loginCheck();
         }
+    }
+
+    fetchUser() {
+        var url = 'https://jsonplaceholder.typicode.com/users/1'
+        return fetch(url).then(function(response) {
+            return response.json();
+        });
     }
 }
