@@ -76,7 +76,12 @@ export const constants = {
         }
         return `//${coolEnv.getEnvPrefix()}member.coolschool.co.kr`;
     })(),
-    searchUrl: `//${coolEnv.getEnvPrefix()}search.coolschool.co.kr`,
+    searchUrl:  (() => {
+        if (location.hostname.indexOf('coolmessenger.com') !== -1 || location.hostname.indexOf('coolalimi') !== -1) {
+            return `//${coolEnv.getEnvPrefix()}search.coolmessenger.com`;
+        }
+        return `//${coolEnv.getEnvPrefix()}search.coolschool.co.kr`;
+    })(),
     clientIds: {
         'www': 'NjM2YzY5NjU2ZTc0NWY2OTY0M2E0MzRmNGY0YzUzNDM0ODRmNGY0Yw==', // coolschool
         '': 'NjM2YzY5NjU2ZTc0NWY2OTY0M2E0MzRmNGY0YzUzNDM0ODRmNGY0Yw==', // coolschool
