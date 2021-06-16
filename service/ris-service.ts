@@ -975,9 +975,9 @@ export class RisService {
                 <a onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'contactus', 'send_to': '${gaMeasurementId}'});"
                 href="//www.coolschool.co.kr/together" target="_blank">광고·제휴·입점문의</a>
                 <a onClick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'terms_of_service_policy', 'send_to': '${gaMeasurementId}'});
-                window.open('http://www.coolschool.co.kr/contract/term?type=html', 'coolschool_terms_of_service', 'width=500,height=350');" class="pointer">이용약관</a>
+                window.open('//update.coolmessenger.com/_ImageServer/coolschool/contracts/term_coolschool_202106.pdf');" class="pointer">이용약관</a>
                 <a onClick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'privacy_policy', 'send_to': '${gaMeasurementId}'});
-                window.open('http://www.coolschool.co.kr/contract/privacy?type=html', 'coolschool_privacy', 'width=500,height=350');" class="pointer">개인정보처리방침</a>
+                window.open('//update.coolmessenger.com/_ImageServer/coolschool/contracts/privacy_coolschool_202106.pdf');" class="pointer">개인정보처리방침</a>
             </div>
         `
     }
