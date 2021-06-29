@@ -488,11 +488,4 @@ export class Risbase extends RisbaseCommon {
             return this.loginCheck();
         }
     }
-
-    fetchUser() {
-        var url = 'https://jsonplaceholder.typicode.com/users/1'
-        return fetch(url).then(function(response) {
-            return response.json();
-        });
-    }
 }
