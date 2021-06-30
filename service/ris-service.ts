@@ -449,7 +449,6 @@ export class RisService {
                             <h4>학교마켓</h4>
                             <a onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_more_market', 'send_to': '${gaMeasurementId}'});" href="//coolmarket.coolschool.co.kr/" target="_blank">교구몰</a>
                             <a onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_more_market_tmall', 'send_to': '${gaMeasurementId}'});" href="//t-mall.coolschool.co.kr/" target="_blank">복지몰</a>
-                            <a onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_more_market_funding', 'send_to': '${gaMeasurementId}'});" href="//t-fun.coolschool.co.kr/" target="_blank">펀딩</a>
                         </li>
                         <li>
                             <h4>교육이슈</h4>
