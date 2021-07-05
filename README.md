@@ -23,8 +23,7 @@
 ```
 
 
-## 사용방법
-<br/>
+# 사용방법
 <br/>
 
 # 쿨스쿨(coolschool) 전용 <img src="http://update.coolmessenger.com/_ImageServer/coolschool/2020/05/renew/coolschool.png" alt="img">
