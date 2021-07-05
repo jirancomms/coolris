@@ -23,17 +23,18 @@
 ```
 
 
-
-
-
 ## 사용방법
+<br/>
+<br/>
 
-# 쿨스쿨(coolschool) 전용
+# 쿨스쿨(coolschool) 전용 <img src="http://update.coolmessenger.com/_ImageServer/coolschool/2020/05/renew/coolschool.png" alt="img">
+* * *
 - js파일을 포함시킨다.
 ```html
 // coolris 서비스
 <script type="text/javascript" src="//resource.coolmessenger.com/coolschool/resources/js/coolris-2.0.0.js"></script>
 ```
+<br/>
 
 - 필요한 div를 만든다
   1. gnb : id를 coolrisGnb
@@ -42,6 +43,7 @@
 <div id="coolrisGnb"></div> // gnb
 <div id="coolrisFooter"></div> // coolris의 footer
 ```
+<br/>
 
 - 필요한 이벤트를 실행시켜준다.
   1. (필수) 생성자에 토큰을 넣어준다.
@@ -57,6 +59,7 @@ $(function() {
   coolris.footerStart();
 });
 ```
+<br/>
 
 - 필요한 옵션을 넣어준다.
   1. 위에서 언급한 서비스명
@@ -81,10 +84,12 @@ var opts = {
 coolris.start(opts);
 coolris.footerStart({gaOpts: {gaPageviewCall: false}});
 ```  
+<br/>
 
 ## 예제
 - directTest2.html 참고
-
+<br/>
+  
 ## 버튼 커스텀 (로그인 영역 위치에 원하는 버튼 추가 가능)
 - 엑세스 토큰을 넣어서 로그인의 유무를 알아야 커스텀이 가능합니다.
 - 버튼을 생성/커스텀 합니다. 
@@ -163,14 +168,19 @@ if (response.result) {
     })
 })
 ```
+<br/>
+<br/>
+<br/>
+<br/>
 
-
-# 컴즈(jirancomms) 전용
+# 컴즈(jirancomms) 전용 <img src="http://update.coolmessenger.com/_ImageServer/samgular/bi-jirancomms.png" alt="img">
+* * *
 - js파일을 포함시킨다.
 ```html
 // commsris 서비스
 <script type="text/javascript" src="//resource.coolmessenger.com/coolschool/resources/js/commsris-1.0.0.js"></script>
 ```
+<br/>
 
 - 서비스에 따라 필요한 div를 만든다
   1. gnb : id를 coolrisGnb
@@ -179,6 +189,7 @@ if (response.result) {
 <div id="coolrisGnb"></div> // gnb
 <div id="commsrisFooter"></div> // commsris의 footer
 ```
+<br/>
 
 - 필요한 이벤트를 실행시켜준다.
     1. (필수) 생성자에 토큰을 넣어준다.
@@ -193,6 +204,7 @@ $(function() {
     commsris.footerStart();
 });
 ```
+<br/>
 
 - 필요한 옵션을 넣어준다.
     1. 위에서 언급한 서비스명
@@ -216,11 +228,13 @@ var opts = {
 }
 commsris.start(opts);
 commsris.footerStart({gaOpts: {gaPageviewCall: false}});
+<br/>
 
 ```
 ## 예제
 - directTestComms.html 참고
-
+  <br/>
+  
 ## 버튼 커스텀 (로그인 영역 위치에 원하는 버튼 추가 가능)
 - 엑세스 토큰을 넣어서 로그인의 유무를 알아야 커스텀이 가능합니다.
 - 버튼을 생성/커스텀 합니다. 
