@@ -16,7 +16,7 @@ export class Coolris extends Risbase {
         return  {
             login: this.risService.getLoginTemplate(this.serviceName, this.gaMeasurementId),
             menu: this.risService.getGnbMenuTemplate(this.serviceName, this.gaMeasurementId),
-            more: this.risService.getMoreTemplate(this.serviceName, this.gaMeasurementId),
+            more: '',
             point: '',
             beforeLogin: this.risService.getBeforeLoginTemplate(),
             topBanner: this.risService.getTopBannerTemplate(this.serviceName, this.gaMeasurementId)

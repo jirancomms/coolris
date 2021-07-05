@@ -49,8 +49,8 @@ export class Risbase extends RisbaseCommon {
         this.dropdownOnOff('coolris-profile-dropdown', this.targetProfileCheck);
 
         // 더보기 드롭다운
-        this.dropdownToggle('coolris-more-btn', 'coolris-more-dropdown', 'gnb_more');
-        this.dropdownOnOff('coolris-more-dropdown', this.targetMoreCheck);
+        // this.dropdownToggle('coolris-more-btn', 'coolris-more-dropdown', 'gnb_more');
+        // this.dropdownOnOff('coolris-more-dropdown', this.targetMoreCheck);
 
         // 이벤트
         this.onLoginOutEvents(coolrisOpt);
@@ -65,7 +65,7 @@ export class Risbase extends RisbaseCommon {
         return  {
             login: this.risService.getLoginTemplate(this.serviceName, this.gaMeasurementId),
             menu: this.risService.getGnbMenuTemplate(this.serviceName, this.gaMeasurementId),
-            more: this.risService.getMoreTemplate(this.serviceName, this.gaMeasurementId),
+            more: '',
             point: this.risService.getPointTemplate(this.serviceName, this.gaMeasurementId),
             beforeLogin: this.risService.getBeforeLoginTemplate(),
             topBanner: this.risService.getTopBannerTemplate(this.serviceName, this.gaMeasurementId)

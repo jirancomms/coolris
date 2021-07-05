@@ -63,6 +63,7 @@ export class RisService {
                     margin: 0 auto;
                     padding: 12px 0;
                     box-sizing: border-box;
+                    position: relative;
                 }
                 .coolris-gnb[coolrisGnb] > div:nth-child(2) {
                     height: 51px;
@@ -258,20 +259,25 @@ export class RisService {
     getGnbMenuTemplate(serviceName: string, gaMeasurementId: string) {
         return `
             <style>
-                ul[coolrisGnbMenu] {
+                div[coolrisGnbMenu] {
                     float: left;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    z-index: 99;
+                    padding: 12px 0;
                 }
-                ul[coolrisGnbMenu]:after {
+                div[coolrisGnbMenu] .coolris-gnb:after {
                     content: '';
                     display: block;
                     clear: both;
                 }
-                ul[coolrisGnbMenu] li {
+                div[coolrisGnbMenu] .coolris-gnb li {
                     float: left;
                     margin-right: 28px;
                     position: relative;
                 }
-                ul[coolrisGnbMenu] li:after {
+                div[coolrisGnbMenu] .coolris-gnb li:after {
                     content: '';
                     display: block;
                     width: 1px;
@@ -282,34 +288,158 @@ export class RisService {
                     top: 50%;
                     transform: translateY(-50%);
                 }
-                ul[coolrisGnbMenu] li a {
+                div[coolrisGnbMenu] .coolris-gnb li:last-child:after {display: none;}
+                div[coolrisGnbMenu] .coolris-gnb li:last-child {margin-right:0;}
+                div[coolrisGnbMenu] .coolris-gnb li a,
+                div[coolrisGnbMenu] .coolris-gnb li span {
                     font-size: 15px !important;
                     line-height: 25px;
                     color: #000000;
                     text-decoration: none;
                     display: block;
                 }
+                div[coolrisGnbMenu] .coolris-gnb li span:after {
+                    content: '';
+                    display: block;
+                    position: absolute;
+                    right: 0;
+                    top: 50%;
+                    margin-top: -4px;
+                    transition: transform 0.3s;
+                    background-image: url(//update.coolmessenger.com/_ImageServer/coolschool/resources/images/more-arrow.png);
+                    background-repeat: no-repeat;
+                    width: 13px;
+                    height: 8px;
+                }
+                div[coolrisGnbMenu] .coolris-gnb li span {
+                    padding-right: 20px;
+                    cursor: pointer;
+                }
+                
+                div[coolrisGnbMenu]:hover .coolris-gnb-more {
+                    display: table;
+                }
+                
+                div[coolrisGnbMenu] .coolris-gnb-more {
+                }
+                div[coolrisGnbMenu] .coolris-gnb-more a:hover {
+                    text-decoration: underline;
+                }
+                div[coolrisGnbMenu] .coolris-gnb-more a { color: #000000; }
+                div[coolrisGnbMenu] .coolris-gnb-more {
+                    padding-bottom: 20px;
+                    display: none;
+                    border: 1px solid #545454;
+                    font-family: 'dotum', sans-serif;
+                    font-size: 12px;
+                    line-height: 25px;
+                    position: absolute;
+                    background-color: #ffffff;
+                    right: 0;
+                    top: 49px;
+                    z-index: 9999;
+                    width: 100%;
+                }
+                div[coolrisGnbMenu] .coolris-gnb-more:after {
+                    content: '';
+                    display: block;
+                    clear: both;
+                }
+                div[coolrisGnbMenu] .coolris-gnb-more li {
+                    width: 20%;
+                    padding-left: 15px;
+                    border-right: 1px solid #e1e1e1;
+                    display: table-cell;
+                }
+                div[coolrisGnbMenu] .coolris-gnb-more li:last-child {
+                    border-right: 0;
+                }
+                div[coolrisGnbMenu] .coolris-gnb-more li h4 {
+                    color: #000000;
+                    margin-top: 16px !important;
+                    font-size: 12px !important;
+                    line-height: 25px;
+                }
+                div[coolrisGnbMenu] .coolris-gnb-more li a {
+                    color: #8d8d8d !important;
+                    display: block;
+                    margin-top: 3px;
+                    width: 100%;
+                    font-size: 12px !important;
+                }
+                div[coolrisGnbMenu] .coolris-gnb-more li a:visited, div[coolrisGnbMenu] .coolris-gnb-more li a:focus, 
+                div[coolrisGnbMenu] .coolris-gnb-more li a:hover {
+                    color: #8d8d8d !important;
+                }
+                div[coolrisGnbMenu] .coolris-gnb-more div {
+                    border-top: 1px solid #e1e1e1;
+                    height: 36px;
+                    line-height: 36px;
+                    padding: 0 15px;
+                }
+                div[coolrisGnbMenu] .coolris-gnb-more div:after {
+                    content: '';
+                    display: block;
+                    clear: both;
+                }
             </style>
-            <ul coolrisGnbMenu>
+            <div coolrisGnbMenu>
+            <ul class="coolris-gnb">
                 <li onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_home', 'send_to': '${gaMeasurementId}'});">
                     <a href="//www.coolschool.co.kr/" target="_blank">쿨스쿨 홈</a>
                 </li>
                 <li onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_samstory', 'send_to': '${gaMeasurementId}'});">
-                    <a href="//samstory.coolschool.co.kr/zone" target="_blank">블로그</a>
+                    <a href="//samstory.coolschool.co.kr/zone" target="_blank">교육자료</a>
                 </li>
-                <li onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_cooledu', 'send_to': '${gaMeasurementId}'});">
-                    <a href="//cooledu.coolschool.co.kr" target="_blank">연수/모임</a>
-                </li>
-                <li onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_cooledutech', 'send_to': '${gaMeasurementId}'});">
-                    <a href="//www.coolschool.co.kr/edutech" target="_blank">에듀테크</a>
+                <li onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_futureclass', 'send_to': '${gaMeasurementId}'});">
+                    <a href="https://futureclass.coolschool.co.kr" target="_blank">학교공간혁신</a>
                 </li>
                 <li onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_coolmarket', 'send_to': '${gaMeasurementId}'});">
                     <a href="//coolmarket.coolschool.co.kr" target="_blank">교구몰</a>
                 </li>
-                <li onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_coolendar', 'send_to': '${gaMeasurementId}'});">
-                    <a href="//coolendar.coolschool.co.kr" target="_blank">일정관리</a>
+                <li onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_cooledutech', 'send_to': '${gaMeasurementId}'});">
+                    <a href="//www.coolschool.co.kr/edutech" target="_blank">에듀테크</a>
+                </li>
+                <li onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_more_notice', 'send_to': '${gaMeasurementId}'});">
+                    <a href="https://www.coolschool.co.kr/news/index" target="_blank">공지/이벤트</a>
+                </li>
+                <li>
+                    <span>전체보기</span>
                 </li>
             </ul>
+            <ul class="coolris-gnb-more">
+                <li>
+                    <h4>교사생활</h4>
+                    <a onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_more_samstory', 'send_to': '${gaMeasurementId}'});" href="https://samstory.coolschool.co.kr/zone/" target="_blank">교육자료·에세이</a>
+                    <a onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_more_tmall', 'send_to': '${gaMeasurementId}'});" href="https://t-mall.coolschool.co.kr/" target="_blank">교원복지몰</a>
+                    <a onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_more_cooledu', 'send_to': '${gaMeasurementId}'});" href="https://cooledu.coolschool.co.kr/" target="_blank">연수·모임</a>
+                    <a onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_more_coolbooks', 'send_to': '${gaMeasurementId}'});" href="https://coolbooks.coolschool.co.kr/" target="_blank">도서</a>
+                </li>
+                <li>
+                    <h4>학교공간혁신</h4>
+                    <a onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_more_attendance_manage', 'send_to': '${gaMeasurementId}'});" href="//samstory.coolschool.co.kr/zone/story/aiir/streams/94667" target="_blank">비대면 출결관리</a>
+                    <a onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_more_eduspace', 'send_to': '${gaMeasurementId}'});" href="https://eduspace.coolschool.co.kr" target="_blank">실감형3D학습</a>
+                    <a onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_more_edu_futureclass', 'send_to': '${gaMeasurementId}'});" href="https://futureclass.coolschool.co.kr/" target="_blank">AI융합교실</a>
+                    <a onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_more_edu_futureclass', 'send_to': '${gaMeasurementId}'});" href="https://futureclass.coolschool.co.kr/" target="_blank">지능형 과학실</a>
+                    <a onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_more_edu_futureclass', 'send_to': '${gaMeasurementId}'});" href="https://futureclass.coolschool.co.kr/" target="_blank">1인 미디어실</a>
+                </li>
+                <li>
+                    <h4>학교연수</h4>
+                    <a onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_more_coolmarket', 'send_to': '${gaMeasurementId}'});" href="https://coolmarket.coolschool.co.kr/" target="_blank">학교예산·교구몰</a>
+                    <a onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_more_edu_coolmova', 'send_to': '${gaMeasurementId}'});" href="https://coolmova.coolschool.co.kr/" target="_blank">교사안심번호</a>
+                    <a onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_more_edu_coolpama', 'send_to': '${gaMeasurementId}'});" href="https://coolpama.coolschool.co.kr/" target="_blank">학부모연수</a>
+                </li>
+                <li>
+                    <h4>에듀테크</h4>
+                    <a onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_more_edutech', 'send_to': '${gaMeasurementId}'});" href="https://www.coolschool.co.kr/edutech" target="_blank">에듀테크스토리</a>
+                </li>
+                <li>
+                    <h4>쿨스쿨소식</h4>
+                    <a onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_more_notice', 'send_to': '${gaMeasurementId}'});" href="https://www.coolschool.co.kr/news/index" target="_blank">공지/이벤트</a>
+                    <a onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_more_profile', 'send_to': '${gaMeasurementId}'});" href="https://www.coolschool.co.kr/profile/search" target="_blank">선생님찾기</a>
+                </li>
+            </ul>
+        </div>
         `
     }
 
@@ -925,7 +1055,7 @@ export class RisService {
                 div[coolrisLink] {
                     display: inline-block;
                 }
-                div[coolrisLink] a {
+                div[coolrisLink] a, div[coolrisLink] span {
                     margin-right: 35px;
                     position: relative;
                     color: #373737;
@@ -934,6 +1064,7 @@ export class RisService {
                     text-decoration: none;
                     cursor: pointer;
                 }
+                div[coolrisLink] span {cursor: default;}
                 div[coolrisLink] a:hover {
                     text-decoration: underline;
                 }
@@ -945,7 +1076,7 @@ export class RisService {
                     background-color: #bbbbbb;
                     position: absolute;
                     right: -22px;
-                    top: 0;
+                    top: 2px;
                 }
                 div[coolrisLink] a:last-child {
                     margin-right: 0;
@@ -977,6 +1108,7 @@ export class RisService {
                 window.open('//update.coolmessenger.com/_ImageServer/coolschool/contracts/term_coolschool_202106.pdf');" class="pointer">이용약관</a>
                 <a onClick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'privacy_policy', 'send_to': '${gaMeasurementId}'});
                 window.open('//update.coolmessenger.com/_ImageServer/coolschool/contracts/privacy_coolschool_202106.pdf');" class="pointer">개인정보처리방침</a>
+                <span>개인정보관리 책임자 : 이창한</span>
             </div>
         `
     }
@@ -1093,14 +1225,15 @@ export class RisService {
             </style>
             <section coolrisInfo>
                 <p>
-                    ㈜쿨스쿨 ㅣ 대표: 오진연 ㅣ 서울특별시 강남구 역삼로 92길 7, 3층 ㅣ 사업자번호 : 314-86-66749 ㅣ통신판매업신고 : 제2020-서울강남-03761호
+                    ㈜쿨스쿨 ㅣ 대표: 오진연 | 사업자번호 : 314-86-66749 ㅣ통신판매업신고 : 제2020-서울강남-03761호<br/>
+                    (12925) 경기 하남시 미사대로 520 현대지식산업센터 한강미사 2차 D동 4층 422호
                 </p>
                 <br/>
-                <p>
-                    쿨스쿨 대표번호 <a href="tel:1600-1354">1600-1354</a> ㅣ <a href="mailto:cs@coolschool.co.kr">cs@coolschool.co.kr</a>  ㅣ 평일 9-17시 ㅣ 점심시간 12-13시 ㅣ 주말/공휴일 제외
-                </p>
                 <p class="emphasis">
                     ※ 쿨메신저/쿨알리미 문의 02-6325-6300
+                </p>
+                <p>
+                    쿨스쿨 문의 <a href="tel:1600-1354">1600-1354</a> ㅣ <a href="mailto:cs@coolschool.co.kr">cs@coolschool.co.kr</a>  ㅣ 평일 9-17시 ㅣ 점심시간 12-13시 ㅣ 주말/공휴일 제외
                 </p>
                 <br/>
                 <p class="patent">
