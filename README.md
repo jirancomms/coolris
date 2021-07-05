@@ -1,19 +1,23 @@
 # 쿨스쿨 연계 서비스(coolschool relationship service, coolris-service(2.0.0), commsris-service(1.0.0))
+<br/>
 
 ## 브라우져 최소버전
 - IE 9
 - chrome
 - firefox
-
+<br/>
+  
 ## 필요한 프레임워크
 - jquery 최소 v1.12.4
-
+<br/>
+  
 ## 주의사항
 - 스크립트의 순서
     1. jquery.js
     2. coolris or commsris
 - 포로토콜에 맞게 스크립트를 삽입한다. (http -> http, https -> https)
-
+<br/>
+  
 # 공통
 - js파일을 포함시킨다.
 ```html
@@ -21,10 +25,10 @@
 // ie에서 나오지 않을 때 추가
 <script type="text/javascript" src="//resource.coolmessenger.com/coolschool/resources/js/polyfills.js"></script>
 ```
-
+<br/>
+<br/>
 
 # 사용방법
-<br/>
 
 # 쿨스쿨(coolschool) 전용 <img src="http://update.coolmessenger.com/_ImageServer/coolschool/2020/05/renew/coolschool.png" alt="img">
 * * *
