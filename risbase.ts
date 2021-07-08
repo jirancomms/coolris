@@ -287,6 +287,9 @@ export class Risbase extends RisbaseCommon {
             case 'coolmova': // coolmova
                 param.redirect_uri = 'https://coolmova.coolschool.co.kr:443/jiran/api/login';
                 break;
+            case 'eduspace':
+                param.redirect_uri = 'https://eduspace.coolschool.co.kr/main.do';
+                break;
         }
         let loginURL = COOL_LOGIN_URL;
         let paramStr = $.param(param);
