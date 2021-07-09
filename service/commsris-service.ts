@@ -56,10 +56,7 @@ export class CommsrisService extends RisService {
                 </li>
                 <li onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_coolendar', 'send_to': '${gaMeasurementId}'});">
                     <a href="//coolendar.coolmessenger.com" target="_blank">일정관리</a>
-                </li>
-                <li onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_coolschool', 'send_to': '${gaMeasurementId}'});">
-                    <a href="//www.coolschool.co.kr/" target="_blank">쿨스쿨 바로가기</a>
-                </li>
+                </li>                
             </ul>
         `
     }
@@ -319,7 +316,7 @@ export class CommsrisService extends RisService {
                     }
                 }
             </style>
-            <a coolrisBi onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'footer_bi', 'send_to': '${gaMeasurementId}'});" href="//www.jirancomms.co.kr/" target="_blank">
+            <a coolrisBi onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'footer_bi', 'send_to': '${gaMeasurementId}'});" href="//www.jirancomms.com/" target="_blank">
                 <img src="//update.coolmessenger.com/_ImageServer/samgular/bi-jirancomms.png" alt="image">
             </a>
         `
