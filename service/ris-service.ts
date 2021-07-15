@@ -264,7 +264,7 @@ export class RisService {
                     position: absolute;
                     top: 0;
                     left: 0;
-                    z-index: 99;
+                    z-index: 999;
                     padding: 12px 0;
                 }
                 div[coolrisGnbMenu] .coolris-gnb:after {
