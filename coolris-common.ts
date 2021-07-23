@@ -102,6 +102,7 @@ export const constants = {
         'point': 'NjM2YzY5NjU2ZTc0NWY2OTY0M2E0MzRmNGY0YzUzNDM0ODRmNGY0Yw==', // point
         'alimi': 'NjM2YzY5NjU2ZTc0NWY2OTY0M2E0MzZmNmY2YzQxNmM2MTcyNmQ=', // alimi
         'coolalimi': 'NjM2YzY5NjU2ZTc0NWY2OTY0M2E0MzZmNmY2YzQxNmM2MTcyNmQ=', // coolalimi
-        'eduspace': 'NjM2YzY5NjU2ZTc0NWY2OTY0M2E0MjQ1NTM1NDU0NDU0Mw==' // eduspace
+        'eduspace': 'NjM2YzY5NjU2ZTc0NWY2OTY0M2E0MjQ1NTM1NDU0NDU0Mw==', // eduspace
+        'futureclass': 'NjM2YzY5NjU2ZTc0NWY2OTY0M2E0MzRmNGY0YzUzNDM0ODRmNGY0Yw==', // futureclass
     }
 };
