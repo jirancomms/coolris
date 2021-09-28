@@ -424,7 +424,7 @@ export class RisService {
                     <a onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_more_edu_futureclass', 'send_to': '${gaMeasurementId}'});" href="https://futureclass.coolschool.co.kr/" target="_blank">1인 미디어실</a>
                 </li>
                 <li>
-                    <h4>학교연수</h4>
+                    <h4>학교업무</h4>
                     <a onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_more_coolmarket', 'send_to': '${gaMeasurementId}'});" href="https://coolmarket.coolschool.co.kr/" target="_blank">학교예산·교구몰</a>
                     <a onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_more_edu_coolmova', 'send_to': '${gaMeasurementId}'});" href="https://coolmova.coolschool.co.kr/" target="_blank">교사안심번호</a>
                     <a onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_more_edu_coolpama', 'send_to': '${gaMeasurementId}'});" href="https://coolpama.coolschool.co.kr/" target="_blank">학부모연수</a>
@@ -570,7 +570,7 @@ export class RisService {
                             <!--<a onclick="gtag('event', serviceName, {'event_category': 'link', 'event_label': 'gnb_more_mentoring', 'send_to': 'UA-92421532-1'});" href="//www.coolschool.co.kr/kin/mentoringList" target="_blank">학교생활상담</a>-->
                         </li>
                         <li>
-                            <h4>학교연수</h4>
+                            <h4>학교업무</h4>
                             <a onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_more_edu', 'send_to': '${gaMeasurementId}'});" href="//cooledu.coolschool.co.kr/" target="_blank">원격연수</a>
                             <a onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_more_edu_platform', 'send_to': '${gaMeasurementId}'});" href="//cooledu.coolschool.co.kr/cooledulub/trainingList#ing" target="_blank">집합연수</a>
                             <a onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_more_edu_pama', 'send_to': '${gaMeasurementId}'});" href="//coolpama.coolschool.co.kr/" target="_blank">학부모연수</a>
