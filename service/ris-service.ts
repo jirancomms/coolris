@@ -65,6 +65,16 @@ export class RisService {
                     box-sizing: border-box;
                     position: relative;
                 }
+                .coolris-gnb[coolrisGnb] > div.full-size {
+                    width: 100%;
+                    display: flex;
+                    justify-content: flex-end;
+                    padding-left: 20px;
+                    padding-right: 40px;
+                }
+                .coolris-gnb[coolrisGnb] > div.full-size .coolris-menu-section {
+                    margin-right: 33px;
+                }
                 .coolris-gnb[coolrisGnb] > div:nth-child(2) {
                     height: 51px;
                 }
@@ -106,7 +116,14 @@ export class RisService {
                 }
             </style>
             <nav class="coolris-gnb" coolrisGnb>
+                {{? !it.isFullSize }}
                 <div>
+                {{?? it.isFullSize == true }}
+                <div class="full-size">
+                {{?}}
+                    {{? it.isFullSize == true }}
+                    ${coolTemplate.bi}
+                    {{?}}
                     <section class="coolris-menu-section">
                         ${coolTemplate.menu}
                         ${coolTemplate.more}
@@ -123,6 +140,35 @@ export class RisService {
                     </section>
                 </div>
             </nav>
+        `
+    }
+
+    // 해더 bi 템플릿
+    getHeaderBiTemplate(serviceName: string, gaMeasurementId: string) {
+        return `
+            <style>
+                a[coolrisHeaderBi] {
+                    position: absolute;
+                    top: 50%;
+                    left: 20px;
+                    transform: translateY(-50%);
+                }
+                a[coolrisHeaderBi] img {
+                    width: auto;
+                    height: auto;
+                    display: block;
+                }
+                @media screen and (max-width: 1150px) {
+                    a[coolrisHeaderBi] {
+                        width: 170px;
+                        margin: 0 auto;
+                        display: block;
+                    }   
+                }
+            </style>
+            <a coolrisHeaderBi onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'header_bi', 'send_to': '${gaMeasurementId}'});" href="/">
+                <img src="//update.coolmessenger.com/_ImageServer/bi/${serviceName}.png" alt="image">
+            </a>
         `
     }
 
