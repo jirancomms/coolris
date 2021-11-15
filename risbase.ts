@@ -39,10 +39,17 @@ export class Risbase extends RisbaseCommon {
         const memberResponse = await this.loginCheck();
         const isLogin = memberResponse.result;
 
+        // isFullSize 옵션 값
+        let isFullSize = false;
+        if (coolrisOpt.layoutOpts && coolrisOpt.layoutOpts.isFullSize) {
+            isFullSize = coolrisOpt.layoutOpts.isFullSize;
+        }
+        // 너비를 넓혀주는 옵션이 있을 때 bi 템플릿을 넣어준다.
+        if (isFullSize) coolTemplate.bi = this.risService.getHeaderBiTemplate(this.serviceName, this.gaMeasurementId);
         // dot에 template을 준다.
         // @ts-ignore
         const coolrisTemplateFn = this.doT.template(this.risService.getGnbTemplate(coolTemplate));
-        $('[data-name=coolrisGnbArea]').html(coolrisTemplateFn({isLogin: isLogin}));
+        $('[data-name=coolrisGnbArea]').html(coolrisTemplateFn({isLogin: isLogin, isFullSize: isFullSize}));
 
         // 로그인 드롭다운
         this.dropdownToggle('coolris-profile-btn', 'coolris-profile-dropdown', 'gnb_my');

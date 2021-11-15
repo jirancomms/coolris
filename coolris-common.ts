@@ -1,20 +1,30 @@
+// 쿨리스 옵션 클레스
 export interface CoolrisOpts {
     logoutOpts: LogoutOpts;
     gaOpts: GaOpts;
+    layoutOpts: LayoutOpts;
 }
 
+// 레이아웃 변화 주는 옵션
+export interface LayoutOpts {
+    isFullSize: boolean; // 해더의 레이아웃을 full-size로 변형
+}
+
+// 구글 코드 옵션
 export interface GaOpts {
-    gaMeasurementId: string;
-    gaPageviewCall: boolean;
+    gaMeasurementId: string; // 구글 코드 ID
+    gaPageviewCall: boolean; // 페이지 뷰의 여부
 }
 
+// 로그아웃 옵션
 export interface LogoutOpts {
-    isRestoreLocation: boolean;
-    isLogoutProc: boolean;
-    logoutProcUrl: string | undefined;
-    callbackLogoutComplete: Function;
+    isRestoreLocation: boolean; // 로그아웃한 사이트에 남아있을 여부
+    isLogoutProc: boolean; // /logoutProc 사용 유무
+    logoutProcUrl: string | undefined;  // 다른 로그아웃 url이 필요할 때
+    callbackLogoutComplete: Function; // 로그아웃 완료 후 콜백함수
 }
 
+// 템플릿 종류
 export interface CoolTemplate {
     login: string;
     menu: string;
@@ -23,8 +33,10 @@ export interface CoolTemplate {
     point: string;
     beforeLogin: string;
     topBanner: string;
+    bi?: string
 }
 
+// 푸터용 템플릿 종류
 export interface FooterTemplate {
     bi: string;
     quickMenu: string;
@@ -33,6 +45,7 @@ export interface FooterTemplate {
     info: string;
 }
 
+// 적용 사이트에서 필요한 env 가져오는 로직
 export class CoolEnv {
 
     getEnv() {

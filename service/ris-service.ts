@@ -65,6 +65,16 @@ export class RisService {
                     box-sizing: border-box;
                     position: relative;
                 }
+                .coolris-gnb[coolrisGnb] > div.full-size {
+                    width: 100%;
+                    display: flex;
+                    justify-content: flex-end;
+                    padding-left: 20px;
+                    padding-right: 40px;
+                }
+                .coolris-gnb[coolrisGnb] > div.full-size .coolris-menu-section {
+                    margin-right: 33px;
+                }
                 .coolris-gnb[coolrisGnb] > div:nth-child(2) {
                     height: 51px;
                 }
@@ -106,7 +116,14 @@ export class RisService {
                 }
             </style>
             <nav class="coolris-gnb" coolrisGnb>
+                {{? !it.isFullSize }}
                 <div>
+                {{?? it.isFullSize == true }}
+                <div class="full-size">
+                {{?}}
+                    {{? it.isFullSize == true }}
+                    ${coolTemplate.bi}
+                    {{?}}
                     <section class="coolris-menu-section">
                         ${coolTemplate.menu}
                         ${coolTemplate.more}
@@ -123,6 +140,35 @@ export class RisService {
                     </section>
                 </div>
             </nav>
+        `
+    }
+
+    // 해더 bi 템플릿
+    getHeaderBiTemplate(serviceName: string, gaMeasurementId: string) {
+        return `
+            <style>
+                a[coolrisHeaderBi] {
+                    position: absolute;
+                    top: 50%;
+                    left: 20px;
+                    transform: translateY(-50%);
+                }
+                a[coolrisHeaderBi] img {
+                    width: auto;
+                    height: auto;
+                    display: block;
+                }
+                @media screen and (max-width: 1150px) {
+                    a[coolrisHeaderBi] {
+                        width: 170px;
+                        margin: 0 auto;
+                        display: block;
+                    }   
+                }
+            </style>
+            <a coolrisHeaderBi onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'header_bi', 'send_to': '${gaMeasurementId}'});" href="/">
+                <img src="//update.coolmessenger.com/_ImageServer/bi/${serviceName}.png" alt="image">
+            </a>
         `
     }
 
@@ -425,7 +471,7 @@ export class RisService {
                     <a onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_more_3dbank', 'send_to': '${gaMeasurementId}'});" href="https://3dbank.coolschool.co.kr/" target="_blank">3D홀로그램</a>
                 </li>
                 <li>
-                    <h4>학교연수</h4>
+                    <h4>학교업무</h4>
                     <a onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_more_coolmarket', 'send_to': '${gaMeasurementId}'});" href="https://coolmarket.coolschool.co.kr/" target="_blank">학교예산·교구몰</a>
                     <a onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_more_edu_coolmova', 'send_to': '${gaMeasurementId}'});" href="https://coolmova.coolschool.co.kr/" target="_blank">교사안심번호</a>
                     <a onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_more_edu_coolpama', 'send_to': '${gaMeasurementId}'});" href="https://coolpama.coolschool.co.kr/" target="_blank">학부모연수</a>
@@ -571,7 +617,7 @@ export class RisService {
                             <!--<a onclick="gtag('event', serviceName, {'event_category': 'link', 'event_label': 'gnb_more_mentoring', 'send_to': 'UA-92421532-1'});" href="//www.coolschool.co.kr/kin/mentoringList" target="_blank">학교생활상담</a>-->
                         </li>
                         <li>
-                            <h4>학교연수</h4>
+                            <h4>학교업무</h4>
                             <a onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_more_edu', 'send_to': '${gaMeasurementId}'});" href="//cooledu.coolschool.co.kr/" target="_blank">원격연수</a>
                             <a onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_more_edu_platform', 'send_to': '${gaMeasurementId}'});" href="//cooledu.coolschool.co.kr/cooledulub/trainingList#ing" target="_blank">집합연수</a>
                             <a onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_more_edu_pama', 'send_to': '${gaMeasurementId}'});" href="//coolpama.coolschool.co.kr/" target="_blank">학부모연수</a>
