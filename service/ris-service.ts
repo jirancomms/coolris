@@ -422,6 +422,7 @@ export class RisService {
                     <a onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_more_edu_futureclass', 'send_to': '${gaMeasurementId}'});" href="https://futureclass.coolschool.co.kr/" target="_blank">AI융합교실</a>
                     <a onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_more_edu_futureclass', 'send_to': '${gaMeasurementId}'});" href="https://futureclass.coolschool.co.kr/" target="_blank">지능형 과학실</a>
                     <a onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_more_edu_futureclass', 'send_to': '${gaMeasurementId}'});" href="https://futureclass.coolschool.co.kr/" target="_blank">1인 미디어실</a>
+                    <a onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_more_3dbank', 'send_to': '${gaMeasurementId}'});" href="https://3dbank.coolschool.co.kr/" target="_blank">3D홀로그램</a>
                 </li>
                 <li>
                     <h4>학교연수</h4>
