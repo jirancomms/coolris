@@ -1154,8 +1154,8 @@ export class RisService {
                 <a onClick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'terms_of_service_policy', 'send_to': '${gaMeasurementId}'});
                 window.open('//update.coolmessenger.com/_ImageServer/coolschool/contracts/term_coolschool_202106.pdf');" class="pointer">이용약관</a>
                 <a onClick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'privacy_policy', 'send_to': '${gaMeasurementId}'});
-                window.open('//update.coolmessenger.com/_ImageServer/coolschool/contracts/privacy_coolschool_202106.pdf');" class="pointer">개인정보처리방침</a>
-                <span>개인정보관리 책임자 : 이창한</span>
+                window.open('//update.coolmessenger.com/_ImageServer/coolschool/contracts/privacy_coolschool_202112.pdf');" class="pointer">개인정보처리방침</a>
+                <span>개인정보관리 책임자 : 이나래</span>
             </div>
         `
     }
