@@ -54,6 +54,9 @@ export class CommsrisService extends RisService {
                 <li onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_sms', 'send_to': '${gaMeasurementId}'});">
                     <a href="//coolsms.coolmessenger.com/" target="_blank">문자</a>
                 </li>
+                <li onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_coolAlimTalk', 'send_to': '${gaMeasurementId}'});">
+                    <a href="https://www.coolalimi.com/alimtalk" target="_blank">쿨알림톡</a>
+                </li>
                 <li onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_coolendar', 'send_to': '${gaMeasurementId}'});">
                     <a href="//coolendar.coolmessenger.com" target="_blank">일정관리</a>
                 </li>                
@@ -425,8 +428,28 @@ export class CommsrisService extends RisService {
                 section[coolrisInfo] p > span:last-child {
                     margin-right: 0;
                 }
+                section[coolrisInfo] .link-box {
+                    float: right;
+                    padding-right: 15px;
+                    margin-top: -9px;
+                    display: flex;
+                }
+                section[coolrisInfo] .link-box a {
+                    text-decoration: none;
+                }
+                section[coolrisInfo] .link-box a:first-child {
+                    margin-right: 5px;
+                }
             </style>
             <section coolrisInfo>
+                <div class="link-box">
+                    <a href="https://blog.naver.com/jirancomms" target="_blank">
+                        <img src="//update.coolmessenger.com/_ImageServer/coolris/ico_blog.png" alt="img" />
+                    </a>               
+                    <a href="https://www.youtube.com/channel/UCOQfhiS4GRhFuHWY-MEZD_Q/featured" target="_blank">
+                        <img src="//update.coolmessenger.com/_ImageServer/coolris/ico_youtube.png" alt="img" />
+                    </a>            
+                </div>
                 <p><span>대표자 : 황찬우</span><span>사업자등록번호 : 764-87-00314</span><span>통신판매업 신고번호 : 제2016-서울강남00304호</span></p>
                 <p><span>(06187) 서울특별시 강남구 역삼로92길 7 3층</span><span>대표전화 : <a href="tel:02-6325-6300">02-6325-6300</a></span><span>팩스 : 070-7605-2935</span></p>
                 <p><span>개인정보관리책임자 : 박노준</span><span style="cursor: pointer;" onClick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'privacy_policy', 'send_to': '${gaMeasurementId}'});
