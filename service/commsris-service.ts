@@ -451,7 +451,7 @@ export class CommsrisService extends RisService {
                     </a>            
                 </div>
                 <p><span>대표자 : 황찬우</span><span>사업자등록번호 : 764-87-00314</span><span>통신판매업 신고번호 : 제2016-서울강남00304호</span></p>
-                <p><span>(06187) 서울특별시 강남구 역삼로92길 7 3층</span><span>대표전화 : <a href="tel:02-6325-6300">02-6325-6300</a></span><span>팩스 : 070-7605-2935</span></p>
+                <p><span>(13453) 경기도 성남시 수정구 금토로80번길 37, 인피니티타워 W동 10층</span><span>대표전화 : <a href="tel:1670-4846">1670-4846</a></span><span>팩스 : 070-7605-2935</span></p>
                 <p><span>개인정보관리책임자 : 박노준</span><span style="cursor: pointer;" onClick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'privacy_policy', 'send_to': '${gaMeasurementId}'});
                 window.open('//member.coolmessenger.com/contract/privacy?type=html', 'coolschool_privacy', 'width=500,height=350');">개인정보처리방침</span></p>
                 <p><span>© JiranComms. All rights reserved.</span></p>
