@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test Page</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="dist/commsris-1.0.0.js"></script>
+<!--	<script type="text/javascript" src="//resource.coolmessenger.com/coolschool/resources/js/commsris-1.0.0.js"></script>&lt;!&ndash; commsris &ndash;&gt;-->
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-153692469-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-153692469-1');
+    </script>
+
+    <script type="text/javascript">
+        $(function() {
+            // var commsris = new Commsris();
+            var commsris = new Commsris();
+            commsris.start({layoutOpts: {isFullSize: true}});
+            commsris.footerStart();
+			// console.log("HI22")
+			// commsris.getPopupData("coolsms").then(function (response) {commsris.executePopup(response, "coolsms")});
+			commsris.openPopup();
+			// commsris.getPopup("coolsms");
+        });
+
+		/*(async function(){
+			var commsris = new Commsris();
+			const response = await commsris.getPopupData();
+			console.log(response);
+		})();*/
+    </script>
+
+</head>
+<body>
+    <div id="coolrisGnb"></div>
+    <div id="commsrisFooter"></div>
+</body>
+</html>

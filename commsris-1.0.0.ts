@@ -1,4 +1,4 @@
-import {CoolrisOpts, CoolTemplate} from "./coolris-common";
+import {constants, CoolrisOpts, CoolTemplate} from "./coolris-common";
 import {Risbase} from "./risbase";
 import {CommsrisService} from "./service/commsris-service";
 
@@ -12,6 +12,10 @@ export class Commsris extends Risbase {
     async start(coolrisOpt: CoolrisOpts | any = undefined): Promise<void> {
         const options: any = this.initOption(coolrisOpt);
         options.gaOpts.gaMeasurementId = options.gaOpts.gaMeasurementId ? options.gaOpts.gaMeasurementId : 'G-6F5MJCTM7J';
+
+		// 각각의 사이트에 알맞는 팝업을 보여주는 시스템
+		this.openPopup();
+
         await super.start(options);
     }
 
@@ -71,8 +75,62 @@ export class Commsris extends Risbase {
             url: '//search.coolmessenger.com/api/commsrating/_search?q=topBandBanner&qf=viewType&serviceType=commsBanner',
             type: 'GET'
         };
-        return $.ajax(setting).then(response => {return response.data});
+        return await $.ajax(setting).then(response => {return response.data});
     }
+
+	async openPopup() {
+
+		const host = this.getHost();
+		const response: any = await this.getPopupData(host);
+
+		for (const popupInfo of response) {
+			const { createdDate } = popupInfo;
+			if (await this.hasDisplayedPopup(createdDate)) {
+				this.displayPopup(popupInfo);
+			}
+		}
+	}
+
+    async getPopupData(domain) {
+		let url = `${constants.searchUrl}/api/commsrating/_search?serviceType=popup&viewType=common&etcList1=`+domain
+
+		return new Promise((resolve) => {
+			$.get(url).then(response => {
+				resolve(response.data);
+			});
+		});
+    }
+
+	async hasDisplayedPopup(createdDate) {
+		const cookieName = `pop${createdDate}`;
+		let cookie = this.getCookie(cookieName);
+		return cookie == "";
+	}
+
+	displayPopup({ landingUrl: popupurl, etc1: popupChromeWidth, etc2: popupChromeHeight, etc3: popupWhaleWidth, etc4: popupWhaleHeight, createdDate, startDate, endDate }) {
+		const popupStartDate = new Date(this.convertDate(startDate) + ' 00:00:00');
+		const popupEndDate = new Date(this.convertDate(endDate) + ' 23:59:59');
+		const nowDate = new Date();
+		if (popupStartDate <= nowDate && nowDate <= popupEndDate) {
+			const chromeSizeOption = `width=${popupChromeWidth},height=${popupChromeHeight},toolbar=no,history=no,resizable=no,status=n,top=0,left=0,scrollbars=no,menubar=no`;
+			const whaleSizeOption = `width=${popupWhaleWidth},height=${popupWhaleHeight},toolbar=no,history=no,resizable=no,status=n,top=0,left=0,scrollbars=no,menubar=no`;
+			const sizeOption = navigator.userAgent.indexOf('Whale') > -1 ? whaleSizeOption : chromeSizeOption;
+			window.open(popupurl, createdDate, sizeOption);
+		}
+	}
+
+	convertDate(sampleTimestamp) {
+		let date = new Date(sampleTimestamp); //타임스탬프를 인자로 받아 Date 객체 생성
+
+		let year = date.getFullYear().toString().slice(-4); //년도 뒤에 두자리
+		let month = ("0" + (date.getMonth() + 1)).slice(-2); //월 2자리 (01, 02 ... 12)
+		let day = ("0" + date.getDate()).slice(-2); //일 2자리 (01, 02 ... 31)
+		let hour = ("0" + date.getHours()).slice(-2); //시 2자리 (00, 01 ... 23)
+		let minute = ("0" + date.getMinutes()).slice(-2); //분 2자리 (00, 01 ... 59)
+		let second = ("0" + date.getSeconds()).slice(-2); //초 2자리 (00, 01 ... 59)
+		let returnDate = year + "/" + month + "/" + day;
+		return returnDate;
+	}
 
     /**
      * 구글코드 옵션 합쳐주기 (디폴트 옵션 주기)
