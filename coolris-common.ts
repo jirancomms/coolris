@@ -70,7 +70,7 @@ export class CoolEnv {
     }
 
     getEnvPrefix() {
-        let prefix: string;
+        let prefix = '';
         const env: ECoolEnv = this.getEnv();
         switch (env) {
             case ECoolEnv.PROD:
