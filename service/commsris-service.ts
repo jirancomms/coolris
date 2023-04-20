@@ -1,5 +1,5 @@
 import {RisService} from "./ris-service";
-import {FooterTemplate} from "../coolris-common";
+import {constants, FooterTemplate} from '../coolris-common';
 
 export class CommsrisService extends RisService {
 
@@ -46,20 +46,20 @@ export class CommsrisService extends RisService {
             </style>
             <ul coolrisGnbMenu>
                 <li onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_coolmsg', 'send_to': '${gaMeasurementId}'});">
-                    <a href="//school.coolmessenger.com/" target="_blank">쿨메신저</a>
+                    <a href="${constants.siteUrl.coolmessengerUrl}" target="_blank">쿨메신저</a>
                 </li>
                 <li onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_coolAlimi', 'send_to': '${gaMeasurementId}'});">
-                    <a href="https://www.coolalimi.com/" target="_blank">쿨알리미</a>
+                    <a href="${constants.siteUrl.coolalimiUrl}" target="_blank">쿨알리미</a>
                 </li>
                 <li onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_sms', 'send_to': '${gaMeasurementId}'});">
-                    <a href="//coolsms.coolmessenger.com/" target="_blank">문자</a>
+                    <a href="${constants.siteUrl.coolsmsUrl}" target="_blank">문자</a>
                 </li>
                 <li onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_coolAlimTalk', 'send_to': '${gaMeasurementId}'});">
-                    <a href="https://www.coolalimi.com/alimtalk" target="_blank">쿨알림톡</a>
+                    <a href="${constants.siteUrl.coolalimTalkUrl}" target="_blank">쿨알림톡</a>
                 </li>
                 <li onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_coolendar', 'send_to': '${gaMeasurementId}'});">
-                    <a href="//coolendar.coolmessenger.com" target="_blank">학사일정</a>
-                </li>                
+                    <a href="${constants.siteUrl.coolendarUrl}" target="_blank">학사일정</a>
+                </li>
             </ul>
         `
     }
