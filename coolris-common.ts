@@ -1,4 +1,7 @@
 // 쿨리스 옵션 클레스
+import {environment} from './environments/environment.prod';
+import {environmentDev} from './environments/environment.dev';
+
 export interface CoolrisOpts {
     logoutOpts: LogoutOpts;
     gaOpts: GaOpts;
@@ -44,32 +47,36 @@ export interface FooterTemplate {
     familySite: string;
     info: string;
 }
+export enum ECoolEnv {
+    LOCAL = 'local',
+    DEV = 'dev',
+    PROD = 'prod',
+}
 
 // 적용 사이트에서 필요한 env 가져오는 로직
 export class CoolEnv {
-
-    getEnv() {
+    getEnv(): ECoolEnv {
         let localHost = location.hostname.indexOf('local');
         let devHost = location.hostname.indexOf('dev');
         if (localHost === -1 && devHost === -1) {
-            return 'prod';
+            return ECoolEnv.PROD;
         }
         if (localHost === 0) {
-            return 'local';
+            return ECoolEnv.LOCAL;
         }
         if (devHost === 0) {
-            return 'dev';
+            return ECoolEnv.DEV;
         }
     }
 
     getEnvPrefix() {
         let prefix = '';
-        const env = this.getEnv();
+        const env: ECoolEnv = this.getEnv();
         switch (env) {
-            case "prod":
+            case ECoolEnv.PROD:
                 break
-            case "local":
-            case "dev":
+            case ECoolEnv.LOCAL:
+            case ECoolEnv.DEV:
                 prefix = env + '-'
                 break;
             default:
@@ -77,10 +84,11 @@ export class CoolEnv {
         }
         return prefix;
     }
-
 }
 
+
 const coolEnv = new CoolEnv();
+const siteUrl = coolEnv.getEnv() === ECoolEnv.PROD ? environment : environmentDev;
 
 export const constants = {
     memberUrl:  (() => {
@@ -117,5 +125,6 @@ export const constants = {
         'coolalimi': 'NjM2YzY5NjU2ZTc0NWY2OTY0M2E0MzZmNmY2YzQxNmM2MTcyNmQ=', // coolalimi
         'eduspace': 'NjM2YzY5NjU2ZTc0NWY2OTY0M2E0MjQ1NTM1NDU0NDU0Mw==', // eduspace
         'futureclass': 'NjM2YzY5NjU2ZTc0NWY2OTY0M2E0MzRmNGY0YzUzNDM0ODRmNGY0Yw==', // futureclass
-    }
+    },
+    siteUrl,
 };

@@ -1,5 +1,5 @@
 import {RisService} from "./ris-service";
-import {FooterTemplate} from "../coolris-common";
+import {constants, FooterTemplate} from '../coolris-common';
 
 export class CommsrisService extends RisService {
 
@@ -46,20 +46,20 @@ export class CommsrisService extends RisService {
             </style>
             <ul coolrisGnbMenu>
                 <li onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_coolmsg', 'send_to': '${gaMeasurementId}'});">
-                    <a href="//school.coolmessenger.com/" target="_blank">쿨메신저</a>
+                    <a href="${constants.siteUrl.coolmessengerUrl}" target="_blank">쿨메신저</a>
                 </li>
                 <li onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_coolAlimi', 'send_to': '${gaMeasurementId}'});">
-                    <a href="https://www.coolalimi.com/" target="_blank">쿨알리미</a>
+                    <a href="${constants.siteUrl.coolalimiUrl}" target="_blank">쿨알리미</a>
                 </li>
                 <li onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_sms', 'send_to': '${gaMeasurementId}'});">
-                    <a href="//coolsms.coolmessenger.com/" target="_blank">문자</a>
+                    <a href="${constants.siteUrl.coolsmsUrl}" target="_blank">문자</a>
                 </li>
                 <li onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_coolAlimTalk', 'send_to': '${gaMeasurementId}'});">
-                    <a href="https://www.coolalimi.com/alimtalk" target="_blank">쿨알림톡</a>
+                    <a href="${constants.siteUrl.coolalimTalkUrl}" target="_blank">쿨알림톡</a>
                 </li>
                 <li onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_coolendar', 'send_to': '${gaMeasurementId}'});">
-                    <a href="//coolendar.coolmessenger.com" target="_blank">일정관리</a>
-                </li>                
+                    <a href="${constants.siteUrl.coolendarUrl}" target="_blank">학사일정</a>
+                </li>
             </ul>
         `
     }
@@ -180,7 +180,7 @@ export class CommsrisService extends RisService {
                             <h4>학교업무</h4>
                             <a onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_more_coolmsg', 'send_to': '${gaMeasurementId}'});" href="//school.coolmessenger.com/" target="_blank">쿨메신저</a>
                             <a onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_more_sms', 'send_to': '${gaMeasurementId}'});" href="//coolsms.coolmessenger.com/" target="_blank">문자</a>
-                            <a onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_more_coolendar', 'send_to': '${gaMeasurementId}'});" href="//coolendar.coolmessenger.com" target="_blank">일정관리</a>
+                            <a onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_more_coolendar', 'send_to': '${gaMeasurementId}'});" href="//coolendar.coolmessenger.com" target="_blank">학사일정</a>
                             <a onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_more_banner', 'send_to': '${gaMeasurementId}'});" href="//school.coolbooks.co.kr/" target="_blank">학교간행물</a>
                             <a onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_more_schoolp', 'send_to': '${gaMeasurementId}'});" href="//schoolp.co.kr/store/placard" target="_blank">현수막/배너</a>
                         </li>
@@ -267,7 +267,8 @@ export class CommsrisService extends RisService {
                         width: 70%
                     }
                 }
-                @media screen and (max-width: 770px) {
+                @media screen and (max-width: 980px) {
+                .coolris-footer[coolrisFooter] .inner{padding-top: 20px;}
                     .coolris-footer[coolrisFooter] .inner .left {
                         width: 100%
                     }
@@ -318,6 +319,11 @@ export class CommsrisService extends RisService {
                         width: 170px;
                     }
                 }
+                @media screen and (max-width: 980px) {
+                    a[coolrisBi] {
+                        display: none;
+                    }
+                }
             </style>
             <a coolrisBi onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'footer_bi', 'send_to': '${gaMeasurementId}'});" href="//www.jirancomms.com/" target="_blank">
                 <img src="//update.coolmessenger.com/_ImageServer/samgular/bi-jirancomms.png" alt="image">
@@ -362,26 +368,51 @@ export class CommsrisService extends RisService {
                 div[coolrisLink] a:last-child:after {
                     display: none;
                 }
-                @media screen and (max-width: 980px) {
-                    div[coolrisLink] a {
-                        width: 50%;
+                div[coolrisLink] .web {
                         display: block;
-                        float: left;
-                        margin-right: 0;
-                        margin-bottom: 10px;
+                    }
+                div[coolrisLink] .mobile {
+                        display: none;
+                    }
+                @media screen and (max-width: 980px) {
+                div[coolrisLink] .web {
+                        display: none;
+                    }
+                div[coolrisLink] .mobile {
+                        display: inline-flex;
+                    }
+                    div[coolrisLink] a, div[coolrisLink] span {
+                        margin: 0 10px;
                         text-align: center;
+                        border: 1px solid #d1d1d1;
+                        min-height: 40px;
+                        display: inline-flex;
+                        align-items: center;
+                        font-size: 13px;
+                        color: #797979;
+                        padding: 0 24px;
                     }
                     div[coolrisLink] a:after {
                         display: none;
                     }
                     div[coolrisLink] {
-                        display: block;
+                        display: flex;
+                        justify-content: center;
+                        padding-bottom: 15px;
                     }
                 }
             </style>
             <div coolrisLink>
-                <a onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'contactus', 'send_to': '${gaMeasurementId}'});" href="mailto:jc-sale@jiran.com" target="_blank">광고문의</a>
-                <a onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'support', 'send_to': '${gaMeasurementId}'});" href="https://school.coolmessenger.com/support/question#qna" target="_blank">기술문의</a>
+                <div class="web">
+                    <a onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'contactus', 'send_to': '${gaMeasurementId}'});" href="mailto:jc-sale@jiran.com" target="_blank">광고문의</a>
+                    <a onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'support', 'send_to': '${gaMeasurementId}'});" href="https://school.coolmessenger.com/support/question#qna" target="_blank">기술문의</a>
+                </div>
+                <div class="mobile">
+                    <span style="cursor: pointer;" onClick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'privacy_policy', 'send_to': '${gaMeasurementId}'});
+                        window.open('//member.coolmessenger.com/contract/privacy?type=html', 'coolschool_privacy', 'width=500,height=350');">개인정보처리방침</span>
+                    <span style="cursor: pointer;" onClick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'terms_of_service_policy', 'send_to': '${gaMeasurementId}'});
+                        window.open('//member.coolmessenger.com/contract/term?type=html', 'terms_of_service_policy', 'width=500,height=350');">이용약관</span>
+                </div>
             </div>
         `
     }
@@ -411,7 +442,7 @@ export class CommsrisService extends RisService {
                     display: inline-block;
                     margin-right: 21px;
                 }
-                section[coolrisInfo] p > span:after {
+                section[coolrisInfo] p > span:not(.mobile-span):after {
                     width: 1px;
                     height: 9px;
                     background-color: #d2d2d2;
@@ -440,22 +471,88 @@ export class CommsrisService extends RisService {
                 section[coolrisInfo] .link-box a:first-child {
                     margin-right: 5px;
                 }
+                section[coolrisInfo] .web {
+                        display: block;
+                    }
+                section[coolrisInfo] .mobile {
+                        display: none;
+                    }
+                    section[coolrisInfo] .link-box img {
+                        width: 51px;
+                        height: 51px;
+                    }
+                @media screen and (max-width: 980px) {
+                    section[coolrisInfo] {padding: 0 20px;}
+                    section[coolrisInfo] .web {
+                        display: none;
+                    }
+                    section[coolrisInfo] .mobile {
+                        display: flex !important;
+                        justify-content: center;
+                        flex-direction: column;
+                        align-items: center;
+                        word-break: break-all;
+                    }
+                    section[coolrisInfo] .mobile .link-box {
+                        margin: 27px 0 10px 0;
+                        float: none;
+                        padding: 0;
+                    }
+                    section[coolrisInfo] .mobile .text {
+                        display: flex;
+                        justify-content: flex-start;
+                        flex-direction: column;
+                    }
+                    section[coolrisInfo] .mobile .text a {
+                        text-decoration: none;
+                    }
+                    section[coolrisInfo] .mobile .text span {
+                        word-break: break-all;
+                    }
+                }
             </style>
             <section coolrisInfo>
-                <div class="link-box">
-                    <a href="https://blog.naver.com/jirancomms" target="_blank">
-                        <img src="//update.coolmessenger.com/_ImageServer/coolris/ico_blog.png" alt="img" />
-                    </a>               
-                    <a href="https://www.youtube.com/channel/UCOQfhiS4GRhFuHWY-MEZD_Q/featured" target="_blank">
-                        <img src="//update.coolmessenger.com/_ImageServer/coolris/ico_youtube.png" alt="img" />
-                    </a>            
+                <div class="web">
+                    <div class="link-box">
+                        <a href="https://blog.naver.com/jirancomms" target="_blank">
+                            <img src="//update.coolmessenger.com/_ImageServer/coolris/ico_blog_big.png" alt="img" />
+                        </a>               
+                        <a href="https://www.youtube.com/channel/UCOQfhiS4GRhFuHWY-MEZD_Q/featured" target="_blank">
+                            <img src="//update.coolmessenger.com/_ImageServer/coolris/ico_youtube_big.png" alt="img" />
+                        </a>            
+                    </div>
+                    <p><span>대표자 : 황찬우</span><span>사업자등록번호 : 764-87-00314</span><span>통신판매업 신고번호 : 제2016-서울강남00304호</span></p>
+                    <p><span>(13453) 경기도 성남시 수정구 금토로80번길 37, 인피니티타워 W동 10층</span><span>대표전화 : <a href="tel:1670-4846">1670-4846</a></span><span>팩스 : 070-7605-2935</span></p>
+                    <p><span>개인정보관리책임자 : 박노준</span>
+                    <span style="cursor: pointer;" onClick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'privacy_policy', 'send_to': '${gaMeasurementId}'});
+                    window.open('//member.coolmessenger.com/contract/privacy?type=html', 'coolschool_privacy', 'width=500,height=350');">개인정보처리방침</span>
+                    <span style="cursor: pointer;" onClick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'terms_of_service_policy', 'send_to': '${gaMeasurementId}'});
+                    window.open('//member.coolmessenger.com/contract/term?type=html', 'terms_of_service_policy', 'width=500,height=350');">이용약관</span></p>
+                     <p class="web"><span>© JiranComms. All rights reserved.</span></p>
+                 </div>
+                
+                <div class="mobile">
+                    <div class="text">
+                        <p>
+                            <span>(주) 지란지교컴즈</span>
+                            <span class="mobile-span">대표자 : 황찬우</span>
+                        </p>
+                        <p><span class="mobile-span">사업자등록번호 : 764-87-00314</span></p>
+                        <p><span class="mobile-span">통신판매업 신고번호 : 제2016-서울강남00304호</span></p>
+                        <p><span class="mobile-span">경기도 성남시 수정구 금토로 80번길 37, 인피니티타워 W동 10층</span></p>
+                        <p><span>대표전화 : <a href="tel:1670-4846">1670-4846</a></span><span class="mobile-span">팩스 : 070-7605-2935</span></p>
+                        <p><span>개인정보관리책임자 : 박노준</span></p>
+                    </div>
+                    <div class="link-box">
+                        <a href="https://blog.naver.com/jirancomms" target="_blank">
+                            <img src="//update.coolmessenger.com/_ImageServer/coolris/ico_blog_big.png" alt="img" />
+                        </a>               
+                        <a href="https://www.youtube.com/channel/UCOQfhiS4GRhFuHWY-MEZD_Q/featured" target="_blank">
+                            <img src="//update.coolmessenger.com/_ImageServer/coolris/ico_youtube_big.png" alt="img" />
+                        </a>            
+                    </div>
+                    <p><span>© JiranComms. All rights reserved.</span></p>
                 </div>
-                <p><span>대표자 : 황찬우</span><span>사업자등록번호 : 764-87-00314</span><span>통신판매업 신고번호 : 제2016-서울강남00304호</span></p>
-                <p><span>(13453) 경기도 성남시 수정구 금토로80번길 37, 인피니티타워 W동 10층</span><span>대표전화 : <a href="tel:1670-4846">1670-4846</a></span><span>팩스 : 070-7605-2935</span></p>
-                <p><span>개인정보관리책임자 : 박노준</span><span style="cursor: pointer;" onClick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'privacy_policy', 'send_to': '${gaMeasurementId}'});
-                window.open('//member.coolmessenger.com/contract/privacy?type=html', 'coolschool_privacy', 'width=500,height=350');">개인정보처리방침</span><span style="cursor: pointer;" onClick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'terms_of_service_policy', 'send_to': '${gaMeasurementId}'});
-                window.open('//member.coolmessenger.com/contract/term?type=html', 'terms_of_service_policy', 'width=500,height=350');">이용약관</span></p>
-                <p><span>© JiranComms. All rights reserved.</span></p>
             </section>
         `
     }

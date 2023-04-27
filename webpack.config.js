@@ -1,4 +1,5 @@
 const path = require('path');
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = env => {
 
@@ -14,6 +15,7 @@ module.exports = env => {
                 },
             ],
         },
+        mode: 'production',
         resolve: {
             extensions: ['.tsx', '.ts', '.js'],
         },
@@ -22,6 +24,14 @@ module.exports = env => {
             filename: env.FILE.replace('.ts', '') + '.js',
             path: path.resolve(__dirname, 'dist'),
             libraryTarget: 'umd'
+        },
+        optimization: {
+            minimize: true,
+            minimizer: [
+                new TerserPlugin({
+                    test: /\.js$/, // js 파일에만 적용
+                }),
+            ],
         },
         // optimization: {
         //     minimize: false

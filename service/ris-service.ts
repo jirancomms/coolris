@@ -1214,6 +1214,12 @@ export class RisService {
                 span[coolrisFamilysite] .coolris-familysite-dropdown a:hover {
                     background-color: rgba(100, 100, 100, 0.1);
                 }
+
+                @media screen and (max-width: 980px) {
+                    span[coolrisFamilysite] {
+                        display: none;
+                    }
+                }
             </style>
             <span class="family-site" coolrisFamilysite>
                 <span class="coolris-familysite-btn">
