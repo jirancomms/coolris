@@ -1,22 +1,26 @@
 import {constants, CoolrisOpts, CoolTemplate} from "./coolris-common";
 import {Risbase} from "./risbase";
 import {CommsrisService} from "./service/commsris-service";
+import {tsLoaderSource} from "ts-loader/dist/utils";
 
 export class Commsris extends Risbase {
+	popupCurrentLeftPosition: number;
 
     constructor(protected accessToken: string = '', serviceName = undefined) {
         super(accessToken, serviceName);
         this.risService = new CommsrisService();
+		this.popupCurrentLeftPosition = 0;
     }
 
     async start(coolrisOpt: CoolrisOpts | any = undefined): Promise<void> {
         const options: any = this.initOption(coolrisOpt);
         options.gaOpts.gaMeasurementId = options.gaOpts.gaMeasurementId ? options.gaOpts.gaMeasurementId : 'G-6F5MJCTM7J';
 
-		// 각각의 사이트에 알맞는 팝업을 보여주는 시스템
-		this.openPopup();
-
         await super.start(options);
+
+		// 각각의 사이트에 알맞는 팝업을 보여주는 시스템
+		// this.openPopup();
+		this.openPopup2();
     }
 
     getCoolTemplate(): CoolTemplate {
@@ -78,22 +82,119 @@ export class Commsris extends Risbase {
         return await $.ajax(setting).then(response => {return response.data});
     }
 
-	async openPopup() {
 
-		const host = this.getHost();
-		const response: any = await this.getPopupData(host);
+	async openPopup2() {
+		let subdomain = this.getHost();
+		const response: any = await this.getPopupData(subdomain);
 
 		for (const popupInfo of response) {
-			const { createdDate } = popupInfo;
-			if (await this.hasDisplayedPopup(createdDate)) {
+			const { etc2 } = popupInfo;
+			if (await this.hasDisplayedPopup(etc2)) {
+				this.showPopup(popupInfo);
+			}
+		}
+	}
+
+	async showPopup({ landingUrl: popupurl, etc1: popupSizeDict, createdDate, startDate, endDate, imageUrl }) {
+		var strWidth;
+		var strHeight;
+		// 이미지 정보 가져오기
+		const size = await this.getImageSize(strWidth, strHeight, imageUrl);
+
+		const popupStartDate = new Date(this.convertDate(startDate) + ' 00:00:00');
+		const popupEndDate = new Date(this.convertDate(endDate) + ' 23:59:59');
+		const nowDate = new Date();
+
+		if (popupStartDate <= nowDate && nowDate <= popupEndDate) {
+			var img = new Image();
+			img.src = imageUrl
+			var devicePixelRatio = window.devicePixelRatio
+			// 고해상도를 모니터, 폰? 을 이용해서 확인하는 유저를 위한 계산
+			// var w = Math.round(img.width * devicePixelRatio);
+			// var h = Math.round(img.height * devicePixelRatio);
+
+			var whaleSizeOption = 'width=' + Math.round(img.width) + ',height=' + Math.round(img.height) + ',left=' + this.popupCurrentLeftPosition;
+			var chromeSizeOption = 'width=' + Math.round(img.width) + ',height=' + (Math.round(img.height) + 30 + ',left=' + this.popupCurrentLeftPosition);
+			this.popupCurrentLeftPosition += Math.round(img.width);
+			console.log(this.popupCurrentLeftPosition);
+
+			// var sizeOption = 'width=' + img.width + ',height=' + img.height;
+			// const chromeSizeOption = `width=${popupChromeWidth},height=${popupChromeHeight},toolbar=no,history=no,status=n,top=0,left=0,scrollbars=no,menubar=no`;
+			// const chromeSizeOption = `toolbar=no,history=no,status=n,top=0,left=0,scrollbars=no,menubar=no`;
+			// const whaleSizeOption = `width=${popupWhaleWidth},height=${popupWhaleHeight},toolbar=no,history=no,status=n,top=0,left=0,scrollbars=no,menubar=no`;
+			// const whaleSizeOption = `toolbar=no,history=no,status=n,top=0,left=0,scrollbars=no,menubar=no`;
+			const sizeOption = navigator.userAgent.indexOf('Whale') > -1 ? whaleSizeOption : chromeSizeOption;
+
+			window.open(popupurl, createdDate, sizeOption)
+		}
+
+		// async function openTest() {
+		// 	if (popupStartDate <= nowDate && nowDate <= popupEndDate) {
+		// 		var img = new Image();
+		// 		img.src = imageUrl
+		// 		var devicePixelRatio = window.devicePixelRatio
+		// 		// 고해상도를 모니터, 폰? 을 이용해서 확인하는 유저를 위한 계산
+		// 		// var w = Math.round(img.width * devicePixelRatio);
+		// 		// var h = Math.round(img.height * devicePixelRatio);
+		// 		var whaleSizeOption = 'width=' + Math.round(img.width) + ',height=' + Math.round(img.height);
+		// 		var chromeSizeOption = 'width=' + Math.round(img.width) + ',height=' + (Math.round(img.height) + 30);
+		// 		// var sizeOption = 'width=' + img.width + ',height=' + img.height;
+		// 		// const chromeSizeOption = `width=${popupChromeWidth},height=${popupChromeHeight},toolbar=no,history=no,status=n,top=0,left=0,scrollbars=no,menubar=no`;
+		// 		// const chromeSizeOption = `toolbar=no,history=no,status=n,top=0,left=0,scrollbars=no,menubar=no`;
+		// 		// const whaleSizeOption = `width=${popupWhaleWidth},height=${popupWhaleHeight},toolbar=no,history=no,status=n,top=0,left=0,scrollbars=no,menubar=no`;
+		// 		// const whaleSizeOption = `toolbar=no,history=no,status=n,top=0,left=0,scrollbars=no,menubar=no`;
+		// 		const sizeOption = navigator.userAgent.indexOf('Whale') > -1 ? whaleSizeOption : chromeSizeOption;
+		//
+		// 		window.open(popupurl, createdDate, sizeOption)
+		// 	}
+		// }
+
+		// openTest();
+	}
+
+	async getImageSize(strWidth, strHeight, imageUrl) {
+		return new Promise((resolve, reject) => {
+			const img = new Image();
+			img.onload = function() {
+				const size = {
+					width: img.width,
+					height: img.height
+				};
+				resolve(size);
+			};
+			img.onerror = function() {
+				reject(new Error('Image load error'));
+			};
+			img.src = imageUrl;
+		});
+	}
+
+
+	/**
+	 * 사이트에 알맞는 팝업을 실행시켜주는 로직입니다.
+	 */
+	async openPopup() {
+
+		// commsris를 호출한 사이트의 subdomain 정보를 가져옵니다.
+		let subdomain = this.getHost();
+		const response: any = await this.getPopupData(subdomain);
+
+		for (const popupInfo of response) {
+			const { etc2 } = popupInfo;
+			if (await this.hasDisplayedPopup(etc2)) {
 				this.displayPopup(popupInfo);
 			}
 		}
 	}
 
-    async getPopupData(domain) {
-		let url = `${constants.searchUrl}/api/commsrating/_search?serviceType=popup&viewType=common&etcList1=`+domain
-
+	/**
+	 * @param subdomain
+	 * domain이 보여줘야하는 팝업 리스트 정보를 가져옵니다.
+	 * comms-search 서버로 부터 조회
+	 */
+    async getPopupData(subdomain) {
+		// let url = `${constants.searchUrl}/api/commsrating/_search?serviceType=popup&etcList1=`+subdomain
+		let url = `https://dev-search.coolmessenger.com/api/commsrating/_search?serviceType=popup&etcList1=`+"coolsms"
 		return new Promise((resolve) => {
 			$.get(url).then(response => {
 				resolve(response.data);
@@ -101,20 +202,54 @@ export class Commsris extends Risbase {
 		});
     }
 
-	async hasDisplayedPopup(createdDate) {
-		const cookieName = `pop${createdDate}`;
+	/**
+	 *
+	 * @param cookieName
+	 * @private
+	 * 쿠키 정보가 있으면, 팝업을 안보여주고
+	 * 쿠키 정보가 없으면, 팝업을 보여줍니다.
+	 */
+	async hasDisplayedPopup(cookieName) {
 		let cookie = this.getCookie(cookieName);
 		return cookie == "";
 	}
 
-	displayPopup({ landingUrl: popupurl, etc1: popupChromeWidth, etc2: popupChromeHeight, etc3: popupWhaleWidth, etc4: popupWhaleHeight, createdDate, startDate, endDate }) {
+	/**
+	 *
+	 * @param popupurl
+	 * @param popupSizeDict
+	 * @param createdDate
+	 * @param startDate
+	 * @param endDate
+	 * @private
+	 * 팝업을 실행하는 로직입니다.
+	 * 도메인에 알맞는 팝업을 실행시켜주며
+	 * 팝업의 가로, 세로 설정 및 기타 설정들을 지정합니다.
+	 */
+	private displayPopup({ landingUrl: popupurl, etc1: popupSizeDict, createdDate, startDate, endDate }) {
+		let parse = JSON.parse(popupSizeDict);
+
+		let popupChromeWidth = parse['chromeWidth']
+		let popupChromeHeight = parse['chromeHeight']
+		let popupWhaleWidth = parse['whaleWidth']
+		let popupWhaleHeight = parse['whaleHeight']
+
+
 		const popupStartDate = new Date(this.convertDate(startDate) + ' 00:00:00');
 		const popupEndDate = new Date(this.convertDate(endDate) + ' 23:59:59');
 		const nowDate = new Date();
 		if (popupStartDate <= nowDate && nowDate <= popupEndDate) {
-			const chromeSizeOption = `width=${popupChromeWidth},height=${popupChromeHeight},toolbar=no,history=no,resizable=no,status=n,top=0,left=0,scrollbars=no,menubar=no`;
-			const whaleSizeOption = `width=${popupWhaleWidth},height=${popupWhaleHeight},toolbar=no,history=no,resizable=no,status=n,top=0,left=0,scrollbars=no,menubar=no`;
+			let image = new Image();
+			image.src = "https://update.coolmessenger.com/_ImageServer/popup/2023/04/17/template1.png"
+			const width = image.width;
+			const height = image.height;
+
+			// const chromeSizeOption = `width=${popupChromeWidth},height=${popupChromeHeight},toolbar=no,history=no,resizable=no,status=n,top=0,left=0,scrollbars=no,menubar=no`;
+			const chromeSizeOption = `width=${width},height=${height},toolbar=no,history=no,resizable=no,status=n,top=0,left=0,scrollbars=no,menubar=no`;
+			// const whaleSizeOption = `width=${popupWhaleWidth},height=${popupWhaleHeight},toolbar=no,history=no,resizable=no,status=n,top=0,left=0,scrollbars=no,menubar=no`;
+			const whaleSizeOption = `width=${width},height=${height},toolbar=no,history=no,resizable=no,status=n,top=0,left=0,scrollbars=no,menubar=no`;
 			const sizeOption = navigator.userAgent.indexOf('Whale') > -1 ? whaleSizeOption : chromeSizeOption;
+
 			window.open(popupurl, createdDate, sizeOption);
 		}
 	}
@@ -145,4 +280,6 @@ export class Commsris extends Risbase {
         } as any;
         return $.extend(true, defOption, coolrisOpt);
     }
+
+
 }
