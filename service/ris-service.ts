@@ -287,7 +287,7 @@ export class RisService {
             <div coolrisProfile>
                 <div class="coolris-profile-dropdown">
                     <img class="dropdown-tail" src="//update.coolmessenger.com/_ImageServer/coolschool/resources/images/dropbox_tail.png" alt="img" />
-                    <p><a onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_myinfo', 'send_to': '${gaMeasurementId}'});" href="${constants.memberUrl}/my/#/">내정보 보기</a></p>
+                    <p><a onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_myinfo', 'send_to': '${gaMeasurementId}'});" href="${constants.memberUrl}/my/#/">내 정보 관리</a></p>
                     <span class="logout dropdown-close" data-name="spanLogout">로그아웃</span>
                 </div>
                 <span class="coolris-profile-btn">
