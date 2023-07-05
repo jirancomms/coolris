@@ -521,7 +521,7 @@ export class CommsrisService extends RisService {
                             <img src="//update.coolmessenger.com/_ImageServer/coolris/ico_youtube_big.png" alt="img" />
                         </a>            
                     </div>
-                    <p><span>대표자 : 황찬우</span><span>사업자등록번호 : 764-87-00314</span><span>통신판매업 신고번호 : 제2016-서울강남00304호</span></p>
+                    <p><span>대표자 : 황찬우</span><span>사업자등록번호 : 764-87-00314</span><span>통신판매업 신고번호 : 제2023-성남수정-0685호</span></p>
                     <p><span>(13453) 경기도 성남시 수정구 금토로80번길 37, 인피니티타워 W동 10층</span><span>대표전화 : <a href="tel:1670-4846">1670-4846</a></span><span>팩스 : 070-7605-2935</span></p>
                     <p><span>개인정보관리책임자 : 박노준</span>
                     <span style="cursor: pointer;" onClick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'privacy_policy', 'send_to': '${gaMeasurementId}'});
@@ -538,7 +538,7 @@ export class CommsrisService extends RisService {
                             <span class="mobile-span">대표자 : 황찬우</span>
                         </p>
                         <p><span class="mobile-span">사업자등록번호 : 764-87-00314</span></p>
-                        <p><span class="mobile-span">통신판매업 신고번호 : 제2016-서울강남00304호</span></p>
+                        <p><span class="mobile-span">통신판매업 신고번호 : 제2023-성남수정-0685호</span></p>
                         <p><span class="mobile-span">경기도 성남시 수정구 금토로 80번길 37, 인피니티타워 W동 10층</span></p>
                         <p><span>대표전화 : <a href="tel:1670-4846">1670-4846</a></span><span class="mobile-span">팩스 : 070-7605-2935</span></p>
                         <p><span>개인정보관리책임자 : 박노준</span></p>
