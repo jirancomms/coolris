@@ -128,3 +128,13 @@ export const constants = {
     },
     siteUrl,
 };
+
+export const SOCKET_URL = 'socket.coolmessenger.com';
+export enum SocketEvent {
+    JOIN_USER = 'join_user',
+    EVENT_BROADCAST = 'event_broadcast',
+    UPDATE_MY_INFO = 'update_my_info',
+    UPDATE_ADDRESS_GROUP = 'update_address_group',
+    UPDATE_ADDRESS_PHONE = 'update_address_phone',
+    LOGOUT = 'logout',
+};

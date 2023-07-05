@@ -1,5 +1,6 @@
 import {constants, CoolrisOpts, CoolTemplate, LogoutOpts} from "./coolris-common";
 import {RisbaseCommon} from "./risbase-common";
+import {SocketService} from "./service/socket.service";
 
 declare var $: any;
 declare var gtag: any;
@@ -11,6 +12,7 @@ export class Risbase extends RisbaseCommon {
 
     constructor(
         protected accessToken: string = '',
+        private socketService: SocketService,
         serviceName = undefined
     ) {
         super(serviceName);
@@ -65,6 +67,12 @@ export class Risbase extends RisbaseCommon {
         // 로그인에 되어 있다면 내 영역 데이터 로드 및 랜더
         if (isLogin && this.accessToken) {
             this.loadSettingMyArea();
+
+            const profileResult = await this.loadProfileResult(this.accessToken);
+            if (!profileResult.result) {
+                return;
+            }
+            this.socketInit(profileResult.data.idx);
         }
     }
 
@@ -397,6 +405,13 @@ export class Risbase extends RisbaseCommon {
         let logoutResult;
         $("[data-name='spanLogout']").click(() => {
             gtag('event', this.serviceName, {'event_category': 'link', 'event_label': 'gnb_logout', 'send_to': this.gaMeasurementId});
+
+            /*
+            * todo: 로그아웃 할때 로그아웃 이벤트 발생시켜 다른 열려있는 서비스들 로그아웃 처리
+            *  소켓 서버에 이벤트 받은 서버로는 이벤트 발송 안하게 로직 추가후에 아래 주석 제거해야함.
+            * */
+            // this.socketService.emitLogout();
+
             if(coolrisOpts && coolrisOpts.logoutOpts) {
                 logoutResult = this.logout(coolrisOpts.logoutOpts);
             } else {
@@ -405,6 +420,7 @@ export class Risbase extends RisbaseCommon {
             if(coolrisOpts && coolrisOpts.logoutOpts && coolrisOpts.logoutOpts.callbackLogoutComplete) {
                 coolrisOpts.logoutOpts.callbackLogoutComplete(logoutResult);
             }
+
         });
     }
 
@@ -497,5 +513,13 @@ export class Risbase extends RisbaseCommon {
         } else {
             return this.loginCheck();
         }
+    }
+
+    private socketInit(idx: any) {
+
+        const param = {coolIdx:idx};
+
+        this.socketService = new SocketService(param);
+        this.socketService.connection();
     }
 }
