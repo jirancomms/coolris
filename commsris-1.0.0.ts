@@ -56,17 +56,18 @@ export class Commsris extends Risbase {
         this.eventDropdownAndQuickMenu();
     }
 
-    async loadSettingMyArea(): Promise<void> {
+    async loadSettingMyArea(): Promise<CCResult<Member>> {
         // 프로필 세팅
         const profileResult = await this.loadProfileResult(this.accessToken);
-        if (!profileResult.result) {
-            return;
+        if (!profileResult.data) {
+            return profileResult;
         }
         let profileData = profileResult.data;
         this.settingProfile(profileData);
+		return profileResult;
     }
 
-    settingProfile(profileData: any) {
+    settingProfile(profileData: Member) {
         $('[data-name=imgProfileImg]').attr('src', profileData.profileImage);
         $('[data-name=spanProfileName]').html(profileData.name);
     }

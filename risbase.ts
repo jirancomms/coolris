@@ -66,9 +66,7 @@ export class Risbase extends RisbaseCommon {
 
         // 로그인에 되어 있다면 내 영역 데이터 로드 및 랜더
         if (isLogin && this.accessToken) {
-            this.loadSettingMyArea();
-
-            const profileResult = await this.loadProfileResult(this.accessToken);
+            const profileResult = await this.loadSettingMyArea();
             if (!profileResult.result) {
                 return;
             }
@@ -245,12 +243,12 @@ export class Risbase extends RisbaseCommon {
         return this.loginInfo;
     }
 
-    async loadProfileResult(accessToken: string) {
-        let response;
+    async loadProfileResult(accessToken: string): Promise<CCResult<Member>> {
+        let response: CCResult<Member>;
         try {
             response = await $.ajax(`${constants.searchUrl}/api/cool/_searchMemberByAccessToken/${accessToken}`);
         } catch (e) {
-            response = {result: false}
+            response = {result: false};
         }
         return response;
     }
@@ -436,7 +434,7 @@ export class Risbase extends RisbaseCommon {
     /**
      *  알람 데이터 로드 및 세팅
      */
-    async loadSettingMyArea() {
+    async loadSettingMyArea(): Promise<CCResult<Member>> {
         let coolAlarmItems = [];
         // 프로필 세팅
         const profileResult = await this.loadProfileResult(this.accessToken);
