@@ -194,8 +194,8 @@ export class Commsris extends Risbase {
 	 * comms-search 서버로 부터 조회
 	 */
     async getPopupData(subdomain) {
-		// let url = `${constants.searchUrl}/api/commsrating/_search?serviceType=popup&etcList1=`+subdomain
-		let url = `https://dev-search.coolmessenger.com/api/commsrating/_search?serviceType=popup&etcList1=`+"coolsms"
+		let url = `${constants.searchUrl}/api/commsrating/_search?serviceType=popup&etcList1=`+subdomain
+		// let url = `https://dev-search.coolmessenger.com/api/commsrating/_search?serviceType=popup&etcList1=`+"coolsms"
 		return new Promise((resolve) => {
 			$.get(url).then(response => {
 				resolve(response.data);
