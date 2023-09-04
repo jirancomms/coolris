@@ -406,6 +406,7 @@ export class CommsrisService extends RisService {
                 <div class="web">
                     <a onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'contactus', 'send_to': '${gaMeasurementId}'});" href="mailto:jc-sale@jiran.com" target="_blank">광고문의</a>
                     <a onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'support', 'send_to': '${gaMeasurementId}'});" href="https://school.coolmessenger.com/support/question#qna" target="_blank">기술문의</a>
+                    <a onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'withyou', 'send_to': '${gaMeasurementId}'});" href="https://withyou.jiran.com" target="_blank">윤리경영</a>
                 </div>
                 <div class="mobile">
                     <span style="cursor: pointer;" onClick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'privacy_policy', 'send_to': '${gaMeasurementId}'});
