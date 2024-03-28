@@ -24,9 +24,9 @@
 - css, js파일을 포함시킨다. (jquery, popper, bootstrap, coolris)
 ```html
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
-<script type="text/javascript" src="//update.coolmessenger.com/_ImageServer/coolschool/commonTop/jquery.min.js"></script><!-- 1.12.4 -->
-<script type="text/javascript" src="//update.coolmessenger.com/_ImageServer/coolschool/commonTop/popper.min.js"></script>
-<script type="text/javascript" src="//update.coolmessenger.com/_ImageServer/coolschool/commonTop/bootstrap.min.js"></script><!-- 4.1.1-->
+<script type="text/javascript" src="https://update.coolmessenger.com/_ImageServer/coolschool/commonTop/jquery.min.js"></script><!-- 1.12.4 -->
+<script type="text/javascript" src="https://update.coolmessenger.com/_ImageServer/coolschool/commonTop/popper.min.js"></script>
+<script type="text/javascript" src="https://update.coolmessenger.com/_ImageServer/coolschool/commonTop/bootstrap.min.js"></script><!-- 4.1.1-->
 <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -36,7 +36,7 @@
     ga('create', 'UA-119402731-1', 'auto');
     ga('send', 'pageview');
 </script>
-<script type="text/javascript" src="//update.coolmessenger.com/_ImageServer/coolschool/commonTop/coolris.js"></script>
+<script type="text/javascript" src="https://update.coolmessenger.com/_ImageServer/coolschool/commonTop/coolris.js"></script>
 ```
 - 쿨서비스 팝업이 들어갈 div를 **id를 coolris**로 만들어준다.
 ```html
@@ -73,7 +73,7 @@ $(function() {
 ## 사용방법
 - css, js파일을 포함시킨다.
 ```html
-<script type="text/javascript" src="//update.coolmessenger.com/_ImageServer/coolschool/commonTop/jquery.min.js"></script><!-- 1.12.4 -->
+<script type="text/javascript" src="https://update.coolmessenger.com/_ImageServer/coolschool/commonTop/jquery.min.js"></script><!-- 1.12.4 -->
 <script type="text/javascript" src="//resource.coolmessenger.com/coolschool/resources/js/polyfills.js"></script>  // ie에서 나오지 않을 때 추가
 <script type="text/javascript" src="//resource.coolmessenger.com/coolschool/resources/js/coolris-2.0.0.js"></script>
 ```

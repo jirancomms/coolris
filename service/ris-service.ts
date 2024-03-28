@@ -820,7 +820,7 @@ export class RisService {
                         {{ for(var idx in it.coolTopBannerItems) { }}
                         <a onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'main_banner_top', 'send_to': '${gaMeasurementId}'});" href="{{=it.coolTopBannerItems[idx].landingUrl}}" target="_blank">
                             <!--suppress CssInvalidPropertyValue -->
-                            <div class="topbanner-item" style="background-color: {{=it.coolTopBannerItems[idx].backgroundColor}}">
+                            <div class="topbanner-item" style="background-color: {{=it.coolTopBannerItems[idx].etc1}}">
                                 <div class="inner">
                                     <img src="{{=it.coolTopBannerItems[idx].imageUrl}}" alt="img" />
                                 </div>

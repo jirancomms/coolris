@@ -21,7 +21,7 @@
 # 공통
 - js파일을 포함시킨다.
 ```html
-<script type="text/javascript" src="//update.coolmessenger.com/_ImageServer/coolschool/commonTop/jquery.min.js"></script><!-- 1.12.4 -->
+<script type="text/javascript" src="https://update.coolmessenger.com/_ImageServer/coolschool/commonTop/jquery.min.js"></script><!-- 1.12.4 -->
 // ie에서 나오지 않을 때 추가
 <script type="text/javascript" src="//resource.coolmessenger.com/coolschool/resources/js/polyfills.js"></script>
 ```
@@ -30,7 +30,7 @@
 
 # 사용방법
 
-# 쿨스쿨(coolschool) 전용 <img src="http://update.coolmessenger.com/_ImageServer/coolschool/2020/05/renew/coolschool.png" alt="img">
+# 쿨스쿨(coolschool) 전용 <img src="http:https://update.coolmessenger.com/_ImageServer/coolschool/2020/05/renew/coolschool.png" alt="img">
 * * *
 - js파일을 포함시킨다.
 ```html
@@ -176,7 +176,7 @@ if (response.result) {
 <br/>
 <br/>
 
-# 컴즈(jirancomms) 전용 <img src="http://update.coolmessenger.com/_ImageServer/samgular/bi-jirancomms.png" alt="img">
+# 컴즈(jirancomms) 전용 <img src="http:https://update.coolmessenger.com/_ImageServer/samgular/bi-jirancomms.png" alt="img">
 * * *
 - js파일을 포함시킨다.
 ```html
