@@ -2,6 +2,7 @@ import {constants, CoolrisOpts, CoolTemplate} from "./coolris-common";
 import {Risbase} from "./risbase";
 import {CommsrisService} from "./service/commsris-service";
 import {tsLoaderSource} from "ts-loader/dist/utils";
+import {ChannelTalkService} from "./service/channeltalk-service";
 
 export class Commsris extends Risbase {
 	popupCurrentLeftPosition: number;
@@ -35,6 +36,7 @@ export class Commsris extends Risbase {
     }
 
     footerStart(coolrisOpt: CoolrisOpts | any = undefined) {
+
         const options: any = this.initOption(coolrisOpt);
         options.gaOpts.gaMeasurementId = options.gaOpts.gaMeasurementId ? options.gaOpts.gaMeasurementId : 'G-6F5MJCTM7J';
         this.setGoogleCode(options); // 구글 ID적용, 구글 코드 함수 적용
@@ -54,6 +56,12 @@ export class Commsris extends Risbase {
         $('#commsrisFooter').html(coolrisTemplateFn());
 
         this.eventDropdownAndQuickMenu();
+
+        const channelTalkService: ChannelTalkService = new ChannelTalkService();
+        channelTalkService.loadScript();
+        channelTalkService.boot({
+            "pluginKey": "6213ceca-3275-4662-8bbf-302407b85a89"
+        });
     }
 
     async loadSettingMyArea(): Promise<CCResult<Member>> {
