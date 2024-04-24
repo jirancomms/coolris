@@ -315,6 +315,9 @@ export class Risbase extends RisbaseCommon {
                 param.redirect_uri = 'https://local-alimi.coolmessenger.com/callback';
                 param.redirect_uri_next = 'https://local-alimi.coolmessenger.com';
                 break;
+            case 'coolsms':
+                param.redirect_uri = 'https://coolsms.coolmessenger.com/action/login';
+                break;
         }
         let loginURL = COOL_LOGIN_URL;
         let paramStr = $.param(param);
@@ -373,6 +376,9 @@ export class Risbase extends RisbaseCommon {
             case 't-mall': // t-mall
                 break;
             case 'coolmova': // coolmova
+                break;
+            case 'coolsms': // t-fun
+                location.href = 'https://coolsms.coolmessenger.com/action/logout';
                 break;
         }
     }
