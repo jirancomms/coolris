@@ -33,3 +33,6 @@ Thumbs.db
 
 # coolris2coolschool copy
 coolris2coolschool.bat
+
+# build files
+/dist
