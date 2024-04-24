@@ -290,5 +290,13 @@ export class Commsris extends Risbase {
         return $.extend(true, defOption, coolrisOpt);
     }
 
-
+    // 기술지원 채널톡 메시지 열기
+    openChannelTalkMessenger(){
+        const channelTalkService: ChannelTalkService = new ChannelTalkService();
+        channelTalkService.loadScript();
+        channelTalkService.boot({
+            "pluginKey": "6213ceca-3275-4662-8bbf-302407b85a89"
+        });
+        channelTalkService.showMessenger();
+    }
 }
