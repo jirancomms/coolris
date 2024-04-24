@@ -174,21 +174,45 @@ export class RisbaseCommon {
     }
 
     /**
-     *  호스트 정보 가져오기
+     * 호스트 정보 가져오기
+     *
+     * @returns {string} - the standardized host name without any prefixes or suffixes.
      */
     getHost() {
         let host = location.hostname;
+
+        // 호스트에서 더 구체적인 도메인 접미사 제거
         host = host.replace('.coolschool.co.kr', '')
             .replace('coolschool.co.kr', '')
             .replace('.coolmessenger.com', '')
             .replace('coolmessenger.com', '')
-            .replace('local-', '')
-            .replace('dev-', '')
-            .replace('local', '')
-            .replace('dev', '')
             .replace('.com', '')
             .replace('.co.kr', '');
-        if(host === '' || host === 'www') {
+
+        // 개발 및 로컬 환경 식별자 확인 및 제거
+        const isLocal = host.includes('local');
+        const isDev = host.includes('dev');
+        host = host.replace('local-', '')
+            .replace('local.', '')
+            .replace('local', '')
+            .replace('dev-', '')
+            .replace('dev.', '')
+            .replace('dev', '');
+
+        // `coolalimi` 문자열 포함 여부 확인
+        const hasCoolalimi = host.includes('coolalimi');
+
+        // `local` 또는 `dev` 환경 식별자가 존재하고, `coolalimi`가 포함된 경우 접두사 추가
+        if (hasCoolalimi) {
+            if (isLocal) {
+                host = 'local-' + host;
+            } else if (isDev) {
+                host = 'dev-' + host;
+            }
+        }
+
+        // 표준화된 도메인 이름이 남지 않았거나 'www'만 남은 경우 기본값 반환
+        if (host === '' || host === 'www') {
             return 'coolschool';
         }
         return host;

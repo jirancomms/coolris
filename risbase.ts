@@ -303,6 +303,18 @@ export class Risbase extends RisbaseCommon {
             case 'eduspace':
                 param.redirect_uri = 'https://eduspace.coolschool.co.kr/main.do';
                 break;
+            case 'coolalimi':
+                param.redirect_uri = 'https://alimi.coolmessenger.com/callback';
+                param.redirect_uri_next = 'https://alimi.coolmessenger.com';
+                break;
+            case 'dev-coolalimi':
+                param.redirect_uri = 'https://dev-coolalimi.coolmessenger.com/callback';
+                param.redirect_uri_next = 'https://dev-coolalimi.coolmessenger.com';
+                break;
+            case 'local-coolalimi':
+                param.redirect_uri = 'https://local-alimi.coolmessenger.com/callback';
+                param.redirect_uri_next = 'https://local-alimi.coolmessenger.com';
+                break;
         }
         let loginURL = COOL_LOGIN_URL;
         let paramStr = $.param(param);

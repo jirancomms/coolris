@@ -34,6 +34,9 @@ export class RisService {
                     width: 100%;
                     border-bottom: 1px solid #dedede;
                     background-color: #f7f7f7;
+                    top: 0;
+                    left: 0;
+                    z-index: 1000;;
                 }
                 .coolris-gnb[coolrisGnb] h4 {
                     margin: 0;
@@ -59,11 +62,11 @@ export class RisService {
                     clear: both;
                 }
                 .coolris-gnb[coolrisGnb] > div {
-                    width: 980px;
                     margin: 0 auto;
                     padding: 12px 0;
                     box-sizing: border-box;
                     position: relative;
+                    height: 50px;
                 }
                 .coolris-gnb[coolrisGnb] > div.full-size {
                     width: 100%;
@@ -83,11 +86,8 @@ export class RisService {
                     width: 100%;
                 }
                 .coolris-gnb[coolrisGnb] .coolris-login-section {
-                    float: right;
-                    display: flex;
-                    align-items: center;
-                    line-height: 25px;
-                    /*height: 100%;*/
+                    position: absolute;
+                    right: 20px;
                 }
                 .coolris-gnb[coolrisGnb] .coolris-login-section .custom-section .btn-custom {
                     font-size: 14px;
@@ -109,15 +109,14 @@ export class RisService {
                     cursor: default;
                 }
                 .coolris-gnb[coolrisGnb] .coolris-menu-section {
-                    float: left;
-                    display: flex;
-                    align-items: center;
-                    /*height: 100%;*/
+                    position: absolute;
+                    left: 50%;
+                    transform: translateX(-50%);
                 }
             </style>
             <nav class="coolris-gnb" coolrisGnb>
                 {{? !it.isFullSize }}
-                <div>
+                <div class="coolris-gnb-container">
                 {{?? it.isFullSize == true }}
                 <div class="full-size">
                 {{?}}
