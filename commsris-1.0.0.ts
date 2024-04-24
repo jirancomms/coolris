@@ -62,6 +62,8 @@ export class Commsris extends Risbase {
         channelTalkService.boot({
             "pluginKey": "6213ceca-3275-4662-8bbf-302407b85a89"
         });
+		// 기술문의 채널톡 메시지 열기 이벤트
+		this.onEventOpenChannelTalkMessenger();
     }
 
     async loadSettingMyArea(): Promise<CCResult<Member>> {
@@ -299,4 +301,10 @@ export class Commsris extends Risbase {
         });
         channelTalkService.showMessenger();
     }
+
+	onEventOpenChannelTalkMessenger() {
+		$('#support').on('click', () => {
+			this.openChannelTalkMessenger();
+		});
+	}
 }
