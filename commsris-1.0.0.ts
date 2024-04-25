@@ -57,11 +57,7 @@ export class Commsris extends Risbase {
 
         this.eventDropdownAndQuickMenu();
 
-        const channelTalkService: ChannelTalkService = new ChannelTalkService();
-        channelTalkService.loadScript();
-        channelTalkService.boot({
-            "pluginKey": "6213ceca-3275-4662-8bbf-302407b85a89"
-        });
+        this.execChannelTalk();
 		// 기술문의 채널톡 메시지 열기 이벤트
 		this.onEventOpenChannelTalkMessenger();
     }
@@ -290,6 +286,15 @@ export class Commsris extends Risbase {
             }
         } as any;
         return $.extend(true, defOption, coolrisOpt);
+    }
+
+    // footer없이 채널톡만 띄우기
+    execChannelTalk(){
+        const channelTalkService: ChannelTalkService = new ChannelTalkService();
+        channelTalkService.loadScript();
+        channelTalkService.boot({
+            "pluginKey": "6213ceca-3275-4662-8bbf-302407b85a89"
+        });
     }
 
     // 기술지원 채널톡 메시지 열기
