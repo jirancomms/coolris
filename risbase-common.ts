@@ -208,12 +208,14 @@ export class RisbaseCommon {
                 host = 'local-' + host;
             } else if (isDev) {
                 host = 'dev-' + host;
+            } else {
+                host  = 'coolalimi';
             }
         }
 
         // 표준화된 도메인 이름이 남지 않았거나 'www'만 남은 경우 기본값 반환
         if (host === '' || host === 'www') {
-            return 'coolschool';
+            return 'coolmessenger';
         }
         return host;
     }

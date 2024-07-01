@@ -1,7 +1,6 @@
 import {constants, CoolrisOpts, CoolTemplate} from "./coolris-common";
 import {Risbase} from "./risbase";
 import {CommsrisService} from "./service/commsris-service";
-import {tsLoaderSource} from "ts-loader/dist/utils";
 import {ChannelTalkService} from "./service/channeltalk-service";
 
 export class Commsris extends Risbase {
