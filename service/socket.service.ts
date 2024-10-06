@@ -17,6 +17,10 @@ export class SocketService {
     }
 
     connection(): void {
+        if (!io) {
+            console.warn('socket.io is not defined');
+            return;
+        }
         this.socket = io(SOCKET_URL, {
             path: '/alimi',
             reconnection: true,
