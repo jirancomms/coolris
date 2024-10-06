@@ -13,14 +13,28 @@ export class Commsris extends Risbase {
     }
 
     async start(coolrisOpt: CoolrisOpts | any = undefined): Promise<void> {
-        const options: any = this.initOption(coolrisOpt);
+        const options: CoolrisOpts | any = this.initOption(coolrisOpt);
         options.gaOpts.gaMeasurementId = options.gaOpts.gaMeasurementId ? options.gaOpts.gaMeasurementId : 'G-6F5MJCTM7J';
 
         await super.start(options);
 
 		// 각각의 사이트에 알맞는 팝업을 보여주는 시스템
-		// this.openPopup();
-		this.openPopup2();
+		this.openPopup();
+
+		let featureOpts = options.featureOpts;
+		if (featureOpts) {
+			if (featureOpts.channelTalk) {
+				if (featureOpts.channelTalk.use) {
+					this.execChannelTalk();
+					// 기술문의 채널톡 메시지 열기 이벤트
+					this.onEventOpenChannelTalkMessenger();
+					// 채널톡 이번트
+					if (featureOpts.channelTalk.onEventChannelTalk) {
+						featureOpts.channelTalk.onEventChannelTalk();
+					}
+				}
+			}
+		}
     }
 
     getCoolTemplate(): CoolTemplate {
@@ -187,8 +201,8 @@ export class Commsris extends Risbase {
 
 		for (const popupInfo of response) {
 			const { etc2 } = popupInfo;
-			if (await this.hasDisplayedPopup(etc2)) {
-				this.displayPopup(popupInfo);
+			if (this.hasDisplayedPopup(etc2)) {
+				this.displayPopupV2(popupInfo);
 			}
 		}
 	}
@@ -199,8 +213,9 @@ export class Commsris extends Risbase {
 	 * comms-search 서버로 부터 조회
 	 */
     async getPopupData(subdomain) {
-		let url = `${constants.searchUrl}/api/commsrating/_search?serviceType=popup&etcList1=`+subdomain
-		// let url = `https://dev-search.coolmessenger.com/api/commsrating/_search?serviceType=popup&etcList1=`+"coolsms"
+		let url = `${constants.searchUrl}/api/commsrating/_search?serviceType=popupV2&etcList1=` + subdomain
+		// let url = `${constants.searchUrl}/api/commsrating/_search?serviceType=popupV2`;
+		// let url = `https://dev-search.coolmessenger.com/api/commsrating/_search?serviceType=popupV2&etcList1=`+"coolsms"
 		return new Promise((resolve) => {
 			$.get(url).then(response => {
 				resolve(response.data);
@@ -215,7 +230,7 @@ export class Commsris extends Risbase {
 	 * 쿠키 정보가 있으면, 팝업을 안보여주고
 	 * 쿠키 정보가 없으면, 팝업을 보여줍니다.
 	 */
-	async hasDisplayedPopup(cookieName) {
+	hasDisplayedPopup(cookieName) {
 		let cookie = this.getCookie(cookieName);
 		return cookie == "";
 	}
@@ -258,6 +273,115 @@ export class Commsris extends Risbase {
 
 			window.open(popupurl, createdDate, sizeOption);
 		}
+	}
+
+	async getBrowserInfo(): Promise<string> {
+		try {
+			const userAgent = navigator.userAgent.toLowerCase();
+
+			if (userAgent.includes("chrome") && !userAgent.includes("edg") && !userAgent.includes("whale")) {
+				return "Chrome"; // Chrome (Edge 제외)
+			} else if (userAgent.includes("firefox")) {
+				return "Firefox";
+			} else if (userAgent.includes("safari") && !userAgent.includes("chrome")) {
+				return "Safari"; // Safari (Chrome 제외, Chrome 기반 브라우저와 구분)
+			} else if (userAgent.includes("edg")) {
+				return "Edge";
+			} else if (userAgent.includes("opr") || userAgent.includes("opera")) {
+				return "Opera";
+			} else if (userAgent.includes("whale")) {
+				return "Whale";
+			} else {
+				return "Unknown"; // 알 수 없는 브라우저
+			}
+		} catch (error) {
+			// `navigator.userAgent` 접근 중 문제가 발생하면 `getBrowserInfoWithClientHints` 호출
+			console.error("Error using navigator.userAgent:", error);
+			const hints = await this.getBrowserInfoWithClientHints();
+			return this.mapClientHintsToBrowserInfo(hints);
+		}
+	}
+
+	async getBrowserInfoWithClientHints(): Promise<{ brand: string; version: string }[]> {
+		if (!(navigator as any).userAgentData || !(navigator as any).userAgentData.getHighEntropyValues) {
+			return []; // Client Hints API 지원 안 함
+		}
+
+		try {
+			const hints = await (navigator as any).userAgentData.getHighEntropyValues(["brands"]);
+			return hints.brands.map((brand) => ({
+				brand: brand.brand,
+				version: brand.version,
+			}));
+		} catch (error) {
+			console.error("브라우저 정보 가져오기 실패:", error);
+			return [];
+		}
+	}
+
+	mapClientHintsToBrowserInfo(hints: { brand: string; version: string }[]): string {
+		if (hints.length === 0) {
+			return "Unknown"; // 알 수 없는 브라우저
+		}
+
+		for (const hint of hints) {
+			const brand = hint.brand.toLowerCase();
+			if (brand.includes("chrome") && !brand.includes("edge") && !brand.includes("whale")) {
+				return "Chrome"; // Chrome (Edge 제외)
+			} else if (brand.includes("firefox")) {
+				return "Firefox";
+			} else if (brand.includes("safari") && !brand.includes("chrome")) {
+				return "Safari"; // Safari (Chrome 제외, Chrome 기반 브라우저와 구분)
+			} else if (brand.includes("edge")) {
+				return "Edge";
+			} else if (brand.includes("whale")) {
+				return "Whale";
+			} else if (brand.includes("opera")) {
+				return "Opera";
+			}
+		}
+
+		return "Unknown"; // 알 수 없는 브라우저
+	}
+
+	private async displayPopupV2({landingUrl: popupurl, etc1: data, createdDate, startDate, endDate}) {
+		const parsedData = JSON.parse(data);
+		const size = parsedData['size'];
+
+		const popupSizeOptions = this.getPopupSizeOptions(size);
+		const popupDateRange = this.getPopupDateRange(startDate, endDate);
+
+		if (this.isNowWithinPopupDateRange(popupDateRange)) {
+			const browserInfo = await this.getBrowserInfo();
+			const sizeOption = this.getPopupSizeOptionForBrowser(browserInfo, popupSizeOptions);
+			window.open(popupurl, createdDate, sizeOption);
+		}
+	}
+
+	private getPopupSizeOptions(size: any) {
+		return {
+			edge: {width: size['popupWidth'], height: size['popupHeight'] + 22},
+			chrome: {width: size['popupWidth'], height: size['popupHeight'] + 23},
+			firefox: {width: size['popupWidth'], height: size['popupHeight'] + 22},
+			whale: {width: size['popupWidth'], height: size['popupHeight'] - 15}
+		};
+	}
+
+	private getPopupDateRange(startDate: string, endDate: string) {
+		return {
+			start: new Date(this.convertDate(startDate) + ' 00:00:00'),
+			end: new Date(this.convertDate(endDate) + ' 23:59:59')
+		};
+	}
+
+	private isNowWithinPopupDateRange(popupDateRange: any) {
+		const nowDate = new Date();
+		return popupDateRange.start <= nowDate && nowDate <= popupDateRange.end;
+	}
+
+	private getPopupSizeOptionForBrowser(browserInfo: string, popupSizeOptions: any) {
+		const sizeOption = popupSizeOptions[browserInfo.toLowerCase()];
+		return `width=${sizeOption.width},height=${sizeOption.height},toolbar=no,history=no,resizable=no,status=n,top=0,left=0,scrollbars=no,menubar=no`;
 	}
 
 	convertDate(sampleTimestamp) {

@@ -92,16 +92,10 @@ const siteUrl = coolEnv.getEnv() === ECoolEnv.PROD ? environment : environmentDe
 
 export const constants = {
     memberUrl:  (() => {
-        if (location.hostname.indexOf('coolmessenger.com') !== -1 || location.hostname.indexOf('coolalimi') !== -1) {
-            return `//${coolEnv.getEnvPrefix()}member.coolmessenger.com`;
-        }
-        return `//${coolEnv.getEnvPrefix()}member.coolschool.co.kr`;
+        return `//${coolEnv.getEnvPrefix()}member.coolmessenger.com`;
     })(),
     searchUrl:  (() => {
-        if (location.hostname.indexOf('coolmessenger.com') !== -1 || location.hostname.indexOf('coolalimi') !== -1) {
-            return `//${coolEnv.getEnvPrefix()}search.coolmessenger.com`;
-        }
-        return `//${coolEnv.getEnvPrefix()}search.coolschool.co.kr`;
+        return `//${coolEnv.getEnvPrefix()}search.coolmessenger.com`;
     })(),
     clientIds: {
         'www': 'NjM2YzY5NjU2ZTc0NWY2OTY0M2E0MzRmNGY0YzUzNDM0ODRmNGY0Yw==', // coolschool
