@@ -20,13 +20,156 @@
         $(function() {
             // var commsris = new Commsris();
             var commsris = new Commsris();
-            commsris.start({layoutOpts: {isFullSize: true}});
-            commsris.footerStart();
+            // commsris.start({layoutOpts: {isFullSize: true}});
+            commsris.start({
+                featureOpts: {
+                    channelTalk: {
+                        use: true,
+                        onEventChannelTalk: function () {
+                            $('#testChannelBtn').click(function () {
+                                commsris.openChannelTalkMessenger();
+                            });
+                        }
+                    }
+                }
+            });
+            // commsris.footerStart();
+            commsris.footerStart({
+                customElementOpts: {
+                    footerLink: [{
+                        aTag: {
+                            eventLabel: 'alimi_notice',
+                            href: 'https://cs.coolmessenger.com/bbs/list/notice',
+                            target: '_blank',
+                            content: '공지사항'
+                        }
+                    }]
+                }
+            });
         });
     </script>
 </head>
 <body>
     <div id="coolrisGnb"></div>
+    <button id="testChannelBtn">채널톡</button>
+    <div class="main-banner">
+        <div class="inner">
+            <div class="float-banner fixed">
+                <a onclick="gtag('event','school',{'event_category':'link','event_label':'float-faq','send_to':'UA-92421532-1'});"
+                   href="http://www.coolmessenger.com/front_n/support/faq.asp" target="_blank">
+                    <img src="//update.coolmessenger.com/_ImageServer/coolmessenger/coolmessenger/renew/float_banner_0.png"
+                         alt="img">
+                    FAQ
+                </a>
+                <a onclick="gtag('event','school',{'event_category':'link','event_label':'float-experience','send_to':'UA-92421532-1'});"
+                   href="http://www.coolmessenger.com/front_n/support/gentoo30days.asp" target="_blank">
+                    <img src="//update.coolmessenger.com/_ImageServer/coolmessenger/coolmessenger/renew/float_banner_1.png"
+                         alt="img">
+                    체험하기
+                </a>
+            </div>
+            <h1 style="padding-top: 150px;">
+                학사업무의 시작과 끝<br>
+                <b>쿨메신저가 함께합니다.</b>
+            </h1>
+            <img class="banner-back"
+                 src="//update.coolmessenger.com/_ImageServer/coolmessenger/coolmessenger/renew/banner_back.png"
+                 alt="img">
+            <div class="btn-box">
+                <a class="btn"
+                   onclick="gtag('event','school',{'event_category':'link','event_label':'buy','send_to':'UA-92421532-1'});"
+                   href="//school.coolmessenger.com/purchase/index#!/buy/9" target="_blank">
+                    <img src="//update.coolmessenger.com/_ImageServer/coolmessenger/coolmessenger/renew/banner_btn_0.png"
+                         alt="img">
+                    <span>구매하기</span>
+                </a>
+                <a class="btn"
+                   onclick="gtag('event','school',{'event_category':'link','event_label':'buy-papers','send_to':'UA-92421532-1'});"
+                   href="//school.coolmessenger.com/purchase/index#!/buy/9" target="_blank">
+                    <img src="//update.coolmessenger.com/_ImageServer/coolmessenger/coolmessenger/renew/banner_btn_1.png"
+                         alt="img">
+                    <span>
+                    증빙서류
+                    <i>
+                       (견적서,사업자등록증,통장사본)
+                    </i>
+                </span>
+                </a>
+                <a class="btn" id="downloadBtn2"
+                   onclick="gtag('event','school',{'event_category':'link','event_label':'download','send_to':'UA-92421532-1'});">
+                    <img src="//update.coolmessenger.com/_ImageServer/coolmessenger/coolmessenger/renew/banner_btn_2.png"
+                         alt="img">
+                    <span>다운로드</span>
+                </a>
+                <a class="btn"
+                   onclick="gtag('event','school',{'event_category':'link','event_label':'notice','send_to':'UA-92421532-1'});"
+                   href="http://www.coolmessenger.com/front_n/community/notice_list.asp" target="_blank">
+                    <img src="//update.coolmessenger.com/_ImageServer/coolmessenger/coolmessenger/renew/banner_btn_3.png"
+                         alt="img">
+                    <span>공지사항</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="main-banner">
+        <div class="inner">
+            <div class="float-banner fixed">
+                <a onclick="gtag('event','school',{'event_category':'link','event_label':'float-faq','send_to':'UA-92421532-1'});"
+                   href="http://www.coolmessenger.com/front_n/support/faq.asp" target="_blank">
+                    <img src="//update.coolmessenger.com/_ImageServer/coolmessenger/coolmessenger/renew/float_banner_0.png"
+                         alt="img">
+                    FAQ
+                </a>
+                <a onclick="gtag('event','school',{'event_category':'link','event_label':'float-experience','send_to':'UA-92421532-1'});"
+                   href="http://www.coolmessenger.com/front_n/support/gentoo30days.asp" target="_blank">
+                    <img src="//update.coolmessenger.com/_ImageServer/coolmessenger/coolmessenger/renew/float_banner_1.png"
+                         alt="img">
+                    체험하기
+                </a>
+            </div>
+            <h1 style="padding-top: 150px;">
+                학사업무의 시작과 끝<br>
+                <b>쿨메신저가 함께합니다.</b>
+            </h1>
+            <img class="banner-back"
+                 src="//update.coolmessenger.com/_ImageServer/coolmessenger/coolmessenger/renew/banner_back.png"
+                 alt="img">
+            <div class="btn-box">
+                <a class="btn"
+                   onclick="gtag('event','school',{'event_category':'link','event_label':'buy','send_to':'UA-92421532-1'});"
+                   href="//school.coolmessenger.com/purchase/index#!/buy/9" target="_blank">
+                    <img src="//update.coolmessenger.com/_ImageServer/coolmessenger/coolmessenger/renew/banner_btn_0.png"
+                         alt="img">
+                    <span>구매하기</span>
+                </a>
+                <a class="btn"
+                   onclick="gtag('event','school',{'event_category':'link','event_label':'buy-papers','send_to':'UA-92421532-1'});"
+                   href="//school.coolmessenger.com/purchase/index#!/buy/9" target="_blank">
+                    <img src="//update.coolmessenger.com/_ImageServer/coolmessenger/coolmessenger/renew/banner_btn_1.png"
+                         alt="img">
+                    <span>
+                    증빙서류
+                    <i>
+                       (견적서,사업자등록증,통장사본)
+                    </i>
+                </span>
+                </a>
+                <a class="btn" id="downloadBtn2"
+                   onclick="gtag('event','school',{'event_category':'link','event_label':'download','send_to':'UA-92421532-1'});">
+                    <img src="//update.coolmessenger.com/_ImageServer/coolmessenger/coolmessenger/renew/banner_btn_2.png"
+                         alt="img">
+                    <span>다운로드</span>
+                </a>
+                <a class="btn"
+                   onclick="gtag('event','school',{'event_category':'link','event_label':'notice','send_to':'UA-92421532-1'});"
+                   href="http://www.coolmessenger.com/front_n/community/notice_list.asp" target="_blank">
+                    <img src="//update.coolmessenger.com/_ImageServer/coolmessenger/coolmessenger/renew/banner_btn_3.png"
+                         alt="img">
+                    <span>공지사항</span>
+                </a>
+            </div>
+        </div>
+    </div>
     <div id="commsrisFooter"></div>
 </body>
 </html>

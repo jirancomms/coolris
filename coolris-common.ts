@@ -6,6 +6,8 @@ export interface CoolrisOpts {
     logoutOpts: LogoutOpts;
     gaOpts: GaOpts;
     layoutOpts: LayoutOpts;
+    featureOpts: FeatureOpts;
+    customElementOpts: CustomElementOpts;
 }
 
 // 레이아웃 변화 주는 옵션
@@ -26,6 +28,25 @@ export interface LogoutOpts {
     isLogoutProc: boolean; // /logoutProc 사용 유무
     logoutProcUrl: string | undefined;  // 다른 로그아웃 url이 필요할 때
     callbackLogoutComplete: Function; // 로그아웃 완료 후 콜백함수
+}
+
+export interface FeatureOpts {
+    channelTalk: {
+        use: boolean; // 채널톡 사용 여부
+        onEventChannelTalk: Function;
+    }
+}
+
+export interface CustomElementOpts {
+    // footer start 옵션
+    footerLink?: [{
+        aTag : {
+            href?: string;
+            target?: string;
+            eventLabel: string;
+            content: string;
+        }
+    }]
 }
 
 // 템플릿 종류

@@ -65,14 +65,12 @@ export class Commsris extends Risbase {
 
         // dot에 template을 준다.
         // @ts-ignore
-        const coolrisTemplateFn = this.doT.template(this.risService.getFooteremplate(footerTemplate));
-        $('#commsrisFooter').html(coolrisTemplateFn());
+		let footeremplate = this.risService.getFooteremplate(footerTemplate);
+		// @ts-ignore
+		const coolrisTemplateFn = this.doT.template(footeremplate);
+        $('#commsrisFooter').html(coolrisTemplateFn(options.customElementOpts));
 
         this.eventDropdownAndQuickMenu();
-
-        this.execChannelTalk();
-		// 기술문의 채널톡 메시지 열기 이벤트
-		this.onEventOpenChannelTalkMessenger();
     }
 
     async loadSettingMyArea(): Promise<CCResult<Member>> {
@@ -406,7 +404,12 @@ export class Commsris extends Risbase {
             gaOpts: {
                 gaPageviewCall: true,
                 gaMeasurementId: 'G-6F5MJCTM7J'
-            }
+            },
+			featureOpts: {
+				channelTalk: {
+					use: true
+				}
+			}
         } as any;
         return $.extend(true, defOption, coolrisOpt);
     }

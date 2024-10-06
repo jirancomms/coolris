@@ -407,6 +407,17 @@ export class CommsrisService extends RisService {
                     <a onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'contactus', 'send_to': '${gaMeasurementId}'});" id="marketing">광고문의</a>
                     <a onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'support', 'send_to': '${gaMeasurementId}'});" id="support">기술문의</a>
                     <a onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'withyou', 'send_to': '${gaMeasurementId}'});" href="https://withyou.jiran.com" target="_blank">윤리경영</a>
+                    {{?it && it.footerLink}}
+                        {{~it.footerLink :item:index}}
+                          {{?item.aTag}}
+                            <a onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': '{{=item.aTag.eventLabel}}', 'send_to': '${gaMeasurementId}'});"
+                                {{?item.aTag.href}} href="{{=item.aTag.href}}" {{?}}
+                                {{?item.aTag.target}} target="{{=item.aTag.target}} {{?}}">
+                                {{=item.aTag.content}}
+                            </a>
+                          {{?}}
+                       {{~}}
+                    {{?}}
                 </div>
                 <div class="mobile">
                     <span style="cursor: pointer;" onClick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'privacy_policy', 'send_to': '${gaMeasurementId}'});
