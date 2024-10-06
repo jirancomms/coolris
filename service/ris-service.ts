@@ -127,6 +127,7 @@ export class RisService {
                         ${coolTemplate.menu}
                         ${coolTemplate.more}
                     </section>
+                    {{? it.isLoginShow !== false }}
                     <section class="coolris-login-section">
                         <div class="custom-section"></div>
                         {{? it.isLogin === false }}
@@ -137,6 +138,7 @@ export class RisService {
                             <div data-name="divAlarmArea"></div>
                         {{?}}
                     </section>
+                    {{?}}
                 </div>
             </nav>
         `

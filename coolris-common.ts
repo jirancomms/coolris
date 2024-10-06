@@ -21,6 +21,7 @@ export interface GaOpts {
 
 // 로그아웃 옵션
 export interface LogoutOpts {
+    isLoginShow: boolean; // 로그인&회원가입 버튼 보여주기 여부
     isRestoreLocation: boolean; // 로그아웃한 사이트에 남아있을 여부
     isLogoutProc: boolean; // /logoutProc 사용 유무
     logoutProcUrl: string | undefined;  // 다른 로그아웃 url이 필요할 때
