@@ -46,7 +46,10 @@ export interface CustomElementOpts {
             eventLabel: string;
             content: string;
         }
-    }]
+    }],
+    footerInfo?: {
+        showCleanspam?: boolean; // 클린스팸 보여주기 여부
+    }
 }
 
 // 템플릿 종류

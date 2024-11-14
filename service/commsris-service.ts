@@ -423,7 +423,7 @@ export class CommsrisService extends RisService {
                     <span style="cursor: pointer;" onClick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'privacy_policy', 'send_to': '${gaMeasurementId}'});
                         window.open('//member.coolmessenger.com/contract/privacy?type=html', 'coolschool_privacy', 'width=500,height=350');">개인정보처리방침</span>
                     <span style="cursor: pointer;" onClick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'terms_of_service_policy', 'send_to': '${gaMeasurementId}'});
-                        window.open('//member.coolmessenger.com/contract/term?type=html', 'terms_of_service_policy', 'width=500,height=350');">이용약관</span>
+                        window.open('//member.coolmessenger.com/contract/term?type=html', 'terms_of_service_policy', 'width=500,height=350');">이용약관</span> 
                 </div>
             </div>
         `
@@ -531,7 +531,12 @@ export class CommsrisService extends RisService {
                         </a>               
                         <a href="https://www.youtube.com/channel/UCOQfhiS4GRhFuHWY-MEZD_Q/featured" target="_blank">
                             <img src="//update.coolmessenger.com/_ImageServer/coolris/ico_youtube_big.png" alt="img" />
-                        </a>            
+                        </a>
+                        {{?it && it.footerInfo}}
+                            {{?it.footerInfo.showCleanspam}}
+                                <img src="https://yeorcqadlpopsmgaoudu.supabase.co/storage/v1/object/public/certification/mark/6dd905f1-eda8-4687-910a-0caeed573863/c66f548d-aab6-4ed5-8d9f-353cabb99dfb-2024-10-23T07:11:03.527Z" style="cursor: pointer; width: 52px; height: 52px; margin-left: 5px;" onclick="(function(){window.open('https://cleanspam.or.kr/ci/85','_blank','width=800, height=1151, toolbar=no, menubar=no, scrollbars=no, resizable=no')})()" />
+                            {{?}}
+                        {{?}}
                     </div>
                     <p><span>대표자 : 안대근</span><span>사업자등록번호 : 764-87-00314</span><span>통신판매업 신고번호 : 제2023-성남수정-0685호</span></p>
                     <p><span>(13453) 경기도 성남시 수정구 금토로80번길 37, 인피니티타워 W동 3층</span><span>대표전화 : <a href="tel:1670-4846">1670-4846</a></span><span>팩스 : 070-7605-2935</span></p>
