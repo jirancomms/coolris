@@ -5,5 +5,6 @@ export const environmentDev = {
     coolalimiUrl: 'https://dev.coolalimi.com',
     coolalimTalkUrl: 'https://dev.coolalimi.com/alimtalk',
     coolendarUrl: '//dev-coolendar.coolmessenger.com',
+    coolpassUrl: '//dev-coolpass.coolmessenger.com',
     coolmessengerUrl: '//dev-school.coolmessenger.com',
 };

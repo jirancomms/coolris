@@ -5,5 +5,6 @@ export const environment = {
     coolalimiUrl: 'https://www.coolalimi.com',
     coolalimTalkUrl: 'https://www.coolalimi.com/alimtalk',
     coolendarUrl: '//coolendar.coolmessenger.com',
+    coolpassUrl: '//coolpass.coolmessenger.com',
     coolmessengerUrl: '//school.coolmessenger.com',
 };

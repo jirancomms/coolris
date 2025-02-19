@@ -60,6 +60,9 @@ export class CommsrisService extends RisService {
                 <li onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_coolendar', 'send_to': '${gaMeasurementId}'});">
                     <a href="${constants.siteUrl.coolendarUrl}" target="_blank">학사일정</a>
                 </li>
+                <li onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_coolpass', 'send_to': '${gaMeasurementId}'});">
+                    <a href="${constants.siteUrl.coolpassUrl}" target="_blank">쿨패스</a>
+                </li>
             </ul>
         `
     }
