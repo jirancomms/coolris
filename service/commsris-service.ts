@@ -47,10 +47,7 @@ export class CommsrisService extends RisService {
             <ul coolrisGnbMenu>
                 <li onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_coolmsg', 'send_to': '${gaMeasurementId}'});">
                     <a href="${constants.siteUrl.coolmessengerUrl}" target="_blank">쿨메신저</a>
-                </li>
-                <li onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_coolAlimi', 'send_to': '${gaMeasurementId}'});">
-                    <a href="${constants.siteUrl.coolalimiUrl}" target="_blank">쿨알리미</a>
-                </li>
+                </li>                
                 <li onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_sms', 'send_to': '${gaMeasurementId}'});">
                     <a href="${constants.siteUrl.coolsmsUrl}" target="_blank">문자</a>
                 </li>
