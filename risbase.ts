@@ -319,6 +319,18 @@ export class Risbase extends RisbaseCommon {
                 param.redirect_uri = 'https://local-alimi.coolmessenger.com/callback';
                 param.redirect_uri_next = 'https://local-alimi.coolmessenger.com';
                 break;
+            case 'cooldiary':
+                param.redirect_uri = 'https://cooldiary.coolmessenger.com/callback';
+                param.redirect_uri_next = 'https://cooldiary.coolmessenger.com';
+                break;
+            case 'dev-cooldiary':
+                param.redirect_uri = 'https://dev-cooldiary.coolmessenger.com/callback';
+                param.redirect_uri_next = 'https://dev-cooldiary.coolmessenger.com';
+                break;
+            case 'local-cooldiary':
+                param.redirect_uri = 'https://local-cooldiary.coolmessenger.com/callback';
+                param.redirect_uri_next = 'https://local-cooldiary.coolmessenger.com';
+                break;
             case 'coolsms':
                 param.redirect_uri = 'https://coolsms.coolmessenger.com/action/login';
                 break;
