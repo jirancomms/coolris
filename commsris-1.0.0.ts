@@ -93,8 +93,9 @@ export class Commsris extends Risbase {
      *  탑배너 데이터 가져오기
      */
     async getBannerData() {
+        let subdomain = this.getHost();
         const setting = {
-            url: '//search.coolmessenger.com/api/commsrating/_search?q=topBandBanner&qf=viewType&serviceType=commsBanner',
+            url: '//search.coolmessenger.com/api/commsrating/_search?q=topBandBanner&qf=viewType&serviceType=commsBanner&etcList1=' + subdomain,
             type: 'GET'
         };
         return await $.ajax(setting).then(response => {return response.data});
