@@ -94,8 +94,11 @@ export class Commsris extends Risbase {
      */
     async getBannerData() {
         let subdomain = this.getHost();
+        if(subdomain.includes('alimi')){    // 알리미는 서브도메인에 local-, dev-허용되서 변경해야함.
+            subdomain = 'alimi';
+        }
         const setting = {
-            url: '//search.coolmessenger.com/api/commsrating/_search?q=topBandBanner&qf=viewType&serviceType=commsBanner&etcList1=' + subdomain,
+            url: `${constants.searchUrl}/api/commsrating/_search?q=topBandBanner&qf=viewType&serviceType=commsBanner&etcList1=` + subdomain,
             type: 'GET'
         };
         return await $.ajax(setting).then(response => {return response.data});

@@ -510,6 +510,11 @@ export class Risbase extends RisbaseCommon {
      *  탑배너 데이터 로드 및 세팅
      */
     async loadSettingTopBanner() {
+        // 알림톡은 배너 호출 막기, 알림톡 사이트에서 직접 api 호출
+        // if (this.getHost().includes('alimi')) {
+        //     return;
+        // }
+
         const response = await this.getBannerData();
         if (!response || response.length === 0) {
             return;
