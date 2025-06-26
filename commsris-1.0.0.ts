@@ -441,8 +441,8 @@ export class Commsris extends Risbase {
 		$('#support').on('click', () => {
 			this.openChannelTalkMessenger();
 		});
-        $('#marketing').on('click', () => {
+        /*$('#marketing').on('click', () => {
             this.openChannelTalkMessenger();
-        });
+        });*/
 	}
 }
