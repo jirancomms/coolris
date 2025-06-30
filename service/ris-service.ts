@@ -226,6 +226,7 @@ export class RisService {
                     height: 20px;
                     width: 20px;
                     margin-right: 3px;
+                    display: inline-block;
                 }
                 div[coolrisProfile] .coolris-profile-btn:after {
                     display: none !important;
