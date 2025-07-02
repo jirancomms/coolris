@@ -365,7 +365,7 @@ export class Commsris extends Risbase {
 			edge: {width: size['popupWidth'], height: size['popupHeight'] + 22},
 			chrome: {width: size['popupWidth'], height: size['popupHeight'] + 23},
 			firefox: {width: size['popupWidth'], height: size['popupHeight'] + 22},
-			whale: {width: size['popupWidth'], height: size['popupHeight'] - 15}
+			whale: {width: size['popupWidth'], height: size['popupHeight'] + 22}
 		};
 	}
 
