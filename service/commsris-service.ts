@@ -61,7 +61,7 @@ export class CommsrisService extends RisService {
                     <a href="${constants.siteUrl.coolpassUrl}" target="_blank">학교방문예약</a>
                 </li>
                 <li onclick="gtag('event', '${serviceName}', {'event_category': 'link', 'event_label': 'gnb_cooldiary', 'send_to': '${gaMeasurementId}'});">
-                    <a href="${constants.siteUrl.cooldiaryUrl}" target="_blank">쿨일지</a>
+                    <a href="${constants.siteUrl.cooldiaryUrl}" target="_blank">학급일지</a>
                 </li>
             </ul>
         `
